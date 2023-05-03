@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+    <xacro:macro name="indy_transmission" params="prefix hw_interface indy_type">
+
+        <transmission name="${prefix}tran0">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${prefix}joint0">
+                <hardwareInterface>${hw_interface}</hardwareInterface>
+            </joint>
+            <actuator name="${prefix}motor0">
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+
+        <transmission name="${prefix}tran1">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${prefix}joint1">
+                <hardwareInterface>${hw_interface}</hardwareInterface>
+            </joint>
+            <actuator name="${prefix}motor1">
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+
+        <transmission name="${prefix}tran2">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${prefix}joint2">
+                <hardwareInterface>${hw_interface}</hardwareInterface>
+            </joint>
+            <actuator name="${prefix}motor2">
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+
+        <transmission name="${prefix}tran3">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${prefix}joint3">
+                <hardwareInterface>${hw_interface}</hardwareInterface>
+            </joint>
+            <actuator name="${prefix}motor3">
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+
+        <transmission name="${prefix}tran4">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${prefix}joint4">
+                <hardwareInterface>${hw_interface}</hardwareInterface>
+            </joint>
+            <actuator name="${prefix}motor4">
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+
+        <transmission name="${prefix}tran5">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${prefix}joint5">
+                <hardwareInterface>${hw_interface}</hardwareInterface>
+            </joint>
+            <actuator name="${prefix}motor5">
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+
+        <!--indyrp2 with 7 DOF-->
+        <xacro:if value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
+            <transmission name="${prefix}tran6">
+                <type>transmission_interface/SimpleTransmission</type>
+                <joint name="${prefix}joint6">
+                    <hardwareInterface>${hw_interface}</hardwareInterface>
+                </joint>
+                <actuator name="${prefix}motor6">
+                    <mechanicalReduction>1</mechanicalReduction>
+                </actuator>
+            </transmission>
+        </xacro:if>
+
+    </xacro:macro>
+
+</robot>
