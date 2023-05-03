@@ -18,7 +18,7 @@ def launch_setup(context, *args, **kwargs):
     prefix = LaunchConfiguration("prefix")
     launch_rviz = LaunchConfiguration("launch_rviz")
 
-    if (indy_type.perform(context) == 'indyrp2'):
+    if (indy_type.perform(context) == 'indyrp2') or (indy_type.perform(context) == 'indyrp2_v2'):
         initial_joint_controllers = PathJoinSubstitution(
             [indy_driver_package, "controller", "indy_controllers_7dof.yaml"]
         )
@@ -73,26 +73,26 @@ def launch_setup(context, *args, **kwargs):
 
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
-        executable="spawner.py",
+        executable="spawner",
         arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
         output="screen",
     )
 
     joint_controller_spawner = Node(
         package="controller_manager",
-        executable="spawner.py",
+        executable="spawner",
         arguments=["joint_trajectory_controller", "-c", "/controller_manager"],
     )
 
     indy_driver = Node(
         package="indy_driver",
         executable="indy_driver.py",
-        name="indy_dcp",
+        name="indy_driver",
         output="screen",
         emulate_tty=True,
         parameters=[
             {'indy_ip': indy_ip.perform(context)},
-            {'indy_name': indy_type.perform(context)},
+            {'indy_type': indy_type.perform(context)},
         ],
     )
 
@@ -155,7 +155,7 @@ def generate_launch_description():
             "indy_type",
             default_value="indy7",
             description="Type of Indy robot.",
-            choices=["indy7", "indy12", "indyrp2"]
+            choices=["indy7", "indy7_v2" , "indy12", "indyrp2", "indyrp2_v2"]
         )
     )
  

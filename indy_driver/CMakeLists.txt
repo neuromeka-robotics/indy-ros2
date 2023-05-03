@@ -28,8 +28,8 @@ find_package(ament_cmake_python REQUIRED)
 # )
 
 install(DIRECTORY
-  indy_utils
-  DESTINATION lib/python3.8/site-packages
+  gRPC
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 install(DIRECTORY

@@ -70,6 +70,25 @@ def launch_setup(context, *args, **kwargs):
     )
 
     # Planning Configuration
+    # ompl_planning_pipeline_config = {
+    #     "move_group": {
+    #         "planning_plugin": "ompl_interface/OMPLPlanner",
+    #         "request_adapters": """default_planner_request_adapters/AddTimeOptimalParameterization default_planner_request_adapters/FixWorkspaceBounds default_planner_request_adapters/FixStartStateBounds default_planner_request_adapters/FixStartStateCollision default_planner_request_adapters/FixStartStatePathConstraints""",
+    #         "start_state_max_bounds_error": 0.1,
+    #         "planner_configs": {
+    #             "indy_manipulator": {
+    #                 "type": "geometric::RRTConnect",
+    #                 "range": 0.2, # Maximum distance between waypoints
+    #                 "goal_bias": 0.05,
+    #                 "thread_count": 1,
+    #                 "simplify": True,
+    #                 "simplify_solutions": True,
+    #                 "optimization_objectives": ["path_length"],
+    #             }
+    #         }
+    #     }
+    # }
+    
     ompl_planning_pipeline_config = {
         "move_group": {
             "planning_plugin": "ompl_interface/OMPLPlanner",
@@ -142,60 +161,25 @@ def launch_setup(context, *args, **kwargs):
         ],
     )
 
-    # # Servo node for realtime control
-    # servo_yaml = load_yaml("indy_moveit", "moveit_config/indy_servo.yaml")
-    # servo_params = {"moveit_servo": servo_yaml}
-
-    # # Launch as much as possible in components
-    # container = ComposableNodeContainer(
-    #     name="moveit_servo_container",
-    #     namespace="/",
-    #     package="rclcpp_components",
-    #     executable="component_container",
-    #     composable_node_descriptions=[
-    #         # ComposableNode(
-    #         #     package='robot_state_publisher',
-    #         #     plugin='robot_state_publisher::RobotStatePublisher',
-    #         #     name='robot_state_publisher',
-    #         #     parameters=[robot_description],
-    #         # ),
-    #         # ComposableNode(
-    #         #     package='tf2_ros',
-    #         #     plugin='tf2_ros::StaticTransformBroadcasterNode',
-    #         #     name='static_tf2_broadcaster',
-    #         #     parameters=[{'child_frame_id': 'link0', 'frame_id': 'world'}],
-    #         # ),
-    #         ComposableNode(
-    #             package="moveit_servo",
-    #             plugin="moveit_servo::ServoServer",
-    #             name="servo_server",
-    #             parameters=[
-    #                 servo_params,
-    #                 robot_description,
-    #                 robot_description_semantic,
-    #             ],
-    #             extra_arguments=[{"use_intra_process_comms": True}],
-    #         ),
-    #         ComposableNode(
-    #             package="moveit_servo",
-    #             plugin="moveit_servo::JoyToServoPub",
-    #             name="controller_to_servo_node",
-    #             extra_arguments=[{"use_intra_process_comms": True}],
-    #         ),
-    #         ComposableNode(
-    #             package="joy",
-    #             plugin="joy::Joy",
-    #             name="joy_node",
-    #             extra_arguments=[{"use_intra_process_comms": True}],
-    #         ),
-    #     ],
-    #     output="screen",
-    # )
+    # Servo node for realtime control
+    servo_yaml = load_yaml("indy_moveit", "moveit_config/indy_servo.yaml")
+    servo_params = {"moveit_servo": servo_yaml}
+    servo_node = Node(
+        package="moveit_servo",
+        executable="servo_node_main",
+        parameters=[
+            servo_params,
+            robot_description,
+            robot_description_semantic,
+            robot_description_kinematics
+        ],
+        output="screen",
+    )
 
     nodes_to_start = [
         move_group_node,
         rviz_node,
-        # container
+        # servo_node
     ]
 
     return nodes_to_start

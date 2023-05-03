@@ -66,14 +66,14 @@ def launch_setup(context, *args, **kwargs):
 
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
-        executable="spawner.py",
+        executable="spawner",
         arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
         output="screen",
     )
 
     joint_controller_spawner = Node(
         package="controller_manager",
-        executable="spawner.py",
+        executable="spawner",
         arguments=["joint_trajectory_controller", "-c", "/controller_manager"],
     )
 
@@ -128,12 +128,16 @@ def launch_setup(context, *args, **kwargs):
 
     nodes_to_start = [
         gazebo,
-        robot_state_publisher_node,
         gazebo_spawn_robot,
+
+        robot_state_publisher_node,
+
+        # joint_state_broadcaster_spawner,
+        # joint_controller_spawner,
 
         delay_joint_state_broadcaster_spawner,
         delay_robot_controller_spawner,
-        delay_rviz2_spawner
+        delay_rviz2_spawner,
     ]
 
     return nodes_to_start
