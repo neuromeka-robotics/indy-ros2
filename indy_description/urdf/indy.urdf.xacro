@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="$(arg name)">
+
+    <!-- import main macro -->
+    <xacro:include filename="$(find indy_description)/urdf/indy_macro.xacro"/>
+
+    <!-- robot name parameter -->
+    <xacro:arg name="name" default="indy"/>
+
+    <!-- possible 'indy_type' values: indy7, indy12, indyrp2...-->
+    <xacro:arg name="indy_type" default="indy7"/>
+
+    <xacro:arg name="indy_eye" default="false"/>
+
+    <!-- parameters -->
+    <xacro:arg name="prefix" default="" />
+    <xacro:arg name="joint_limit_params" default="$(find indy_description)/urdf/config/$(arg indy_type)/joint_limits.yaml"/>
+    <xacro:arg name="kinematics_params" default="$(find indy_description)/urdf/config/$(arg indy_type)/kinematics.yaml"/>
+    <xacro:arg name="physical_params" default="$(find indy_description)/urdf/config/$(arg indy_type)/physical_parameters.yaml"/>
+    <xacro:arg name="visual_params" default="$(find indy_description)/urdf/config/$(arg indy_type)/visual_parameters.yaml"/>
+    <xacro:arg name="transmission_hw_interface" default=""/>
+
+    <xacro:arg name="sim_gazebo" default="false" />
+    <xacro:arg name="simulation_controllers" default="" />
+
+    <link name="world" />
+
+    <!-- define robot -->
+    <!-- transmission_hw_interface use for ros1 -->
+    <xacro:indy_robot
+        name="$(arg name)"
+        indy_type="$(arg indy_type)"
+        indy_eye="$(arg indy_eye)"
+        prefix="$(arg prefix)"
+        parent="world"
+        joint_limits_parameters_file="$(arg joint_limit_params)"
+        kinematics_parameters_file="$(arg kinematics_params)"
+        physical_parameters_file="$(arg physical_params)"
+        visual_parameters_file="$(arg visual_params)"
+        transmission_hw_interface="$(arg transmission_hw_interface)"
+        sim_gazebo="$(arg sim_gazebo)"
+        >
+        <origin xyz="0 0 0" rpy="0 0 0" />          <!-- position robot in the world -->
+    </xacro:indy_robot>
+
+    <xacro:if value="$(arg sim_gazebo)">
+        <gazebo reference="world"> </gazebo>
+        <gazebo>
+            <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so" >
+                <parameters>$(arg simulation_controllers)</parameters>
+            </plugin>
+        </gazebo>
+            <!-- <robot_param>robot_description</robot_param> -->
+            <!-- <robot_param_node>robot_state_publisher</robot_param_node> -->
+            <!-- <parameters>$(find indy_gazebo)/controller/indy_controllers_7dof.yaml</parameters> -->
+    </xacro:if>
+    
+</robot>

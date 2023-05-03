@@ -1,0 +1,44 @@
+# How links connect together
+kinematics:
+  joint0:
+    x: 0
+    y: 0
+    z: 0.13
+    roll: 0
+    pitch: 0
+    yaw: 0
+  joint1:
+    x: 0
+    y: -0.1275
+    z: 0.22
+    roll: 1.570796327
+    pitch: -1.570796327
+    yaw: 0
+  joint2:
+    x: 0.65
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 1.570796327
+  joint3:
+    x: 0
+    y: -0.27475
+    z: -0.117
+    roll: -1.570796327
+    pitch: 0
+    yaw: 3.14159265
+  joint4:
+    x: 0
+    y: -0.117
+    z: 0.27525
+    roll: -1.570796327
+    pitch: 0
+    yaw: 3.14159265
+  joint5:
+    x: 0
+    y: -0.185
+    z: 0.1015
+    roll: -1.570796327
+    pitch: 0
+    yaw: 3.14159265
