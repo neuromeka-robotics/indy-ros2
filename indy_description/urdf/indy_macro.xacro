@@ -17,17 +17,15 @@
         kinematics_parameters_file
         physical_parameters_file
         visual_parameters_file
-        initial_positions_file
         transmission_hw_interface:=hardware_interface/PositionJointInterface
         sim_gazebo:=false">
-        <!-- initial_positions:=${dict(joint0=0.0,joint1=0.0,joint2=-1.57,joint3=0.0,joint4=-1.57,joint5=0.0)} -->
+
         <!-- Load configuration data from the provided .yaml files -->
         <xacro:read_model_data
             joint_limits_parameters_file="${joint_limits_parameters_file}"
             kinematics_parameters_file="${kinematics_parameters_file}"
             physical_parameters_file="${physical_parameters_file}"
             visual_parameters_file="${visual_parameters_file}"
-            initial_positions_file="${initial_positions_file}"
             indy_type="${indy_type}"/>
 
         <xacro:property name="indy_material" value="metal_white"/>
@@ -328,7 +326,6 @@
             name="${name}" 
             indy_type="${indy_type}"
             prefix="${prefix}"
-            initial_positions="${initial_positions}"
             sim_gazebo="${sim_gazebo}"/>
 
         <!-- Add URDF transmission elements (for ros_control) -->

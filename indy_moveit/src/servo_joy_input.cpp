@@ -45,15 +45,7 @@
 #include <control_msgs/msg/joint_jog.hpp>
 #include <std_srvs/srv/trigger.hpp>
 #include <moveit_msgs/msg/planning_scene.hpp>
-//#include <thread>
 
-//#include "rclcpp/rclcpp.hpp"
-//#include "sensor_msgs/msg/joy.hpp"
-//#include "geometry_msgs/msg/twist_stamped.hpp"
-//#include "control_msgs/msg/joint_jog.hpp"
-//#include "std_srvs/srv/trigger.hpp"
-//#include "moveit_msgs/msg/planning_scene.hpp"
-//#include "thread"
 
 // We'll just set up parameters here
 const std::string JOY_TOPIC = "/joy";
@@ -114,9 +106,9 @@ bool convertJoyToCmd(const std::vector<float>& axes, const std::vector<int>& but
   if (buttons[A] || buttons[B] || buttons[X] || buttons[Y] || axes[D_PAD_X] || axes[D_PAD_Y])
   {
     // Map the D_PAD to the proximal joints
-    joint->joint_names.push_back("joint1");
-    joint->velocities.push_back(axes[D_PAD_X]);
     joint->joint_names.push_back("joint2");
+    joint->velocities.push_back(axes[D_PAD_X]);
+    joint->joint_names.push_back("joint4");
     joint->velocities.push_back(axes[D_PAD_Y]);
 
     // Map the diamond to the distal joints

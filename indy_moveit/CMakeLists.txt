@@ -27,14 +27,43 @@ find_package(control_msgs REQUIRED)
 
 find_package(sensor_msgs REQUIRED)
 find_package(moveit_msgs REQUIRED)
+find_package(std_srvs REQUIRED)
+
 
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
-
 install(DIRECTORY
   launch moveit_config rviz_config srdf
   DESTINATION share/${PROJECT_NAME}/
+)
+
+add_library(${SERVO_CONTROLLER_INPUT} SHARED src/servo_joy_input.cpp)
+ament_target_dependencies(${SERVO_CONTROLLER_INPUT} rclcpp geometry_msgs control_msgs sensor_msgs moveit_msgs std_srvs)
+rclcpp_components_register_nodes(${SERVO_CONTROLLER_INPUT} "moveit_servo::JoyToServoPub")
+
+add_executable(servo_keyboard_input src/servo_keyboard_input.cpp)
+ament_target_dependencies(servo_keyboard_input rclcpp geometry_msgs control_msgs)
+
+# add_executable(servo_joy_input src/servo_joy_input.cpp)
+# ament_target_dependencies(servo_joy_input rclcpp geometry_msgs control_msgs sensor_msgs)
+
+# Install Libraries
+install(
+ TARGETS
+   ${SERVO_CONTROLLER_INPUT}
+ EXPORT export_${PROJECT_NAME}
+ LIBRARY DESTINATION lib
+ ARCHIVE DESTINATION lib
+ RUNTIME DESTINATION bin
+ INCLUDES DESTINATION include
+)
+
+install(
+  TARGETS
+    servo_keyboard_input
+    # servo_joy_input
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 # Install Python modules

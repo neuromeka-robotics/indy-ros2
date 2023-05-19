@@ -28,7 +28,7 @@ find_package(ament_cmake_python REQUIRED)
 # )
 
 install(DIRECTORY
-  gRPC
+  indy_utils
   DESTINATION lib/${PROJECT_NAME}
 )
 
