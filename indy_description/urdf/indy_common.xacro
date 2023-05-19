@@ -29,7 +29,11 @@
         <mesh filename="${mesh}"/>
     </xacro:macro>
 
-    <xacro:macro name="read_model_data" params="joint_limits_parameters_file kinematics_parameters_file physical_parameters_file visual_parameters_file indy_type">
+    <xacro:macro name="read_model_data" params="joint_limits_parameters_file 
+	    kinematics_parameters_file 
+	    physical_parameters_file 
+	    visual_parameters_file 
+	    indy_type">
         <!-- Read .yaml files from disk, load content into properties -->
         <xacro:property name="config_joint_limit_parameters" value="${load_yaml(joint_limits_parameters_file)}"/>
         <xacro:property name="config_kinematics_parameters" value="${load_yaml(kinematics_parameters_file)}"/>
@@ -183,7 +187,6 @@
         <xacro:property name="inertia_link6_ixz" value="${sec_inertia_parameters['link6']['ixz']}" scope="parent"/>
 
         <!--indyrp2 with 7 DOF-->
-        <!-- <xacro:if value="${indy_type == 'indyrp2'}"> -->
         <xacro:if value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
             <xacro:property name="joint6_lower_limit" value="${sec_limits['joint6']['min_position']}" scope="parent"/>
             <xacro:property name="joint6_upper_limit" value="${sec_limits['joint6']['max_position']}" scope="parent"/>

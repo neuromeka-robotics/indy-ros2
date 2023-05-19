@@ -24,6 +24,7 @@ from indy_utils import indydcp_client
 from indy_utils import indy_program_maker
 from indy_utils import utils_transf
 
+
 class IndyROSConnector(Node):
 
     PUBLISH_RATE = 10 # Hz
@@ -70,6 +71,7 @@ class IndyROSConnector(Node):
         self.blend = 3
         self.goal = None
         self.previous_joint_trajectory_sub = None
+
         print("Indy connector has been initialised.")
 
     '''
@@ -106,7 +108,7 @@ class IndyROSConnector(Node):
             joint_state_list = [p.positions for p in msg.points]
         else:
             self.indy.stop_motion()
-        print("joint state list: ", joint_state_list) #rad/s rad
+        # print("joint state list: ", joint_state_list) #rad/s rad
         if self.previous_joint_trajectory_sub != joint_state_list[0]:
             self.indy.joint_move_to(utils_transf.rads2degs(joint_state_list[0]))
             self.previous_joint_trajectory_sub = joint_state_list[0]
@@ -151,7 +153,6 @@ class IndyROSConnector(Node):
         self.get_logger().info('Received cancel request :(')
         return CancelResponse.ACCEPT
 
-    # async def execute_callback(self, goal_handle):
     async def execute_callback(self, goal_handle):
         print('FollowJointTrajectory callback...')
 
@@ -185,16 +186,29 @@ class IndyROSConnector(Node):
         if current_robot_status['ready']:
             if self.joint_state_list:
 
-                prog = indy_program_maker.JsonProgramComponent(policy=0, resume_time=2)
-                for j_pos in self.joint_state_list:
-                    prog.add_joint_move_to(utils_transf.rads2degs(j_pos), vel=self.vel, blend=self.blend)
-                json_string = json.dumps(prog.json_program)
-                self.indy.set_and_start_json_program(json_string)
-
-                # self.indy.set_joint_vel_level(self.vel)
+                # THIS CODE CAN ONLY USE ON FW2.0
+                # prog = indy_program_maker.JsonProgramComponent(policy=0, resume_time=2)
                 # for j_pos in self.joint_state_list:
-                #     self.indy.joint_waypoint_append(utils_transf.rads2degs(j_pos), 0, 5)
-                # self.indy.joint_waypoint_execute()
+                #     prog.add_joint_move_to(utils_transf.rads2degs(j_pos), vel=self.vel, blend=self.blend)
+                # json_string = json.dumps(prog.json_program)
+                # self.indy.set_and_start_json_program(json_string)
+
+                desired_position = None
+                new_array = [self.joint_state_list[0]]
+                percentage = 85 # percentage of reduced point
+                number = int(len(self.joint_state_list) * (1 - (percentage/100))) - 2
+                if number > 0:
+                    distance = int((len(self.joint_state_list) - 2) / (number + 1))
+                    for i in range(1, number + 1):
+                        new_array.append(self.joint_state_list[i * distance])
+                new_array.append(self.joint_state_list[-1])
+
+                self.indy.set_joint_vel_level(self.vel)
+
+                for j_pos in new_array:
+                    self.indy.joint_waypoint_append(utils_transf.rads2degs(j_pos), 0, 5)
+                    desired_position = j_pos
+                self.indy.joint_waypoint_execute()
 
                 self.joint_state_list = []
                 current_robot_status = self.indy.get_robot_status()
@@ -207,12 +221,12 @@ class IndyROSConnector(Node):
                         return FollowJointTrajectory.Result()
 
                     # print("self.joint_state_feedback.positions: ", self.joint_state_feedback.positions)
-                    feedback_msg.desired.positions = self.joint_state_feedback.positions
+                    feedback_msg.desired.positions = desired_position
                     feedback_msg.actual.positions = self.joint_state_feedback.positions
                     goal_handle.publish_feedback(feedback_msg)
 
                     # print("wait for robot move complete")
-                    time.sleep(0.05)
+                    time.sleep(0.1)
                     current_robot_status = self.indy.get_robot_status()
 
         goal_handle.succeed()

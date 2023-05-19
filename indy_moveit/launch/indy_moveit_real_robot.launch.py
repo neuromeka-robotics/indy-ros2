@@ -15,6 +15,7 @@ def launch_setup(context, *args, **kwargs):
     indy_ip = LaunchConfiguration("indy_ip")
     indy_type = LaunchConfiguration("indy_type")
     indy_eye = LaunchConfiguration("indy_eye")
+    servo_mode = LaunchConfiguration("servo_mode")
     prefix = LaunchConfiguration("prefix")
 
     indy_bringup_launch = IncludeLaunchDescription(
@@ -39,6 +40,7 @@ def launch_setup(context, *args, **kwargs):
             "name": name,
             "indy_type": indy_type,
             "indy_eye": indy_eye,
+            "servo_mode": servo_mode,
             "prefix": prefix,
             "use_sim_time": "false",
             "launch_rviz_moveit": "true", # if name == "launch_rviz" => spawn 2 rviz
@@ -84,6 +86,14 @@ def generate_launch_description():
             "indy_eye",
             default_value="false",
             description="Work with Indy Eye",
+        )
+    )
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "servo_mode",
+            default_value="false",
+            description="Servoing mode",
         )
     )
  

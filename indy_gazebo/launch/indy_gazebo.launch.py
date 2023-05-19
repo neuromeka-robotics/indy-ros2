@@ -128,12 +128,16 @@ def launch_setup(context, *args, **kwargs):
 
     nodes_to_start = [
         gazebo,
-        robot_state_publisher_node,
         gazebo_spawn_robot,
+
+        robot_state_publisher_node,
+
+        # joint_state_broadcaster_spawner,
+        # joint_controller_spawner,
 
         delay_joint_state_broadcaster_spawner,
         delay_robot_controller_spawner,
-        delay_rviz2_spawner
+        delay_rviz2_spawner,
     ]
 
     return nodes_to_start

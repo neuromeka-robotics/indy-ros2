@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+#-*- coding: utf-8 -*-
+
 from launch_ros.actions import Node
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
