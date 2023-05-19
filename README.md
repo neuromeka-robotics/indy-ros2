@@ -1,48 +1,66 @@
-# Indy ROS2 Driver
+# Indy ROS2
 
 ## Introduction
 
 **Indy** is Neuromeka’s flagship cobot model we designed and manufactured. Guaranteeing workers’ safety based on innovative collision detection algorithms, Indy supports more intuitive direct teaching by impedance control as well as online and offline programming with the teach pendant app running on android tablets.
 
-<center><img src=".img/intro_img.png" width="500" heigh="500"/></center> 
+<center><img src=".img/intro_img.png" width="400" heigh="400"/></center> 
 
 
-This repository contains ROS2 drivers for Indy7, Indy12 and IndyRP2.
+This repository contains ROS2 drivers for Indy7, Indy7V2, IndyRP2, IndyRP2V2 and Indy12.
 
 
 ## Preparation
 
 The following software needs to be installed:
-- [ROS2 Foxy](https://docs.ros.org/en/foxy/Installation.html)
-- [Moveit2](https://moveit.picknik.ai/foxy/index.html)
-- [Gazebo ros2 control](https://github.com/ros-controls/gazebo_ros2_control)
-- [Ros2 control](https://github.com/ros-controls/ros2_control)
-- [Ros2 controllers](https://github.com/ros-controls/ros2_controllers)
+- [ROS2 foxy](https://docs.ros.org/en/foxy/Installation.html)
 
 
 ## Installation
 
 ### Install dependencies
-```
-sudo apt install python3-vcstool
-sudo apt install python3-colcon-common-extensions
 
-sudo apt install ros-foxy-xacro
-sudo apt install ros-foxy-moveit
-sudo apt install ros-foxy-moveit-servo
-sudo apt install ros-foxy-ros2-control
-sudo apt install ros-foxy-ros2-controllers
-sudo apt install ros-foxy-moveit-ros-move-group
-sudo apt install ros-foxy-moveit-planners-ompl
-sudo apt install ros-foxy-moveit-kinematics
-sudo apt install ros-foxy-gazebo-ros
-sudo apt install ros-foxy-gazebo-ros2-control
-sudo apt install ros-foxy-controller-manager
-sudo apt install ros-foxy-joint-state-controller
-sudo apt install ros-foxy-joint-state-broadcaster
-sudo apt install ros-foxy-joint-state-publisher-gui
-sudo apt install ros-foxy-joint-trajectory-controller
 ```
+sudo apt install python3-rosdep
+sudo apt install python3-rosdep2
+sudo rosdep init
+rosdep update
+sudo apt update
+sudo apt install rospack-tools
+sudo apt install python3-colcon-common-extensions
+sudo apt install python3-colcon-mixin
+colcon mixin add default https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml
+colcon mixin update default
+sudo apt install python3-vcstool
+
+sudo apt install -y ros-foxy-xacro \
+ros-foxy-moveit \
+ros-foxy-moveit-servo \
+ros-foxy-ros2-control \
+ros-foxy-ros2-controllers \
+ros-foxy-moveit-ros-move-group \
+ros-foxy-moveit-planners-ompl \
+ros-foxy-moveit-kinematics \
+ros-foxy-gazebo-ros \
+ros-foxy-gazebo-ros2-control \
+ros-foxy-controller-manager \
+ros-foxy-joint-state-broadcaster \
+ros-foxy-joint-state-publisher-gui \
+ros-foxy-joint-trajectory-controller \
+ros-foxy-moveit-ros-perception \
+ros-foxy-rviz-visual-tools \
+ros-foxy-moveit-resources
+```
+
+
+Switch to Cyclone DDS
+sudo apt install ros-foxy-rmw-cyclonedds-cpp
+
+
+#### Add this to ~/.bashrc to source it automatically
+
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
 
 ### Create a workspace and download the source code
 
@@ -75,6 +93,29 @@ If not specified, the default value will be indy7.
 
 When used with a real robot, you need to provide an **indy_ip** value.
 
+**In servoing mode:**
+Using Dpad to control joint 2 and joint 4.
+B and X control joint 6
+Y and A control joint 5
+Left joystick, right joystick, LB, RB, LT, RT to control TCP.
+
+### IndyROSCommTask
+
+IndyROSCommTask will run on a real robot and create communication with ROS PC.
+To use IndyROSCommTask, we need to install gRPC on the computer that installed ROS:
+
+```
+sudo pip3 install grpcio==1.43.0
+sudo pip3 install grpcio-tools==1.43.0
+```
+
+Copy IndyROSCommTask to STEP PC and run the following commands:
+
+```
+sudo chmod +x IndyROSCommTask
+sudo ./IndyROSCommTask
+```
+
 ### Start Indy description
 
 ```
@@ -92,24 +133,19 @@ ros2 launch indy_description indy_display.launch.py indy_type:=indy7
 ros2 launch indy_gazebo indy_gazebo.launch.py indy_type:=indy7
 ```
 
-![](.img/gazebo_indy7.png)
+#### Start Indy Gazebo with Moveit and Servoing
 
-
-#### Start Indy Gazebo with Moveit
+If use moveit 
 
 ```
 ros2 launch indy_moveit indy_moveit_gazebo.launch.py indy_type:=indy7
 ```
 
-![](.img/moveit_gazebo_indy7.gif)
-
-#### Start Indy Gazebo with Servoing
+If use servoing 
 
 ```
-ros2 launch indy_moveit indy_servo_gazebo.launch.py indy_type:=indy7
+ros2 launch indy_moveit indy_moveit_gazebo.launch.py indy_type:=indy7 servo_mode:=true
 ```
-
-![](.img/servo_gazebo_indy7.gif)
 
 
 ### Real Robot
@@ -120,21 +156,15 @@ ros2 launch indy_moveit indy_servo_gazebo.launch.py indy_type:=indy7
 ros2 launch indy_driver indy_bringup.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx
 ```
 
-![](.img/bringup_indy7.gif)
-
-
 #### Start Indy with Moveit
+
+If use moveit 
 
 ```
 ros2 launch indy_moveit indy_moveit_real_robot.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx
 ```
 
-![](.img/moveit_real_indy7.gif)
-
-#### Start Indy with Servoing
-
+If use servoing - NOTE: CANNOT USE SERVOING MODE ON REAL ROBOT IN THIS VERSION
 ```
-ros2 launch indy_moveit indy_servo_real_robot.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx
+ros2 launch indy_moveit indy_moveit_real_robot.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx servo_mode:=true
 ```
-
-![](.img/servo_real_indy7.gif)

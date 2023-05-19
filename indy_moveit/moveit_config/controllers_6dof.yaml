@@ -5,7 +5,7 @@ controller_names:
 joint_trajectory_controller:
     action_ns: follow_joint_trajectory
     type: FollowJointTrajectory
-    default: false
+    default: true
     joints:
         - joint0
         - joint1
@@ -13,4 +13,3 @@ joint_trajectory_controller:
         - joint3
         - joint4
         - joint5
-        

@@ -18,6 +18,7 @@ def launch_setup(context, *args, **kwargs):
     name = LaunchConfiguration("name")
     indy_type = LaunchConfiguration("indy_type")
     indy_eye = LaunchConfiguration("indy_eye")
+    servo_mode = LaunchConfiguration("servo_mode")
     prefix = LaunchConfiguration("prefix")
     launch_rviz_moveit = LaunchConfiguration("launch_rviz_moveit")
     use_sim_time = LaunchConfiguration("use_sim_time")
@@ -68,8 +69,7 @@ def launch_setup(context, *args, **kwargs):
     robot_description_kinematics = PathJoinSubstitution(
         [moveit_config_package, "moveit_config", "kinematics.yaml"]
     )
-
-    # Planning Configuration
+    
     ompl_planning_pipeline_config = {
         "move_group": {
             "planning_plugin": "ompl_interface/OMPLPlanner",
@@ -123,9 +123,14 @@ def launch_setup(context, *args, **kwargs):
     )
 
     # rviz with moveit configuration
-    rviz_config_file = PathJoinSubstitution(
-        [moveit_config_package, "rviz_config", "indy_moveit.rviz"]
-    )
+    if servo_mode.perform(context) == 'true':
+        rviz_config_file = PathJoinSubstitution(
+            [moveit_config_package, "rviz_config", "indy_servo.rviz"]
+        )    
+    else:
+        rviz_config_file = PathJoinSubstitution(
+            [moveit_config_package, "rviz_config", "indy_moveit.rviz"]
+        )
 
     rviz_node = Node(
         condition=IfCondition(launch_rviz_moveit),
@@ -142,61 +147,49 @@ def launch_setup(context, *args, **kwargs):
         ],
     )
 
-    # # Servo node for realtime control
-    # servo_yaml = load_yaml("indy_moveit", "moveit_config/indy_servo.yaml")
-    # servo_params = {"moveit_servo": servo_yaml}
+    # Servo node for realtime control
+    servo_yaml = load_yaml("indy_moveit", "moveit_config/indy_servo.yaml")
+    servo_params = {"moveit_servo": servo_yaml}
+    container = ComposableNodeContainer(
+        name="moveit_servo_container",
+        namespace="/",
+        package="rclcpp_components",
+        executable="component_container",
+        composable_node_descriptions=[
+            ComposableNode(
+                package="moveit_servo",
+                plugin="moveit_servo::ServoServer",
+                name="servo_server",
+                parameters=[
+                    servo_params,
+                    robot_description,
+                    robot_description_semantic,
+                ],
+                # extra_arguments=[{"use_intra_process_comms": True}],
+            ),
+            ComposableNode(
+                package="indy_moveit",
+                plugin="moveit_servo::JoyToServoPub",
+                name="controller_to_servo_node",
+                # extra_arguments=[{"use_intra_process_comms": True}],
+            ),
+            ComposableNode(
+                package="joy",
+                plugin="joy::Joy",
+                name="joy_node",
+                extra_arguments=[{
+                    "use_intra_process_comms": True,
+                    "deadzone": 0.35
+                }],
+            )
+        ],
+        output="screen",
+    )
 
-    # # Launch as much as possible in components
-    # container = ComposableNodeContainer(
-    #     name="moveit_servo_container",
-    #     namespace="/",
-    #     package="rclcpp_components",
-    #     executable="component_container",
-    #     composable_node_descriptions=[
-    #         # ComposableNode(
-    #         #     package='robot_state_publisher',
-    #         #     plugin='robot_state_publisher::RobotStatePublisher',
-    #         #     name='robot_state_publisher',
-    #         #     parameters=[robot_description],
-    #         # ),
-    #         # ComposableNode(
-    #         #     package='tf2_ros',
-    #         #     plugin='tf2_ros::StaticTransformBroadcasterNode',
-    #         #     name='static_tf2_broadcaster',
-    #         #     parameters=[{'child_frame_id': 'link0', 'frame_id': 'world'}],
-    #         # ),
-    #         ComposableNode(
-    #             package="moveit_servo",
-    #             plugin="moveit_servo::ServoServer",
-    #             name="servo_server",
-    #             parameters=[
-    #                 servo_params,
-    #                 robot_description,
-    #                 robot_description_semantic,
-    #             ],
-    #             extra_arguments=[{"use_intra_process_comms": True}],
-    #         ),
-    #         ComposableNode(
-    #             package="moveit_servo",
-    #             plugin="moveit_servo::JoyToServoPub",
-    #             name="controller_to_servo_node",
-    #             extra_arguments=[{"use_intra_process_comms": True}],
-    #         ),
-    #         ComposableNode(
-    #             package="joy",
-    #             plugin="joy::Joy",
-    #             name="joy_node",
-    #             extra_arguments=[{"use_intra_process_comms": True}],
-    #         ),
-    #     ],
-    #     output="screen",
-    # )
-
-    nodes_to_start = [
-        move_group_node,
-        rviz_node,
-        # container
-    ]
+    if servo_mode.perform(context) == 'true':        
+        nodes_to_start = [container, rviz_node]
+    else:
+        nodes_to_start = [move_group_node, rviz_node]
 
     return nodes_to_start
 
@@ -225,6 +218,14 @@ def generate_launch_description():
             "indy_eye",
             default_value="false",
             description="Work with Indy Eye",
+        )
+    )
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "servo_mode",
+            default_value="false",
+            description="Servoing mode",
         )
     )
 
