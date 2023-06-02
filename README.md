@@ -99,23 +99,6 @@ B and X control joint 6
 Y and A control joint 5
 Left joystick, right joystick, LB, RB, LT, RT to control TCP.
 
-### IndyROSCommTask
-
-IndyROSCommTask will run on a real robot and create communication with ROS PC.
-To use IndyROSCommTask, we need to install gRPC on the computer that installed ROS:
-
-```
-sudo pip3 install grpcio==1.43.0
-sudo pip3 install grpcio-tools==1.43.0
-```
-
-Copy IndyROSCommTask to STEP PC and run the following commands:
-
-```
-sudo chmod +x IndyROSCommTask
-sudo ./IndyROSCommTask
-```
-
 ### Start Indy description
 
 ```
