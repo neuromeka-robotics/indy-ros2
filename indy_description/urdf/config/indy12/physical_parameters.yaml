@@ -8,12 +8,12 @@ inertia_parameters:
   link6_mass: 0.64127974
 
   link0:
-    ixx: 0
-    iyy: 0 
-    izz: 0 
-    ixy: 0 
-    iyz: 0 
-    ixz: 0
+    ixx: 0.00572623
+    iyy: 0.00558959 
+    izz: 0.00966674 
+    ixy: 0.00000251 
+    iyz: -0.00000014 
+    ixz: -0.00011380
 
   link1:
     ixx: 0.47611142

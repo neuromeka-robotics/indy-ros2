@@ -9,12 +9,12 @@
         </inertial>
     </xacro:macro>
 
-    <xacro:macro name="get_visual_params" params="name:=^ type:=^">
+    <xacro:macro name="get_visual_params" params="name:=^ type:=^" >
         <xacro:property name="visual_params" value="${sec_mesh_files[name][type]}" scope="parent"/>
     </xacro:macro>
 
     <!-- Get mesh files -->
-    <xacro:macro name="get_mesh_path" params="name:=^ type:=^">
+    <xacro:macro name="get_mesh_path" params="name:=^ type:=^" >
         <xacro:get_visual_params />
         <!--RVIZ2-->
         <!-- <xacro:property name="mesh" value="package://${visual_params['mesh']['package']}/${visual_params['mesh']['path']}" scope="parent"/> -->
@@ -24,21 +24,23 @@
         <xacro:property name="mesh" value="file://$(find ${visual_params['mesh']['package']})/${visual_params['mesh']['path']}" scope="parent"/>
     </xacro:macro>
 
-    <xacro:macro name="get_mesh" params="name type">
+    <xacro:macro name="get_mesh" params="name type" >
         <xacro:get_mesh_path/>
         <mesh filename="${mesh}"/>
     </xacro:macro>
 
     <xacro:macro name="read_model_data" params="joint_limits_parameters_file 
-	    kinematics_parameters_file 
-	    physical_parameters_file 
-	    visual_parameters_file 
-	    indy_type">
+        kinematics_parameters_file 
+        physical_parameters_file 
+        visual_parameters_file 
+        initial_positions_file
+        indy_type">
         <!-- Read .yaml files from disk, load content into properties -->
-        <xacro:property name="config_joint_limit_parameters" value="${load_yaml(joint_limits_parameters_file)}"/>
-        <xacro:property name="config_kinematics_parameters" value="${load_yaml(kinematics_parameters_file)}"/>
-        <xacro:property name="config_physical_parameters" value="${load_yaml(physical_parameters_file)}"/>
-        <xacro:property name="config_visual_parameters" value="${load_yaml(visual_parameters_file)}"/>
+        <xacro:property name="config_joint_limit_parameters" value="${xacro.load_yaml(joint_limits_parameters_file)}"/>
+        <xacro:property name="config_kinematics_parameters" value="${xacro.load_yaml(kinematics_parameters_file)}"/>
+        <xacro:property name="config_physical_parameters" value="${xacro.load_yaml(physical_parameters_file)}"/>
+        <xacro:property name="config_visual_parameters" value="${xacro.load_yaml(visual_parameters_file)}"/>
+        <xacro:property name="initial_positions_parameters" value="${xacro.load_yaml(initial_positions_file)}"/>
 
         <!-- Extract subsections from yaml dictionaries -->
         <xacro:property name="sec_limits" value="${config_joint_limit_parameters['joint_limits']}"/>
@@ -208,7 +210,13 @@
             <xacro:property name="inertia_link7_ixy" value="${sec_inertia_parameters['link7']['ixy']}" scope="parent"/>
             <xacro:property name="inertia_link7_iyz" value="${sec_inertia_parameters['link7']['iyz']}" scope="parent"/>
             <xacro:property name="inertia_link7_ixz" value="${sec_inertia_parameters['link7']['ixz']}" scope="parent"/>
+
+            <xacro:property name="initial_positions" value="${initial_positions_parameters['7dof']}" scope="parent"/>
         </xacro:if>
 
+        <xacro:unless value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
+            <xacro:property name="initial_positions" value="${initial_positions_parameters['6dof']}" scope="parent"/>
+        </xacro:unless>
+        
     </xacro:macro>
 </robot>
