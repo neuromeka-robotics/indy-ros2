@@ -60,6 +60,8 @@ class IndyROSConnector(Node):
         # Initialize parameters  with default values
         self.declare_parameter('indy_ip', "192.168.1.30")
         self.declare_parameter('indy_type', "indy7")
+        self.declare_parameter('indy_sw', "2")
+        self.SW_version = self.get_parameter('indy_sw').get_parameter_value().string_value
 
         # Initialize variable
         self.indy = None
@@ -69,7 +71,6 @@ class IndyROSConnector(Node):
         self.execute = False
         self.vel = 3
         self.blend = 3
-        self.goal = None
         self.previous_joint_trajectory_sub = None
 
         print("Indy connector has been initialised.")
@@ -145,7 +146,6 @@ class IndyROSConnector(Node):
     def goal_callback(self, goal_request):
         # Accepts or rejects a client request to begin an action
         self.get_logger().info('Received goal request :)')
-        self.goal = goal_request
         return GoalResponse.ACCEPT
 
     def cancel_callback(self, goal_handle):
@@ -155,84 +155,81 @@ class IndyROSConnector(Node):
 
     async def execute_callback(self, goal_handle):
         print('FollowJointTrajectory callback...')
-
-        feedback_msg = FollowJointTrajectory.Feedback()
-        last_time = self.get_clock().now()
+        goal = goal_handle.request.trajectory.points.copy()
+        # last_time = self.get_clock().now()
 
         # download planned path from ros moveit
         self.joint_state_list = []
-        if self.goal.trajectory.points:
-            self.joint_state_list = [p.positions for p in self.goal.trajectory.points]
+        if goal:
+            self.joint_state_list = [p.positions for p in goal]
         else:
             self.indy.stop_motion()
 
-        current_robot_status = self.indy.get_robot_status()
-        if current_robot_status['busy']:
-            result.error_string = "ROBOT IS BUSY"
-            return result
+        if self.joint_state_list:
 
-        if current_robot_status['direct_teaching']:
-            result.error_string = "ROBOT IS IN TEACHING MODE"
-            return result
+            #--------------reduce the trajectory points----------
+            new_array = [self.joint_state_list[0]]
+            percentage = 95 # percentage of reduced point
+            number = int(len(self.joint_state_list) * (1 - (percentage/100))) - 2
+            if number > 0:
+                distance = int((len(self.joint_state_list) - 2) / (number + 1))
+                for i in range(1, number + 1):
+                    new_array.append(self.joint_state_list[i * distance])
+            new_array.append(self.joint_state_list[-1])
+            #---------------------------------------------------
 
-        if current_robot_status['collision']:
-            result.error_string = "ROBOT IS IN COLLISION STATE"
-            return result
+            result = FollowJointTrajectory.Result()
+            feedback_msg = FollowJointTrajectory.Feedback()
 
-        if current_robot_status['emergency']:
-            result.error_string = "ROBOT IS IN EMERGENCY STATE"
-            return result
+            current_robot_status = self.indy.get_robot_status()
+            error_messages = {
+                'busy': "ROBOT IS BUSY",
+                'direct_teaching': "ROBOT IS IN TEACHING MODE",
+                'collision': "ROBOT IS IN COLLISION STATE",
+                'emergency': "ROBOT IS IN EMERGENCY STATE"
+            }
 
-        if current_robot_status['ready']:
-            if self.joint_state_list:
+            for condition, error_string in error_messages.items():
+                if current_robot_status[condition]:
+                    result.error_code = FollowJointTrajectory.Result.INVALID_JOINTS
+                    result.error_string = error_string
+                    return result
 
-                # THIS CODE CAN ONLY USE ON FW2.0
-                # prog = indy_program_maker.JsonProgramComponent(policy=0, resume_time=2)
-                # for j_pos in self.joint_state_list:
-                #     prog.add_joint_move_to(utils_transf.rads2degs(j_pos), vel=self.vel, blend=self.blend)
-                # json_string = json.dumps(prog.json_program)
-                # self.indy.set_and_start_json_program(json_string)
-
-                desired_position = None
-                new_array = [self.joint_state_list[0]]
-                percentage = 85 # percentage of reduced point
-                number = int(len(self.joint_state_list) * (1 - (percentage/100))) - 2
-                if number > 0:
-                    distance = int((len(self.joint_state_list) - 2) / (number + 1))
-                    for i in range(1, number + 1):
-                        new_array.append(self.joint_state_list[i * distance])
-                new_array.append(self.joint_state_list[-1])
-
-                self.indy.set_joint_vel_level(self.vel)
-
+            if int(self.SW_version) == 2:
+                prog = indy_program_maker.JsonProgramComponent(policy=0, resume_time=2)
+                for j_pos in self.joint_state_list:
+                    prog.add_joint_move_to(utils_transf.rads2degs(j_pos), vel=self.vel, blend=self.blend)
+                json_string = json.dumps(prog.json_program)
+                self.indy.set_and_start_json_program(json_string)
+            else:
                 for j_pos in new_array:
                     self.indy.joint_waypoint_append(utils_transf.rads2degs(j_pos), 0, 5)
-                    desired_position = j_pos
                 self.indy.joint_waypoint_execute()
+                time.sleep(0.1)
 
-                self.joint_state_list = []
+            while not current_robot_status['busy']:                
+                current_robot_status = self.indy.get_robot_status()
+                self.get_logger().info('Wait for robot start to move...')
+                time.sleep(0.1)
+
+            self.get_logger().info('Robot is moving...')
+            while current_robot_status['busy']:
+
+                if goal_handle.is_cancel_requested:
+                    self.indy.stop_motion()
+                    goal_handle.canceled()
+                    return result
+
+                # print("self.joint_state_feedback.positions: ", self.joint_state_feedback.positions)
+                feedback_msg.desired.positions = self.joint_state_feedback.positions
+                feedback_msg.actual.positions = self.joint_state_feedback.positions
+                goal_handle.publish_feedback(feedback_msg)
+
+                # print("wait for robot move complete")
+                time.sleep(0.1)
                 current_robot_status = self.indy.get_robot_status()
 
-                while current_robot_status['busy']:
-
-                    if goal_handle.is_cancel_requested:
-                        goal_handle.canceled()
-                        print("Trajectory canceled")
-                        return FollowJointTrajectory.Result()
-
-                    # print("self.joint_state_feedback.positions: ", self.joint_state_feedback.positions)
-                    feedback_msg.desired.positions = desired_position
-                    feedback_msg.actual.positions = self.joint_state_feedback.positions
-                    goal_handle.publish_feedback(feedback_msg)
-
-                    # print("wait for robot move complete")
-                    time.sleep(0.1)
-                    current_robot_status = self.indy.get_robot_status()
-
         goal_handle.succeed()
-
-        # self.get_logger().info('Returning result: {0}'.format(result.success))
-        result = FollowJointTrajectory.Result()
         result.error_code = FollowJointTrajectory.Result.SUCCESSFUL
         return result
 

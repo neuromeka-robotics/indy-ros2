@@ -74,7 +74,7 @@ def launch_setup(context, *args, **kwargs):
         "move_group": {
             "planning_plugin": "ompl_interface/OMPLPlanner",
             "request_adapters": """default_planner_request_adapters/AddTimeOptimalParameterization default_planner_request_adapters/FixWorkspaceBounds default_planner_request_adapters/FixStartStateBounds default_planner_request_adapters/FixStartStateCollision default_planner_request_adapters/FixStartStatePathConstraints""",
-            "start_state_max_bounds_error": 0.1,
+            "start_state_max_bounds_error": 0.5,
         }
     }
     ompl_planning_yaml = load_yaml("indy_moveit", "moveit_config/ompl_planning.yaml")
@@ -94,8 +94,9 @@ def launch_setup(context, *args, **kwargs):
     trajectory_execution = {
         "moveit_manage_controllers": False,
         "trajectory_execution.allowed_execution_duration_scaling": 1.2,
-        "trajectory_execution.allowed_goal_duration_margin": 0.5,
-        "trajectory_execution.allowed_start_tolerance": 0.01,
+        "trajectory_execution.allowed_goal_duration_margin": 1.0,
+        "trajectory_execution.allowed_start_tolerance": 0.5,
+        "trajectory_execution.trajectory_duration_monitoring": False
     }
 
     planning_scene_monitor_parameters = {
@@ -150,46 +151,57 @@ def launch_setup(context, *args, **kwargs):
     # Servo node for realtime control
     servo_yaml = load_yaml("indy_moveit", "moveit_config/indy_servo.yaml")
     servo_params = {"moveit_servo": servo_yaml}
+    servo_node = Node(
+        package="moveit_servo",
+        executable="servo_node_main",
+        parameters=[
+            servo_params,
+            robot_description,
+            robot_description_semantic,
+            robot_description_kinematics
+        ],
+        output="screen",
+    )
     container = ComposableNodeContainer(
         name="moveit_servo_container",
         namespace="/",
         package="rclcpp_components",
         executable="component_container",
         composable_node_descriptions=[
-            ComposableNode(
-                package="moveit_servo",
-                plugin="moveit_servo::ServoServer",
-                name="servo_server",
-                parameters=[
-                    servo_params,
-                    robot_description,
-                    robot_description_semantic,
-                ],
-                # extra_arguments=[{"use_intra_process_comms": True}],
-            ),
+            # ComposableNode(
+            #     package="moveit_servo",
+            #     plugin="moveit_servo::ServoServer",
+            #     name="servo_server",
+            #     parameters=[
+            #         servo_params,
+            #         robot_description,
+            #         robot_description_semantic,
+            #     ],
+            #     # extra_arguments=[{"use_intra_process_comms": True}],
+            # ),
             ComposableNode(
                 package="indy_moveit",
                 plugin="moveit_servo::JoyToServoPub",
                 name="controller_to_servo_node",
-                # extra_arguments=[{"use_intra_process_comms": True}],
             ),
             ComposableNode(
                 package="joy",
                 plugin="joy::Joy",
                 name="joy_node",
-                extra_arguments=[{
-                    "use_intra_process_comms": True,
-                    "deadzone": 0.35
-                }],
+                # extra_arguments=[{
+                #     "use_intra_process_comms": True,
+                #     "deadzone": 0.35
+                # }],
             )
         ],
         output="screen",
     )
 
     if servo_mode.perform(context) == 'true':        
-        nodes_to_start = [container, rviz_node]
+        nodes_to_start = [servo_node, container, rviz_node]
     else:
         nodes_to_start = [move_group_node, rviz_node]
+
 
     return nodes_to_start
 
@@ -209,7 +221,7 @@ def generate_launch_description():
             "indy_type",
             default_value="indy7",
             description="Type of Indy robot.",
-            choices=["indy7", "indy7_v2", "indy12", "indyrp2", "indyrp2_v2"]
+            choices=["indy7", "indy7_v2" , "indy12", "indy12_v2", "indyrp2", "indyrp2_v2"]
         )
     )
 

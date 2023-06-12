@@ -15,6 +15,8 @@ def launch_setup(context, *args, **kwargs):
     name = LaunchConfiguration("name")
     indy_ip = LaunchConfiguration("indy_ip")
     indy_type = LaunchConfiguration("indy_type")
+    indy_eye = LaunchConfiguration("indy_eye")
+    indy_sw = LaunchConfiguration("indy_sw")
     prefix = LaunchConfiguration("prefix")
     launch_rviz = LaunchConfiguration("launch_rviz")
 
@@ -39,6 +41,9 @@ def launch_setup(context, *args, **kwargs):
             "indy_type:=",
             indy_type,
             " ",
+            "indy_eye:=",
+            indy_eye,
+            " ",
             "prefix:=",
             prefix,
         ]
@@ -48,14 +53,6 @@ def launch_setup(context, *args, **kwargs):
     rviz_config_file = PathJoinSubstitution(
         [description_package, "rviz_config", "indy.rviz"]
     )
-
-    # indy_control_node = Node(
-    #     package="indy_driver",
-    #     executable="indy_ros2_control_node",
-    #     parameters=[robot_description, update_rate_config_file, initial_joint_controllers],
-    #     output="screen",
-    #     condition=UnlessCondition(use_fake_hardware),
-    # )
 
     indy_control_node = Node(
         package="controller_manager",
@@ -71,19 +68,6 @@ def launch_setup(context, *args, **kwargs):
         parameters=[robot_description],
     )
 
-    joint_state_broadcaster_spawner = Node(
-        package="controller_manager",
-        executable="spawner.py",
-        arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
-        output="screen",
-    )
-
-    joint_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner.py",
-        arguments=["joint_trajectory_controller", "-c", "/controller_manager"],
-    )
-
     indy_driver = Node(
         package="indy_driver",
         executable="indy_driver.py",
@@ -93,6 +77,7 @@ def launch_setup(context, *args, **kwargs):
         parameters=[
             {'indy_ip': indy_ip.perform(context)},
             {'indy_type': indy_type.perform(context)},
+            {'indy_sw': indy_sw.perform(context)},
         ],
     )
 
@@ -105,29 +90,20 @@ def launch_setup(context, *args, **kwargs):
         arguments=["-d", rviz_config_file],
     )
 
-    # Delay start of robot_controller
-    delay_robot_controller_spawner = RegisterEventHandler(
-        event_handler=OnProcessExit(
-            target_action=joint_state_broadcaster_spawner,
-            on_exit=[joint_controller_spawner],
-        )
-    )
-
     # Delay rviz
     delay_rviz2_spawner = RegisterEventHandler(
         event_handler=OnProcessExit(
-            target_action=joint_controller_spawner,
+            target_action=robot_state_publisher_node,
             on_exit=[rviz_node],
         )
     )
 
     nodes_to_start = [
         indy_driver,
-        indy_control_node,
+        # indy_control_node,
         robot_state_publisher_node,
-        # joint_state_broadcaster_spawner,
-        joint_controller_spawner,
-        delay_rviz2_spawner
+        # delay_rviz2_spawner
+        rviz_node
     ]
 
     return nodes_to_start
@@ -155,10 +131,26 @@ def generate_launch_description():
             "indy_type",
             default_value="indy7",
             description="Type of Indy robot.",
-            choices=["indy7", "indy7_v2" , "indy12", "indyrp2", "indyrp2_v2"]
+            choices=["indy7", "indy7_v2" , "indy12", "indy12_v2", "indyrp2", "indyrp2_v2"]
+        )
+    )
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "indy_eye",
+            default_value="false",
+            description="Work with Indy Eye",
         )
     )
  
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "indy_sw",
+            description="Software Version",
+            choices=["2", "3"]
+        )
+    )
+
     declared_arguments.append(
         DeclareLaunchArgument(
             "prefix",
