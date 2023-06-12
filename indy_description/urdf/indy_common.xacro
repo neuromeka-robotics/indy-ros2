@@ -9,12 +9,12 @@
         </inertial>
     </xacro:macro>
 
-    <xacro:macro name="get_visual_params" params="name:=^ type:=^" >
+    <xacro:macro name="get_visual_params" params="name:=^ type:=^">
         <xacro:property name="visual_params" value="${sec_mesh_files[name][type]}" scope="parent"/>
     </xacro:macro>
 
     <!-- Get mesh files -->
-    <xacro:macro name="get_mesh_path" params="name:=^ type:=^" >
+    <xacro:macro name="get_mesh_path" params="name:=^ type:=^">
         <xacro:get_visual_params />
         <!--RVIZ2-->
         <!-- <xacro:property name="mesh" value="package://${visual_params['mesh']['package']}/${visual_params['mesh']['path']}" scope="parent"/> -->
@@ -24,23 +24,21 @@
         <xacro:property name="mesh" value="file://$(find ${visual_params['mesh']['package']})/${visual_params['mesh']['path']}" scope="parent"/>
     </xacro:macro>
 
-    <xacro:macro name="get_mesh" params="name type" >
+    <xacro:macro name="get_mesh" params="name type">
         <xacro:get_mesh_path/>
         <mesh filename="${mesh}"/>
     </xacro:macro>
 
     <xacro:macro name="read_model_data" params="joint_limits_parameters_file 
-        kinematics_parameters_file 
-        physical_parameters_file 
-        visual_parameters_file 
-        initial_positions_file
-        indy_type">
+	    kinematics_parameters_file 
+	    physical_parameters_file 
+	    visual_parameters_file 
+	    indy_type">
         <!-- Read .yaml files from disk, load content into properties -->
-        <xacro:property name="config_joint_limit_parameters" value="${xacro.load_yaml(joint_limits_parameters_file)}"/>
-        <xacro:property name="config_kinematics_parameters" value="${xacro.load_yaml(kinematics_parameters_file)}"/>
-        <xacro:property name="config_physical_parameters" value="${xacro.load_yaml(physical_parameters_file)}"/>
-        <xacro:property name="config_visual_parameters" value="${xacro.load_yaml(visual_parameters_file)}"/>
-        <xacro:property name="initial_positions_parameters" value="${xacro.load_yaml(initial_positions_file)}"/>
+        <xacro:property name="config_joint_limit_parameters" value="${load_yaml(joint_limits_parameters_file)}"/>
+        <xacro:property name="config_kinematics_parameters" value="${load_yaml(kinematics_parameters_file)}"/>
+        <xacro:property name="config_physical_parameters" value="${load_yaml(physical_parameters_file)}"/>
+        <xacro:property name="config_visual_parameters" value="${load_yaml(visual_parameters_file)}"/>
 
         <!-- Extract subsections from yaml dictionaries -->
         <xacro:property name="sec_limits" value="${config_joint_limit_parameters['joint_limits']}"/>
@@ -53,37 +51,31 @@
         <xacro:property name="joint0_upper_limit" value="${sec_limits['joint0']['max_position']}" scope="parent"/> 
         <xacro:property name="joint0_velocity_limit" value="${sec_limits['joint0']['max_velocity']}" scope="parent"/>
         <xacro:property name="joint0_effort_limit" value="${sec_limits['joint0']['max_effort']}" scope="parent"/>
-        <!-- <xacro:property name="joint0_acceleration_limit" value="${sec_limits['joint0']['max_acceleration']}" scope="parent"/> -->
 
         <xacro:property name="joint1_lower_limit" value="${sec_limits['joint1']['min_position']}" scope="parent"/>
         <xacro:property name="joint1_upper_limit" value="${sec_limits['joint1']['max_position']}" scope="parent"/>
         <xacro:property name="joint1_velocity_limit" value="${sec_limits['joint1']['max_velocity']}" scope="parent"/>
         <xacro:property name="joint1_effort_limit" value="${sec_limits['joint1']['max_effort']}" scope="parent"/>
-        <!-- <xacro:property name="joint1_acceleration_limit" value="${sec_limits['joint1']['max_acceleration']}" scope="parent"/> -->
 
         <xacro:property name="joint2_lower_limit" value="${sec_limits['joint2']['min_position']}" scope="parent"/>
         <xacro:property name="joint2_upper_limit" value="${sec_limits['joint2']['max_position']}" scope="parent"/>
         <xacro:property name="joint2_velocity_limit" value="${sec_limits['joint2']['max_velocity']}" scope="parent"/>
         <xacro:property name="joint2_effort_limit" value="${sec_limits['joint2']['max_effort']}" scope="parent"/>
-        <!-- <xacro:property name="joint2_acceleration_limit" value="${sec_limits['joint2']['max_acceleration']}" scope="parent"/> -->
 
         <xacro:property name="joint3_lower_limit" value="${sec_limits['joint3']['min_position']}" scope="parent"/>
         <xacro:property name="joint3_upper_limit" value="${sec_limits['joint3']['max_position']}" scope="parent"/>
         <xacro:property name="joint3_velocity_limit" value="${sec_limits['joint3']['max_velocity']}" scope="parent"/>
         <xacro:property name="joint3_effort_limit" value="${sec_limits['joint3']['max_effort']}" scope="parent"/>
-        <!-- <xacro:property name="joint3_acceleration_limit" value="${sec_limits['joint3']['max_acceleration']}" scope="parent"/> -->
 
         <xacro:property name="joint4_lower_limit" value="${sec_limits['joint4']['min_position']}" scope="parent"/>
         <xacro:property name="joint4_upper_limit" value="${sec_limits['joint4']['max_position']}" scope="parent"/>
         <xacro:property name="joint4_velocity_limit" value="${sec_limits['joint4']['max_velocity']}" scope="parent"/>
         <xacro:property name="joint4_effort_limit" value="${sec_limits['joint4']['max_effort']}" scope="parent"/>
-        <!-- <xacro:property name="joint4_acceleration_limit" value="${sec_limits['joint4']['max_acceleration']}" scope="parent"/> -->
 
         <xacro:property name="joint5_lower_limit" value="${sec_limits['joint5']['min_position']}" scope="parent"/>
         <xacro:property name="joint5_upper_limit" value="${sec_limits['joint5']['max_position']}" scope="parent"/>
         <xacro:property name="joint5_velocity_limit" value="${sec_limits['joint5']['max_velocity']}" scope="parent"/>
         <xacro:property name="joint5_effort_limit" value="${sec_limits['joint5']['max_effort']}" scope="parent"/>
-        <!-- <xacro:property name="joint5_acceleration_limit" value="${sec_limits['joint5']['max_acceleration']}" scope="parent"/> -->
 
         <!-- kinematics -->
         <xacro:property name="joint0_x" value="${sec_kinematics['joint0']['x']}" scope="parent"/>
@@ -210,13 +202,7 @@
             <xacro:property name="inertia_link7_ixy" value="${sec_inertia_parameters['link7']['ixy']}" scope="parent"/>
             <xacro:property name="inertia_link7_iyz" value="${sec_inertia_parameters['link7']['iyz']}" scope="parent"/>
             <xacro:property name="inertia_link7_ixz" value="${sec_inertia_parameters['link7']['ixz']}" scope="parent"/>
-
-            <xacro:property name="initial_positions" value="${initial_positions_parameters['7dof']}" scope="parent"/>
         </xacro:if>
 
-        <xacro:unless value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
-            <xacro:property name="initial_positions" value="${initial_positions_parameters['6dof']}" scope="parent"/>
-        </xacro:unless>
-        
     </xacro:macro>
 </robot>
