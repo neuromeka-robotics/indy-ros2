@@ -13,13 +13,12 @@ This repository contains ROS2 drivers for Indy7, Indy7V2, IndyRP2, IndyRP2V2 and
 ## Preparation
 
 The following software needs to be installed:
-- [ROS2 foxy](https://docs.ros.org/en/foxy/Installation.html)
+- [ROS2 Humble](https://docs.ros.org/en/humble/Installation.html)
 
 
 ## Installation
 
 ### Install dependencies
-
 ```
 sudo apt install python3-rosdep
 sudo apt install python3-rosdep2
@@ -33,31 +32,32 @@ colcon mixin add default https://raw.githubusercontent.com/colcon/colcon-mixin-r
 colcon mixin update default
 sudo apt install python3-vcstool
 
-sudo apt install -y ros-foxy-xacro \
-ros-foxy-moveit \
-ros-foxy-moveit-servo \
-ros-foxy-ros2-control \
-ros-foxy-ros2-controllers \
-ros-foxy-moveit-ros-move-group \
-ros-foxy-moveit-planners-ompl \
-ros-foxy-moveit-kinematics \
-ros-foxy-gazebo-ros \
-ros-foxy-gazebo-ros2-control \
-ros-foxy-controller-manager \
-ros-foxy-joint-state-broadcaster \
-ros-foxy-joint-state-publisher-gui \
-ros-foxy-joint-trajectory-controller \
-ros-foxy-moveit-ros-perception \
-ros-foxy-rviz-visual-tools \
-ros-foxy-moveit-resources
+sudo apt install -y ros-humble-xacro \
+ros-humble-moveit \
+ros-humble-moveit-servo \
+ros-humble-ros2-control \
+ros-humble-ros2-controllers \
+ros-humble-moveit-ros-move-group \
+ros-humble-moveit-planners-ompl \
+ros-humble-moveit-kinematics \
+ros-humble-gazebo-ros \
+ros-humble-gazebo-ros2-control \
+ros-humble-controller-manager \
+ros-humble-joint-state-broadcaster \
+ros-humble-joint-state-publisher-gui \
+ros-humble-joint-trajectory-controller \
+ros-humble-moveit-ros-perception \
+ros-humble-rviz-visual-tools \
+ros-humble-moveit-visual-tools \
+ros-humble-moveit-resources
 ```
 
 
-Switch to Cyclone DDS
-sudo apt install ros-foxy-rmw-cyclonedds-cpp
+#### Switch to Cyclone DDS
 
+sudo apt install ros-humble-rmw-cyclonedds-cpp
 
-#### Add this to ~/.bashrc to source it automatically
+**Add this to ~/.bashrc to source it automatically**
 
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
@@ -86,7 +86,9 @@ colcon build
 ## Usage
 
 Use **indy_type** to choose specific robot **(indy7, indy7_v2, indy12, indyrp2, indyrp2_v2)**.
-Use **indy_eye** to enable Indy Eye model **(support indy7, indyrp2)**. 
+Use **indy_sw** to choose software version (Framework) 2 or 3 **(support 2, 3)**. 
+
+Use **indy_eye** to enable Indy Eye model **(support indy7, indyrp2)**.
 To enable Indy Eye, add **indy_eye:=true** to the end of command
 
 If not specified, the default value will be indy7.
@@ -116,7 +118,7 @@ ros2 launch indy_description indy_display.launch.py indy_type:=indy7
 ros2 launch indy_gazebo indy_gazebo.launch.py indy_type:=indy7
 ```
 
-#### Start Indy Gazebo with Moveit and Servoing
+#### Start Indy Gazebo with Moveit
 
 If use moveit 
 
@@ -136,7 +138,7 @@ ros2 launch indy_moveit indy_moveit_gazebo.launch.py indy_type:=indy7 servo_mode
 #### Start Indy Robot
 
 ```
-ros2 launch indy_driver indy_bringup.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx
+ros2 launch indy_driver indy_bringup.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx indy_sw:=x
 ```
 
 #### Start Indy with Moveit
@@ -144,10 +146,10 @@ ros2 launch indy_driver indy_bringup.launch.py indy_type:=indy7 indy_ip:=192.168
 If use moveit 
 
 ```
-ros2 launch indy_moveit indy_moveit_real_robot.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx
+ros2 launch indy_moveit indy_moveit_real_robot.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx indy_sw:=x
 ```
 
 If use servoing - NOTE: CANNOT USE SERVOING MODE ON REAL ROBOT IN THIS VERSION
 ```
-ros2 launch indy_moveit indy_moveit_real_robot.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx servo_mode:=true
+ros2 launch indy_moveit indy_moveit_real_robot.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx indy_sw:=x servo_mode:=true
 ```
