@@ -3,77 +3,28 @@
 
     <xacro:macro name="indy_transmission" params="prefix hw_interface indy_type">
 
-        <transmission name="${prefix}tran0">
-            <type>transmission_interface/SimpleTransmission</type>
-            <joint name="${prefix}joint0">
-                <hardwareInterface>${hw_interface}</hardwareInterface>
-            </joint>
-            <actuator name="${prefix}motor0">
-                <mechanicalReduction>1</mechanicalReduction>
-            </actuator>
-        </transmission>
-
-        <transmission name="${prefix}tran1">
-            <type>transmission_interface/SimpleTransmission</type>
-            <joint name="${prefix}joint1">
-                <hardwareInterface>${hw_interface}</hardwareInterface>
-            </joint>
-            <actuator name="${prefix}motor1">
-                <mechanicalReduction>1</mechanicalReduction>
-            </actuator>
-        </transmission>
-
-        <transmission name="${prefix}tran2">
-            <type>transmission_interface/SimpleTransmission</type>
-            <joint name="${prefix}joint2">
-                <hardwareInterface>${hw_interface}</hardwareInterface>
-            </joint>
-            <actuator name="${prefix}motor2">
-                <mechanicalReduction>1</mechanicalReduction>
-            </actuator>
-        </transmission>
-
-        <transmission name="${prefix}tran3">
-            <type>transmission_interface/SimpleTransmission</type>
-            <joint name="${prefix}joint3">
-                <hardwareInterface>${hw_interface}</hardwareInterface>
-            </joint>
-            <actuator name="${prefix}motor3">
-                <mechanicalReduction>1</mechanicalReduction>
-            </actuator>
-        </transmission>
-
-        <transmission name="${prefix}tran4">
-            <type>transmission_interface/SimpleTransmission</type>
-            <joint name="${prefix}joint4">
-                <hardwareInterface>${hw_interface}</hardwareInterface>
-            </joint>
-            <actuator name="${prefix}motor4">
-                <mechanicalReduction>1</mechanicalReduction>
-            </actuator>
-        </transmission>
-
-        <transmission name="${prefix}tran5">
-            <type>transmission_interface/SimpleTransmission</type>
-            <joint name="${prefix}joint5">
-                <hardwareInterface>${hw_interface}</hardwareInterface>
-            </joint>
-            <actuator name="${prefix}motor5">
-                <mechanicalReduction>1</mechanicalReduction>
-            </actuator>
-        </transmission>
-
-        <!--indyrp2 with 7 DOF-->
-        <xacro:if value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
-            <transmission name="${prefix}tran6">
+        <xacro:macro name="define_transmission" params="tran joint motor">
+            <transmission name="${prefix}${tran}">
                 <type>transmission_interface/SimpleTransmission</type>
-                <joint name="${prefix}joint6">
+                <joint name="${prefix}${joint}">
                     <hardwareInterface>${hw_interface}</hardwareInterface>
                 </joint>
-                <actuator name="${prefix}motor6">
+                <actuator name="${prefix}${motor}">
                     <mechanicalReduction>1</mechanicalReduction>
                 </actuator>
             </transmission>
+        </xacro:macro>
+
+        <xacro:define_transmission tran="tran0" joint="joint0" motor="motor0"/>
+        <xacro:define_transmission tran="tran1" joint="joint1" motor="motor1"/>
+        <xacro:define_transmission tran="tran2" joint="joint2" motor="motor2"/>
+        <xacro:define_transmission tran="tran3" joint="joint3" motor="motor3"/>
+        <xacro:define_transmission tran="tran4" joint="joint4" motor="motor4"/>
+        <xacro:define_transmission tran="tran5" joint="joint5" motor="motor5"/>
+
+        <!--indyrp2 with 7 DOF-->
+        <xacro:if value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
+            <xacro:define_transmission tran="tran6" joint="joint6" motor="motor6"/>
         </xacro:if>
 
     </xacro:macro>

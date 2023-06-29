@@ -3,71 +3,71 @@ mesh_files:
     visual:
       mesh:
         package: indy_description
-        path: meshes/indyrp2_v2/stl/IndyRP2_v2_0.stl
+        path: meshes/indyrp2_v2/visual/IndyRP2_v2_0.stl
     collision:
       mesh:
         package: indy_description
-        path: meshes/indyrp2_v2/stl/IndyRP2_v2_0.stl
+        path: meshes/indyrp2_v2/collision/IndyRP2_v2_0.stl
   link1:
     visual:
       mesh:
         package: indy_description
-        path: meshes/indyrp2_v2/stl/IndyRP2_v2_1.stl
+        path: meshes/indyrp2_v2/visual/IndyRP2_v2_1.stl
     collision:
       mesh:
         package: indy_description
-        path: meshes/indyrp2_v2/stl/IndyRP2_v2_1.stl
+        path: meshes/indyrp2_v2/collision/IndyRP2_v2_1.stl
   link2:
     visual:
       mesh:
         package: indy_description
-        path: meshes/indyrp2_v2/stl/IndyRP2_v2_2.stl
+        path: meshes/indyrp2_v2/visual/IndyRP2_v2_2.stl
     collision:
       mesh:
         package: indy_description
-        path: meshes/indyrp2_v2/stl/IndyRP2_v2_2.stl
+        path: meshes/indyrp2_v2/collision/IndyRP2_v2_2.stl
   link3:
     visual:
       mesh:
         package: indy_description
-        path: meshes/indyrp2_v2/stl/IndyRP2_v2_3.stl
+        path: meshes/indyrp2_v2/visual/IndyRP2_v2_3.stl
     collision:
       mesh:
         package: indy_description
-        path: meshes/indyrp2_v2/stl/IndyRP2_v2_3.stl
+        path: meshes/indyrp2_v2/collision/IndyRP2_v2_3.stl
   link4:
     visual:
       mesh:
         package: indy_description
-        path: meshes/indyrp2_v2/stl/IndyRP2_v2_4.stl
+        path: meshes/indyrp2_v2/visual/IndyRP2_v2_4.stl
     collision:
       mesh:
         package: indy_description
-        path: meshes/indyrp2_v2/stl/IndyRP2_v2_4.stl
+        path: meshes/indyrp2_v2/collision/IndyRP2_v2_4.stl
   link5:
     visual:
       mesh:
         package: indy_description
-        path: meshes/indyrp2_v2/stl/IndyRP2_v2_5.stl
+        path: meshes/indyrp2_v2/visual/IndyRP2_v2_5.stl
     collision:
       mesh:
         package: indy_description
-        path: meshes/indyrp2_v2/stl/IndyRP2_v2_5.stl
+        path: meshes/indyrp2_v2/collision/IndyRP2_v2_5.stl
   link6:
     visual:
       mesh:
         package: indy_description
-        path: meshes/indyrp2_v2/stl/IndyRP2_v2_6.stl
+        path: meshes/indyrp2_v2/visual/IndyRP2_v2_6.stl
     collision:
       mesh:
         package: indy_description
-        path: meshes/indyrp2_v2/stl/IndyRP2_v2_6.stl
+        path: meshes/indyrp2_v2/collision/IndyRP2_v2_6.stl
   link7:
     visual:
       mesh:
         package: indy_description
-        path: meshes/indyrp2_v2/stl/IndyRP2_v2_7.stl
+        path: meshes/indyrp2_v2/visual/IndyRP2_v2_7.stl
     collision:
       mesh:
         package: indy_description
-        path: meshes/indyrp2_v2/stl/IndyRP2_v2_7.stl
+        path: meshes/indyrp2_v2/collision/IndyRP2_v2_7.stl
