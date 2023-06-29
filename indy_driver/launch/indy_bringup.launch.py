@@ -16,7 +16,6 @@ def launch_setup(context, *args, **kwargs):
     indy_ip = LaunchConfiguration("indy_ip")
     indy_type = LaunchConfiguration("indy_type")
     indy_eye = LaunchConfiguration("indy_eye")
-    indy_sw = LaunchConfiguration("indy_sw")
     prefix = LaunchConfiguration("prefix")
     launch_rviz = LaunchConfiguration("launch_rviz")
 
@@ -77,7 +76,6 @@ def launch_setup(context, *args, **kwargs):
         parameters=[
             {'indy_ip': indy_ip.perform(context)},
             {'indy_type': indy_type.perform(context)},
-            {'indy_sw': indy_sw.perform(context)},
         ],
     )
 
@@ -143,14 +141,6 @@ def generate_launch_description():
         )
     )
  
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "indy_sw",
-            description="Software Version",
-            choices=["2", "3"]
-        )
-    )
-
     declared_arguments.append(
         DeclareLaunchArgument(
             "prefix",

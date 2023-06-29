@@ -86,9 +86,7 @@ colcon build
 ## Usage
 
 Use **indy_type** to choose specific robot **(indy7, indy7_v2, indy12, indyrp2, indyrp2_v2)**.
-Use **indy_sw** to choose software version (Framework) 2 or 3 **(support 2, 3)**. 
-
-Use **indy_eye** to enable Indy Eye model **(support indy7, indyrp2)**.
+Use **indy_eye** to enable Indy Eye model **(support indy7, indyrp2)**. 
 To enable Indy Eye, add **indy_eye:=true** to the end of command
 
 If not specified, the default value will be indy7.
@@ -100,6 +98,23 @@ Using Dpad to control joint 2 and joint 4.
 B and X control joint 6
 Y and A control joint 5
 Left joystick, right joystick, LB, RB, LT, RT to control TCP.
+
+### IndyROSCommTask
+
+IndyROSCommTask will run on a real robot and create communication with ROS PC.
+To use IndyROSCommTask, we need to install gRPC on the computer that installed ROS:
+
+```
+sudo pip3 install grpcio==1.43.0
+sudo pip3 install grpcio-tools==1.43.0
+```
+
+Copy IndyROSCommTask to STEP PC and run the following commands:
+
+```
+sudo chmod +x IndyROSCommTask
+sudo ./IndyROSCommTask
+```
 
 ### Start Indy description
 
@@ -138,7 +153,7 @@ ros2 launch indy_moveit indy_moveit_gazebo.launch.py indy_type:=indy7 servo_mode
 #### Start Indy Robot
 
 ```
-ros2 launch indy_driver indy_bringup.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx indy_sw:=x
+ros2 launch indy_driver indy_bringup.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx
 ```
 
 #### Start Indy with Moveit
@@ -146,10 +161,12 @@ ros2 launch indy_driver indy_bringup.launch.py indy_type:=indy7 indy_ip:=192.168
 If use moveit 
 
 ```
-ros2 launch indy_moveit indy_moveit_real_robot.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx indy_sw:=x
+ros2 launch indy_moveit indy_moveit_real_robot.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx
 ```
 
-If use servoing - NOTE: CANNOT USE SERVOING MODE ON REAL ROBOT IN THIS VERSION
+If use servoing 
+
 ```
-ros2 launch indy_moveit indy_moveit_real_robot.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx indy_sw:=x servo_mode:=true
+ros2 launch indy_moveit indy_moveit_real_robot.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx servo_mode:=true
 ```
+
