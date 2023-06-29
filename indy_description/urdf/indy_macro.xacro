@@ -19,298 +19,118 @@
         visual_parameters_file
         transmission_hw_interface:=hardware_interface/PositionJointInterface
         sim_gazebo:=false">
-
+        <!-- initial_positions:=${dict(joint0=0.0,joint1=0.0,joint2=-1.57,joint3=0.0,joint4=-1.57,joint5=0.0)} -->
         <!-- Load configuration data from the provided .yaml files -->
-        <xacro:read_model_data
-            joint_limits_parameters_file="${joint_limits_parameters_file}"
-            kinematics_parameters_file="${kinematics_parameters_file}"
-            physical_parameters_file="${physical_parameters_file}"
-            visual_parameters_file="${visual_parameters_file}"
-            indy_type="${indy_type}"/>
+        <xacro:define_initialize visual_parameters_file="${visual_parameters_file}"/>
 
         <xacro:property name="indy_material" value="metal_white"/>
 
         <!-- links -  main serial chain -->
-        <link name="${prefix}link0">
-            <visual>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
-                <geometry>
-                    <xacro:get_mesh name="link0" type="visual"/>
-                </geometry>
-                <material name="${indy_material}"/>
-            </visual>
-            <collision>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
-                <geometry>
-                    <xacro:get_mesh name="link0" type="collision"/>
-                </geometry>
-            </collision>
-            <xacro:indy_inertial mass="${link0_mass}" ixx="${inertia_link0_ixx}" iyy="${inertia_link0_iyy}" 
-                izz="${inertia_link0_izz}" ixy="${inertia_link0_ixy}" iyz="${inertia_link0_iyz}" ixz="${inertia_link0_ixz}">
-                <origin xyz="0 0 0" rpy="0 0 0" />
-            </xacro:indy_inertial>
-        </link>
-
-        <link name="${prefix}link1">
-            <visual>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
-                <geometry>
-                    <xacro:get_mesh name="link1" type="visual"/>
-                </geometry>
-                <material name="${indy_material}"/>
-            </visual>
-            <collision>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
-                <geometry>
-                    <xacro:get_mesh name="link1" type="collision"/>
-                </geometry>
-            </collision>
-            <xacro:indy_inertial mass="${link1_mass}" ixx="${inertia_link1_ixx}" iyy="${inertia_link1_iyy}" 
-                izz="${inertia_link1_izz}" ixy="${inertia_link1_ixy}" iyz="${inertia_link1_iyz}" ixz="${inertia_link1_ixz}">
-                <origin xyz="0 0 0" rpy="0 0 0" />
-            </xacro:indy_inertial>
-        </link>
-
-        <link name="${prefix}link2">
-            <visual>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
-                <geometry>
-                    <xacro:get_mesh name="link2" type="visual"/>
-                </geometry>
-                <material name="${indy_material}"/>
-            </visual>
-            <collision>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
-                <geometry>
-                    <xacro:get_mesh name="link2" type="collision"/>
-                </geometry>
-            </collision>
-            <xacro:indy_inertial mass="${link2_mass}" ixx="${inertia_link2_ixx}" iyy="${inertia_link2_iyy}" 
-                izz="${inertia_link2_izz}" ixy="${inertia_link2_ixy}" iyz="${inertia_link2_iyz}" ixz="${inertia_link2_ixz}">
-                <origin xyz="0 0 0" rpy="0 0 0" />
-            </xacro:indy_inertial>
-        </link>
-
-        <link name="${prefix}link3">
-            <visual>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
-                <geometry>
-                    <xacro:get_mesh name="link3" type="visual"/>
-                </geometry>
-                <material name="${indy_material}"/>
-            </visual>
-            <collision>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
-                <geometry>
-                    <xacro:get_mesh name="link3" type="collision"/>
-                </geometry>
-            </collision>
-            <xacro:indy_inertial mass="${link3_mass}" ixx="${inertia_link3_ixx}" iyy="${inertia_link3_iyy}" 
-                izz="${inertia_link3_izz}" ixy="${inertia_link3_ixy}" iyz="${inertia_link3_iyz}" ixz="${inertia_link3_ixz}">
-                <origin xyz="0 0 0" rpy="0 0 0" />
-            </xacro:indy_inertial>
-        </link>
-
-        <link name="${prefix}link4">
-            <visual>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
-                <geometry>
-                    <xacro:get_mesh name="link4" type="visual"/>
-                </geometry>
-                <material name="${indy_material}"/>
-            </visual>
-            <collision>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
-                <geometry>
-                    <xacro:get_mesh name="link4" type="collision"/>
-                </geometry>
-            </collision>
-            <xacro:indy_inertial mass="${link4_mass}" ixx="${inertia_link4_ixx}" iyy="${inertia_link4_iyy}" 
-                izz="${inertia_link4_izz}" ixy="${inertia_link4_ixy}" iyz="${inertia_link4_iyz}" ixz="${inertia_link4_ixz}">
-                <origin xyz="0 0 0" rpy="0 0 0" />
-            </xacro:indy_inertial>
-        </link>
-
-        <link name="${prefix}link5">
-            <visual>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
-                <geometry>
-                    <xacro:get_mesh name="link5" type="visual"/>
-                </geometry>
-                <material name="${indy_material}"/>
-            </visual>
-            <collision>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
-                <geometry>
-                    <xacro:get_mesh name="link5" type="collision"/>
-                </geometry>
-            </collision>
-            <xacro:indy_inertial mass="${link5_mass}" ixx="${inertia_link5_ixx}" iyy="${inertia_link5_iyy}" 
-                izz="${inertia_link5_izz}" ixy="${inertia_link5_ixy}" iyz="${inertia_link5_iyz}" ixz="${inertia_link5_ixz}">
-                <origin xyz="0 0 0" rpy="0 0 0" />
-            </xacro:indy_inertial>
-        </link>
-
-        <link name="${prefix}link6">
-
-            <xacro:if value="${indy_eye and not (indy_type == 'indyrp2' or indy_type == 'indyrp2_v2')}">
+        <xacro:macro name="define_link" params="link_index link_mesh">
+            <link name="${prefix}${link_index}">
+                <xacro:property name="config_physical_parameters" value="${load_yaml(physical_parameters_file)}"/>
+                <xacro:property name="sec_inertia_parameters" value="${config_physical_parameters['inertia_parameters']}" />
                 <visual>
                     <origin xyz="0 0 0" rpy="0 0 0"/>
                     <geometry>
-                        <xacro:get_mesh name="link6_eye" type="visual"/>
+                        <xacro:get_mesh name="${link_mesh}" type="visual"/>
                     </geometry>
                     <material name="${indy_material}"/>
                 </visual>
                 <collision>
                     <origin xyz="0 0 0" rpy="0 0 0"/>
                     <geometry>
-                        <xacro:get_mesh name="link6_eye" type="collision"/>
+                        <xacro:get_mesh name="${link_mesh}" type="collision"/>
                     </geometry>
                 </collision>
-            </xacro:if>
-
-            <xacro:unless value="${indy_eye and not (indy_type == 'indyrp2' or indy_type == 'indyrp2_v2')}">
-                <visual>
-                    <origin xyz="0 0 0" rpy="0 0 0"/>
-                    <geometry>
-                        <xacro:get_mesh name="link6" type="visual"/>
-                    </geometry>
-                    <material name="${indy_material}"/>
-                </visual>
-                <collision>
-                    <origin xyz="0 0 0" rpy="0 0 0"/>
-                    <geometry>
-                        <xacro:get_mesh name="link6" type="collision"/>
-                    </geometry>
-                </collision>
-            </xacro:unless>
-
-            <xacro:indy_inertial mass="${link6_mass}" ixx="${inertia_link6_ixx}" iyy="${inertia_link6_iyy}" 
-                izz="${inertia_link6_izz}" ixy="${inertia_link6_ixy}" iyz="${inertia_link6_iyz}" ixz="${inertia_link6_ixz}">
-                <origin xyz="0 0 0" rpy="0 0 0" />
-            </xacro:indy_inertial>
-        </link>
-
-        <!--indyrp2 with 7 DOF-->
-        <xacro:if value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
-            <link name="${prefix}link7">
-
-                <xacro:if value="${indy_eye}">
-                    <visual>
-                        <origin xyz="0 0 0" rpy="0 0 0"/>
-                        <geometry>
-                            <xacro:get_mesh name="link7_eye" type="visual"/>
-                        </geometry>
-                        <material name="${indy_material}"/>
-                    </visual>
-                    <collision>
-                        <origin xyz="0 0 0" rpy="0 0 0"/>
-                        <geometry>
-                            <xacro:get_mesh name="link7_eye" type="collision"/>
-                        </geometry>
-                    </collision>
-                </xacro:if>
-
-                <xacro:unless value="${indy_eye}">
-                    <visual>
-                        <origin xyz="0 0 0" rpy="0 0 0"/>
-                        <geometry>
-                            <xacro:get_mesh name="link7" type="visual"/>
-                        </geometry>
-                        <material name="${indy_material}"/>
-                    </visual>
-                    <collision>
-                        <origin xyz="0 0 0" rpy="0 0 0"/>
-                        <geometry>
-                            <xacro:get_mesh name="link7" type="collision"/>
-                        </geometry>
-                    </collision>
-                </xacro:unless>
-
-                <xacro:indy_inertial mass="${link7_mass}" ixx="${inertia_link7_ixx}" iyy="${inertia_link7_iyy}" 
-                    izz="${inertia_link7_izz}" ixy="${inertia_link7_ixy}" iyz="${inertia_link7_iyz}" ixz="${inertia_link7_ixz}">
-                    <origin xyz="0 0 0" rpy="0 0 0" />
-                </xacro:indy_inertial>
+                <inertial>
+                    <mass value="${sec_inertia_parameters[link_index + '_mass']}"/>
+                    <origin
+                        xyz="${sec_inertia_parameters['center_of_mass'][link_index]['x']}
+                            ${sec_inertia_parameters['center_of_mass'][link_index]['y']}
+                            ${sec_inertia_parameters['center_of_mass'][link_index]['z']}" 
+                        rpy="0 0 0"/>
+                    <inertia
+                        ixx="${sec_inertia_parameters[link_index]['ixx']}" 
+                        iyy="${sec_inertia_parameters[link_index]['iyy']}" 
+                        izz="${sec_inertia_parameters[link_index]['izz']}" 
+                        ixy="${sec_inertia_parameters[link_index]['ixy']}" 
+                        iyz="${sec_inertia_parameters[link_index]['iyz']}" 
+                        ixz="${sec_inertia_parameters[link_index]['ixz']}" />
+                </inertial>
             </link>
+        </xacro:macro>
+
+        <xacro:define_link link_index="link0" link_mesh="link0"/>
+        <xacro:define_link link_index="link1" link_mesh="link1"/>
+        <xacro:define_link link_index="link2" link_mesh="link2"/>
+        <xacro:define_link link_index="link3" link_mesh="link3"/>
+        <xacro:define_link link_index="link4" link_mesh="link4"/>
+        <xacro:define_link link_index="link5" link_mesh="link5"/>
+
+        <xacro:if value="${indy_eye and not (indy_type == 'indyrp2' or indy_type == 'indyrp2_v2')}">
+            <xacro:define_link link_index="link6" link_mesh="link6_eye"/>
+        </xacro:if>
+        <xacro:unless value="${indy_eye and not (indy_type == 'indyrp2' or indy_type == 'indyrp2_v2')}">
+            <xacro:define_link link_index="link6" link_mesh="link6"/>
+        </xacro:unless>
+
+        <xacro:if value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
+            <xacro:if value="${indy_eye}">
+                <xacro:define_link link_index="link7" link_mesh="link7_eye"/>
+            </xacro:if>
+            <xacro:unless value="${indy_eye}">
+                <xacro:define_link link_index="link7" link_mesh="link7"/>
+            </xacro:unless>
         </xacro:if>
 
         <link name="${prefix}tcp"/>
 
+        <!-- joints -->
         <joint name="global" type="fixed">
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <parent link="${parent}"/> <!--world-->
             <child link="$(arg prefix)link0"/>
         </joint>
 
-        <joint name="${prefix}joint0" type="revolute">
-            <parent link="${prefix}link0" />
-            <child link="${prefix}link1" />
-            <origin xyz="${joint0_x} ${joint0_y} ${joint0_z}" rpy="${joint0_roll} ${joint0_pitch} ${joint0_yaw}" />
-            <axis xyz="0 0 1" />
-            <limit lower="${joint0_lower_limit}" upper="${joint0_upper_limit}"
-            effort="${joint0_effort_limit}" velocity="${joint0_velocity_limit}"/>
-        </joint>
-
-        <joint name="${prefix}joint1" type="revolute">
-            <parent link="${prefix}link1" />
-            <child link="${prefix}link2" />
-            <origin xyz="${joint1_x} ${joint1_y} ${joint1_z}" rpy="${joint1_roll} ${joint1_pitch} ${joint1_yaw}" />
-            <axis xyz="0 0 1" />
-            <limit lower="${joint1_lower_limit}" upper="${joint1_upper_limit}"
-            effort="${joint1_effort_limit}" velocity="${joint1_velocity_limit}"/>
-        </joint>
-
-        <joint name="${prefix}joint2" type="revolute">
-            <parent link="${prefix}link2" />
-            <child link="${prefix}link3" />
-            <origin xyz="${joint2_x} ${joint2_y} ${joint2_z}" rpy="${joint2_roll} ${joint2_pitch} ${joint2_yaw}" />
-            <axis xyz="0 0 1" />
-            <limit lower="${joint2_lower_limit}" upper="${joint2_upper_limit}"
-            effort="${joint2_effort_limit}" velocity="${joint2_velocity_limit}"/>
-        </joint>
-
-        <joint name="${prefix}joint3" type="revolute">
-            <parent link="${prefix}link3" />
-            <child link="${prefix}link4" />
-            <origin xyz="${joint3_x} ${joint3_y} ${joint3_z}" rpy="${joint3_roll} ${joint3_pitch} ${joint3_yaw}" />
-            <axis xyz="0 0 1" />
-            <limit lower="${joint3_lower_limit}" upper="${joint3_upper_limit}"
-            effort="${joint3_effort_limit}" velocity="${joint3_velocity_limit}"/>
-        </joint>
-
-        <joint name="${prefix}joint4" type="revolute">
-            <parent link="${prefix}link4" />
-            <child link="${prefix}link5" />
-            <origin xyz="${joint4_x} ${joint4_y} ${joint4_z}" rpy="${joint4_roll} ${joint4_pitch} ${joint4_yaw}" />
-            <axis xyz="0 0 1" />
-            <limit lower="${joint4_lower_limit}" upper="${joint4_upper_limit}"
-            effort="${joint4_effort_limit}" velocity="${joint4_velocity_limit}"/>
-        </joint>
-
-        <joint name="${prefix}joint5" type="revolute">
-            <parent link="${prefix}link5" />
-            <child link="${prefix}link6" />
-            <origin xyz="${joint5_x} ${joint5_y} ${joint5_z}" rpy="${joint5_roll} ${joint5_pitch} ${joint5_yaw}" />
-            <axis xyz="0 0 1" />
-            <limit lower="${joint5_lower_limit}" upper="${joint5_upper_limit}"
-            effort="${joint5_effort_limit}" velocity="${joint5_velocity_limit}"/>
-        </joint>
-
-        <!--indyrp2 with 7 DOF-->
-        <xacro:if value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
-            <joint name="${prefix}joint6" type="revolute">
-                <parent link="${prefix}link6" />
-                <child link="${prefix}link7" />
-                <origin xyz="${joint6_x} ${joint6_y} ${joint6_z}" rpy="${joint6_roll} ${joint6_pitch} ${joint6_yaw}" />
-                <axis xyz="0 0 1" />
-                <limit lower="${joint6_lower_limit}" upper="${joint6_upper_limit}"
-                effort="${joint6_effort_limit}" velocity="${joint6_velocity_limit}"/>
+        <xacro:macro name="define_joint" params="joint_index link_1_index link_2_index" >
+            <xacro:property name="config_joint_limit_parameters" value="${load_yaml(joint_limits_parameters_file)}"/>
+            <xacro:property name="config_kinematics_parameters" value="${load_yaml(kinematics_parameters_file)}"/>
+            <xacro:property name="sec_kinematics" value="${config_kinematics_parameters['kinematics']}" />
+            <xacro:property name="sec_limits" value="${config_joint_limit_parameters['joint_limits']}"/>
+            <joint name="${prefix}${joint_index}" type="revolute">
+                <parent link="${prefix}${link_1_index}"/>
+                <child link="${prefix}${link_2_index}"/>
+                <origin
+                    xyz="${sec_kinematics[joint_index]['x']} 
+                        ${sec_kinematics[joint_index]['y']} 
+                        ${sec_kinematics[joint_index]['z']}" 
+                    rpy="${sec_kinematics[joint_index]['roll']}
+                        ${sec_kinematics[joint_index]['pitch']}
+                        ${sec_kinematics[joint_index]['yaw']}"/>
+                    <axis xyz="0 0 1"/>
+                <limit
+                    lower="${sec_limits[joint_index]['min_position']}" 
+                    upper="${sec_limits[joint_index]['max_position']}"
+                    effort="${sec_limits[joint_index]['max_velocity']}" 
+                    velocity="${sec_limits[joint_index]['max_effort']}"/>
             </joint>
+        </xacro:macro>
+
+        <xacro:define_joint joint_index="joint0" link_1_index="link0" link_2_index="link1"/>
+        <xacro:define_joint joint_index="joint1" link_1_index="link1" link_2_index="link2"/>
+        <xacro:define_joint joint_index="joint2" link_1_index="link2" link_2_index="link3"/>
+        <xacro:define_joint joint_index="joint3" link_1_index="link3" link_2_index="link4"/>
+        <xacro:define_joint joint_index="joint4" link_1_index="link4" link_2_index="link5"/>
+        <xacro:define_joint joint_index="joint5" link_1_index="link5" link_2_index="link6"/>
+
+        <xacro:if value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
+            <xacro:define_joint joint_index="joint6" link_1_index="link6" link_2_index="link7"/>
             <joint name="${prefix}tcp" type="fixed">
                 <parent link="${prefix}link7"/>
                 <child link="${prefix}tcp"/>
                 <origin xyz="0 0 0.06" rpy="0 0 0"/>
-            </joint>
+            </joint>   
         </xacro:if>
 
         <xacro:unless value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
@@ -318,7 +138,7 @@
                 <parent link="${prefix}link6"/>
                 <child link="${prefix}tcp"/>
                 <origin xyz="0 0 0.06" rpy="0 0 0"/>
-            </joint>
+            </joint>    
         </xacro:unless>
 
         <!-- ros2 control -->
