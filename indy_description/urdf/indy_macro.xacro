@@ -114,8 +114,8 @@
                 <limit
                     lower="${sec_limits[joint_index]['min_position']}" 
                     upper="${sec_limits[joint_index]['max_position']}"
-                    effort="${sec_limits[joint_index]['max_velocity']}" 
-                    velocity="${sec_limits[joint_index]['max_effort']}"/>
+                    effort="${sec_limits[joint_index]['max_effort']}" 
+                    velocity="${sec_limits[joint_index]['max_velocity']}"/>
             </joint>
         </xacro:macro>
 
