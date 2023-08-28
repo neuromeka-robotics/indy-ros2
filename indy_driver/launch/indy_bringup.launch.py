@@ -147,6 +147,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "indy_sw",
             description="Software Version",
+            default_value="2",
             choices=["2", "3"]
         )
     )
