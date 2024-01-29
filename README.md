@@ -1,22 +1,6 @@
-# Indy ROS2
-
-## Introduction
-
-**Indy** is Neuromeka’s flagship cobot model we designed and manufactured. Guaranteeing workers’ safety based on innovative collision detection algorithms, Indy supports more intuitive direct teaching by impedance control as well as online and offline programming with the teach pendant app running on android tablets.
-
-<center><img src=".img/intro_img.png" width="400" heigh="400"/></center> 
-
-
-This repository contains ROS2 drivers for Indy7, Indy7V2, IndyRP2, IndyRP2V2 and Indy12.
-
-
-## Preparation
-
-The following software needs to be installed:
-- [ROS2 foxy](https://docs.ros.org/en/foxy/Installation.html)
-
-
 ## Installation
+
+### Install Ros Foxy
 
 ### Install dependencies
 
@@ -50,84 +34,66 @@ ros-foxy-joint-trajectory-controller \
 ros-foxy-moveit-ros-perception \
 ros-foxy-rviz-visual-tools \
 ros-foxy-moveit-resources
-
-sudo pip3 install numpy scipy
 ```
 
-Switch to Cyclone DDS
-sudo apt install ros-foxy-rmw-cyclonedds-cpp
 
+Switch to Cyclone DDS
+
+
+```
+sudo apt install ros-foxy-rmw-cyclonedds-cpp
+```
 
 #### Add this to ~/.bashrc to source it automatically
 
+```
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-
-
-### Create a workspace and download the source code
-
-```
-cd ~
-mkdir -p indy_ros2/src
-cd ~/indy_ros2/src
-git clone <this repository url>
 ```
 
-### Build the package
+
+### Connect Mycobot and NUC to same network layer.
+
+Run following cmd on terminal of ROS PC and Mycobot, the ID can follow your settings.
+
+On Mycobot
 
 ```
-cd ~/indy_ros2/
-colcon build
+source /opt/ros/galactic/setup.bash
 ```
 
-### Source the setup file
-```
-source /opt/ros/foxy/setup.bash
-source ~/indy_ros2/install/setup.bash
-```
-
-## Usage
-
-Use **indy_type** to choose specific robot **(indy7, indy7_v2, indy12, indyrp2, indyrp2_v2)**.
-Use **indy_eye** to enable Indy Eye model **(support indy7, indyrp2)**. 
-To enable Indy Eye, add **indy_eye:=true** to the end of command
-
-If not specified, the default value will be indy7.
-
-When used with a real robot, you need to provide an **indy_ip** value.
-
-### Indy GRPC Client
-
-Indy gRPC Client will run on a real robot and create communication with ROS PC.
-To use Indy gRPC Client, we need to install gRPC on the computer that installed ROS:
+On both Mycobot and PC
 
 ```
-sudo pip3 install --upgrade --force-reinstall protobuf==3.19.4 grpcio==1.34.1 grpcio_tools==1.34.1
+export ROS_DOMAIN_ID=30
 ```
 
-Find TeleoperationTask and TeleopRecordingTask for your version of Indy from TasksDeployment folder.
-Connect to the Indy CB and copy above files to /home/user/release/TasksDeployment:
 
-* Add following lines to QueueHigh dictionary 
-```json
-{
-    "TaskName" : "IndyTeleopRecordingTask",
-    "SharedLib" : "libIndyTeleopRecordingTask.so",
-    "Location" : "/home/user/release/TasksDeployment/"
-}
+### MYCOBOT SETUP
+
+Copy control_node.py in mycobot_280pi_utils folder to /mycobot_ros2/mycobot_280/mycobot_280pi/mycobot_280pi.
+
+Add 'control_node = mycobot_280pi.control_node:main' to mycobot_ros2/mycobot_280/mycobot_280pi/setup.py.
+
+Test control_node on Mycobot.
+
+```
+ros2 run mycobot_280pi control_node --ros-args -p robot:=robot0
 ```
 
-* Add following lines to QueueMedium dictionary. Check the medium loop frequency:```"MediumRate" : 500, /*Hz*/``` 
-```json
-{
-    "TaskName" : "Indy7TeleoperationTask",
-    "SharedLib" : "libIndy7TeleoperationTask.so",
-    "Location" : "/home/user/release/TasksDeployment/"
-}
+You can check topic on Mycobot and ROS PC.
+
+CMD line to publish data using terminal
+
+```
+ros2 topic pub /robot0/control_radians std_msgs/msg/Float32MultiArray "{data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}"
 ```
 
-### Using Sigma
+```
+ros2 topic pub /robot0/control_coords std_msgs/msg/Float32MultiArray "{data: [149.8, -63.7, 175.1, -170.68, -0.47, -89.81]}"
+```
 
-**Install Sigma**
+
+### Sigma SETUP (On ROS PC)
 
 For 64bit
 
@@ -167,43 +133,145 @@ sudo udevadm trigger
 ```
 
 
-### Start Indy Robot
+## Usage
 
-Launch indy_driver with one of following config files: *1robot_config.yaml*, *2robot_config.yaml*, *4robot_config.yaml* 
+### To use one Sigma with one Mycobot
 
-```
-ros2 launch indy_driver indy_bringup.launch.py config_file:=1robot_config.yaml
-```
+**On Mycobot (raspberry pi)**
 
-#### Use with Sigma7
-
-Start the keyboard control, because the sigma doesn't have button, so we will use keyboard to start stop telemode, switch robot, record and play functions. Only need one keyboard node for 4 robots.
+Run control node
 
 ```
-ros2 run indy_driver indy_keyboard.py
+ros2 run mycobot_280pi control_node --ros-args -p robot:=robot0
 ```
 
-Launch sigma node
-```bash
+**On ROS PC (connect Sigma)**
+
+Run Sigma node
+
+```
 ros2 launch sigma sigma.launch.py
 ```
 
-The default sigma node will load ```config0:=sigma0.yaml``` control 2 robots (robot0, robot1).
-To run two sigmas, add ```config1:=sigma1.yaml```
-```
-ros2 launch indy_driver indy_sigma_bringup.launch.py
-```
-
-### Start Indy with Moveit
-
-Example for one robot start.
-```
-ros2 launch indy_moveit indy_moveit_real_robot.launch.py config_file:=1robot_config.yaml
-```
-
-#### [DEPRECATED] Use with xbox gamepad
+Run Sigma and Mycobot bridge node
 
 ```
-ros2 run joy joy_node
-ros2 run indy_driver indy_xbox.py
+ros2 launch mycobot_280pi one_sigma_mycobot.launch.py robot_name:=robot0 sigma_name:=sigma0
 ```
+
+### To use two Sigma with two Mycobot
+
+**On Mycobot_0 (raspberry pi)**
+
+Run control node
+
+```
+ros2 run mycobot_280pi control_node --ros-args -p robot:=robot0
+```
+
+**On Mycobot_1 (raspberry pi)**
+
+Run control node
+
+```
+ros2 run mycobot_280pi control_node --ros-args -p robot:=robot1
+```
+
+**On ROS PC (connect Sigma)**
+
+Run Sigma node
+
+```
+ros2 launch sigma sigma.launch.py
+```
+
+Run Sigma and Mycobot bridge node
+
+```
+ros2 launch mycobot_280pi two_sigma_mycobot.launch.py robot0_name:=robot0 sigma0_name:=sigma0 robot1_name:=robot1 sigma1_name:=sigma1
+```
+
+
+### To use one Mycobot with Moveit
+
+
+**On Mycobot (raspberry pi)**
+
+Run control node
+
+```
+ros2 run mycobot_280pi control_node --ros-args -p robot:=robot0
+```
+
+**On ROS PC (connect Sigma)**
+
+Run moveit launch (this default robot name is robot0)
+
+```
+ros2 launch mycobot_280pi_moveit mycobot_280pi_moveit_launch.py
+```
+
+
+### To use two Mycobot with Moveit
+
+
+**On Mycobot_0 (raspberry pi)**
+
+Run control node
+
+```
+ros2 run mycobot_280pi control_node --ros-args -p robot:=robot0
+```
+
+**On Mycobot_1 (raspberry pi)**
+
+Run control node
+
+```
+ros2 run mycobot_280pi control_node --ros-args -p robot:=robot1
+```
+
+**On ROS PC (connect Sigma)**
+
+Run moveit launch (this default robot name is robot0 and robot1 init pos is 0 0 0 and 0 0.5 0)
+
+```
+ros2 launch mycobot_280pi_moveit two_mycobot_280pi_moveit_launch.py
+```
+
+### Motion Record
+
+To use motion record, please start following cmd
+
+```
+ros2 run mycobot_280pi mycobot_motion_record.py --ros-args -p robot:=robot0
+```
+
+
+### Other Use
+
+To set the workspace for robot, please modify the **workspace_params.yaml** in **mycobot_280pi/config** and rebuild the software.
+
+
+This pakage provide dummy robot.
+The robot can be controlled by /control_radians topic.
+If you want to test with dummy robot.
+
+The **quantity:=1** is number of robot. The robot name will start from 0.
+
+```
+ros2 launch mycobot_280pi mycobot_dummies.launch.py quantity:=1
+```
+
+Description for robot.
+
+Use following cmd to launch robot description. (Need dummy robot or real robot for joint_states).
+
+```
+ros2 launch mycobot_280pi_description one_mycobot_280pi.launch.py robot_name:=robot0 robot_xyz:='"0 0 0"' robot_rpy:='"0 0 0"'
+```
+
+```
+ros2 launch mycobot_280pi_description two_mycobot_280pi.launch.py robot0_name:=robot0 robot0_xyz:='"0 0 0"' robot0_rpy:='"0 0 0"' robot1_name:=robot1 robot1_xyz:='"0 0.5 0"' robot1_rpy:='"0 0 0"'
+```
+

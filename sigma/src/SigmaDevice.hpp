@@ -4,7 +4,6 @@
 #include <tf2/convert.h>
 #include <std_msgs/msg/int8.hpp>
 #include <std_msgs/msg/float32.hpp>
-#include <std_msgs/msg/bool.hpp>
 #include <geometry_msgs/msg/wrench_stamped.hpp>
 #include <geometry_msgs/msg/twist_stamped.hpp>
 // Sigma
@@ -15,7 +14,7 @@
 
 class SigmaDevice {
 public:
-    SigmaDevice(rclcpp::Node::SharedPtr n, const int myid);
+    SigmaDevice(rclcpp::Node::SharedPtr n, const std::string name_space);
 
     void WrenchCallback( const geometry_msgs::msg::WrenchStamped::SharedPtr msg);
 
@@ -29,7 +28,7 @@ private:
 
 private:
 
-    int id;
+    static int id;
     bool enable_gripper_button=0;
 
 
@@ -43,15 +42,16 @@ private:
     bool new_wrench_msg;
     std_msgs::msg::Float32 gripper_angle;
 
-    int button_state;
-    int button_previous_state;
+    int buttons_state[2];
+    int buttons_previous_state[2];
 
-    std_msgs::msg::Bool button_msg;
+    sensor_msgs::msg::Joy buttons_msg;
+
     int pedal_previous_state;
 
     rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr pub_pose;
     rclcpp::Publisher<geometry_msgs::msg::TwistStamped>::SharedPtr pub_twist;
     rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr pub_gripper;
-    rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr pub_button;
+    rclcpp::Publisher<sensor_msgs::msg::Joy>::SharedPtr pub_buttons;
     rclcpp::Subscription<geometry_msgs::msg::WrenchStamped>::SharedPtr sub_wrench;
 };

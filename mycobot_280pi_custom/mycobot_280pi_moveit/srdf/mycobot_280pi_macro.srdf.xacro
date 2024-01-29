@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:macro name="mycobot_280pi_srdf" params="robot_name">
+        <!--GROUPS - Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+        <!--LINKS - When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+        <!--JOINTS - When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+        <!--CHAINS - When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+        <!--SUBGROUPS - Groups can also be formed by referencing to already defined group names-->
+        <group name="${robot_name}mycobot_manipulator">
+            <chain base_link="${robot_name}joint1" tip_link="${robot_name}joint6_flange" />
+        </group>
+
+        <!-- NEED TO CHECK GRIPPER MODEL -->
+        <!-- <group name="${robot_name}gripper">
+            <joint name="${robot_name}joint6output_to_gripper_base" />
+            <joint name="${robot_name}gripper_controller" />
+            <joint name="${robot_name}gripper_base_to_gripper_left2" />
+            <joint name="${robot_name}gripper_left3_to_gripper_left1" />
+            <joint name="${robot_name}gripper_base_to_gripper_right3" />
+            <joint name="${robot_name}gripper_base_to_gripper_right2" />
+            <joint name="${robot_name}gripper_right3_to_gripper_right1" />
+        </group>
+
+        <end_effector name="${robot_name}gripper" parent_link="${robot_name}joint6_flange" group="${robot_name}gripper"/> -->
+
+        <!--GROUP STATES - Purpose - Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+        <group_state name="${robot_name}HomePos" group="${robot_name}mycobot_manipulator">
+            <joint name="${robot_name}joint2_to_joint1" value="0" />
+            <joint name="${robot_name}joint3_to_joint2" value="0.12" />
+            <joint name="${robot_name}joint4_to_joint3" value="-2.22" />
+            <joint name="${robot_name}joint5_to_joint4" value="0.7" />
+            <joint name="${robot_name}joint6_to_joint5" value="0.0" />
+            <joint name="${robot_name}joint6output_to_joint6" value="0" />
+        </group_state>
+        <group_state name="${robot_name}ZeroPos" group="${robot_name}mycobot_manipulator">
+            <joint name="${robot_name}joint2_to_joint1" value="0" />
+            <joint name="${robot_name}joint3_to_joint2" value="0" />
+            <joint name="${robot_name}joint4_to_joint3" value="0" />
+            <joint name="${robot_name}joint5_to_joint4" value="0" />
+            <joint name="${robot_name}joint6_to_joint5" value="0" />
+            <joint name="${robot_name}joint6output_to_joint6" value="0" />
+        </group_state>
+        <!--END EFFECTOR - Purpose - Represent information about an end effector.-->
+        <!--VIRTUAL JOINT - Purpose - this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+        <virtual_joint name="FixedBase" type="fixed" parent_frame="global" child_link="world" />
+        <!--DISABLE COLLISIONS - By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+        <disable_collisions link1="${robot_name}joint1" link2="${robot_name}joint2"/>
+        <disable_collisions link1="${robot_name}joint2" link2="${robot_name}joint3"/>
+        <disable_collisions link1="${robot_name}joint3" link2="${robot_name}joint4"/>
+        <disable_collisions link1="${robot_name}joint4" link2="${robot_name}joint5"/>
+        <disable_collisions link1="${robot_name}joint5" link2="${robot_name}joint6"/>
+        <disable_collisions link1="${robot_name}joint6" link2="${robot_name}joint6_flange"/>
+
+        <disable_collisions link1="${robot_name}joint1" link2="${robot_name}joint5"/>
+
+        <disable_collisions link1="${robot_name}joint6_flange" link2="${robot_name}gripper_base"/>
+
+        <disable_collisions link1="${robot_name}gripper_base" link2="${robot_name}joint1"/>
+        <disable_collisions link1="${robot_name}gripper_base" link2="${robot_name}joint3"/>
+        <disable_collisions link1="${robot_name}gripper_base" link2="${robot_name}joint4"/>
+        <disable_collisions link1="${robot_name}gripper_base" link2="${robot_name}joint5"/>
+        <disable_collisions link1="${robot_name}gripper_base" link2="${robot_name}joint6" />
+        <disable_collisions link1="${robot_name}gripper_base" link2="${robot_name}gripper_left3"/>
+        <disable_collisions link1="${robot_name}gripper_base" link2="${robot_name}gripper_left2"/>
+        <disable_collisions link1="${robot_name}gripper_base" link2="${robot_name}gripper_right3"/>
+        <disable_collisions link1="${robot_name}gripper_base" link2="${robot_name}gripper_right2"/>
+        <disable_collisions link1="${robot_name}gripper_right3" link2="${robot_name}gripper_right1"/>
+        <disable_collisions link1="${robot_name}gripper_left1" link2="${robot_name}gripper_left2"/>
+        <disable_collisions link1="${robot_name}gripper_left1" link2="${robot_name}gripper_left3"/>
+        <disable_collisions link1="${robot_name}gripper_left1" link2="${robot_name}joint1" />
+        <disable_collisions link1="${robot_name}gripper_left2" link2="${robot_name}joint1"/>
+        <disable_collisions link1="${robot_name}gripper_left2" link2="${robot_name}joint5"/>
+        <disable_collisions link1="${robot_name}gripper_left3" link2="${robot_name}joint5"/>
+        <disable_collisions link1="${robot_name}gripper_left3" link2="${robot_name}joint1"/>
+        <disable_collisions link1="${robot_name}gripper_right1" link2="${robot_name}joint1"/>
+        <disable_collisions link1="${robot_name}gripper_right1" link2="${robot_name}joint5"/>
+        <disable_collisions link1="${robot_name}gripper_right1" link2="${robot_name}gripper_right2"/>
+        <disable_collisions link1="${robot_name}gripper_right2" link2="${robot_name}joint1"/>
+        <disable_collisions link1="${robot_name}gripper_right2" link2="${robot_name}joint5"/>
+        <disable_collisions link1="${robot_name}gripper_right3" link2="${robot_name}joint1"/>
+        <disable_collisions link1="${robot_name}gripper_right3" link2="${robot_name}joint5"/>
+
+        <disable_collisions link1="${robot_name}gripper_base" link2="${robot_name}joint2"/>
+        <disable_collisions link1="${robot_name}gripper_left1" link2="${robot_name}joint5"/>
+
+    </xacro:macro>
+</robot>

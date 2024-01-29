@@ -11,20 +11,18 @@ int main(int argc, char** argv) {
     auto node = rclcpp::Node::make_shared("sigma");
     int devs = 0;
     CheckAvailableDevices(devs);
-
     std::vector<std::unique_ptr<SigmaDevice>> sigma(devs);
     for (int i=0; i<devs; i++){
-        sigma[i] = std::make_unique<SigmaDevice>(node, i);
+        std::stringstream dev_names;
+        dev_names << "sigma"<< i;
+        sigma[i] = std::make_unique<SigmaDevice>(node, dev_names.str());
     }
-    dhdEnableForce (DHD_ON, (char)0);
-   
-
     double rate;
     node->get_parameter_or("frequency", rate, 100.0); // 1000.0
     RCLCPP_INFO(node->get_logger(), "Set frequency: %f", rate);
     rclcpp::Rate loop_rate(rate);
 
-        RCLCPP_INFO(node->get_logger(), "Initialization done.");
+    RCLCPP_INFO(node->get_logger(), "Initialization done.");
 
     while (rclcpp::ok()) {
 
@@ -42,7 +40,6 @@ int main(int argc, char** argv) {
     }
 
     RCLCPP_INFO(node->get_logger(), "Ending Session...\n");
-
     for (int i=0; i<devs; i++){
         if (dhdClose ((char)i) < 0)
             RCLCPP_ERROR(node->get_logger(), " %s\n", dhdErrorGetLastStr ());
@@ -51,8 +48,6 @@ int main(int argc, char** argv) {
         sigma[i].reset();
     }
 
-   
-
     rclcpp::shutdown();
     return 0;
 }
@@ -60,13 +55,10 @@ int main(int argc, char** argv) {
 void CheckAvailableDevices(int &devs) {
 
     while(rclcpp::ok() && devs==0) {
-
-    for (int i = 0; i < 2; i++) {
-        if (drdOpenID(char(i)) > -1){
-            devs = i+1;
-            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "%s haptic device detected\n\n", dhdGetSystemName () );
+        for (int i = 0; i < 2; i++) {
+            if (drdOpenID((char) i) > -1)
+                devs = i+1;
         }
-    }
         std::chrono::milliseconds timespan(500);
         std::this_thread::sleep_for(timespan);
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Looking for connected devices...");

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="mycobot">
+    <xacro:arg name="robot_name" default="robot0/" />
+    <xacro:include filename="$(find mycobot_280pi_moveit)/srdf/mycobot_280pi_macro.srdf.xacro"/>
+    <xacro:mycobot_280pi_srdf robot_name="$(arg robot_name)"/>
+</robot>

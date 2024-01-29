@@ -1,8 +1,0 @@
-sigma_name: sigma1
-origin:
-  xyz: [0.0, 0.0, 0.0]
-  rpy: [0.0, 0.0, 3.14]        # Change yaw value to rotate
-pub_rate: 20.0
-robot0: robot2
-robot1: robot3
-finger_thresh: 0.1

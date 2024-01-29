@@ -1,0 +1,42 @@
+# This file will map the workspace of sigma with mycobot
+# home_coords position is home position
+
+home_coords:
+  - 149.8 # mm
+  - -63.7
+  - 159.1
+  - -170.68 # deg
+  - -0.47
+  - -89.81
+
+sigma_workspace:
+  translation: # mm
+    - 130 # x 
+    - 130 # y
+    - 130 # z
+  rotation: # deg
+    - 160 # 235
+    - 160 # 140
+    - 160 # 200
+
+gripper_angle:
+  sigma: 0.5
+  robot: 100
+
+robot_workspace:
+  translation: # mm
+    - 150 #
+    - 150
+    - 150
+  rotation: # deg
+    - 165
+    - 165
+    - 165
+
+robot_config:
+  min_len: 15
+  max_len: 220
+  max_angle: 180
+  len_to_update: 3 # mm
+  angle_to_update: 3 # deg
+  

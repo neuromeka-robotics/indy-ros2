@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="mycobot">
+
+    <!-- import main macro -->
+    <xacro:include filename="$(find mycobot_280pi_description)/urdf/mycobot_280pi_macro.xacro"/>
+
+    <!-- robot name parameter -->
+    <xacro:arg name="robot0_name" default="robot0_" />
+    <xacro:arg name="origin0_xyz" default="0 0 0" />
+    <xacro:arg name="origin0_rpy" default="0 0 0" />
+
+    <xacro:arg name="robot1_name" default="robot1_" />
+    <xacro:arg name="origin1_xyz" default="0 0 0" />
+    <xacro:arg name="origin1_rpy" default="0 0.5 0" />
+
+    <!-- parameters -->
+    <link name="world" />
+
+    <!-- define robot -->
+    <xacro:mycobot_280pi_robot
+        robot_name="$(arg robot0_name)"
+        parent="world"
+        >
+        <origin xyz="$(arg origin0_xyz)" rpy="$(arg origin0_rpy)" />
+    </xacro:mycobot_280pi_robot>
+    
+    <xacro:mycobot_280pi_robot
+        robot_name="$(arg robot1_name)"
+        parent="world"
+        >
+        <origin xyz="$(arg origin1_xyz)" rpy="$(arg origin1_rpy)" />
+    </xacro:mycobot_280pi_robot>
+
+</robot>
