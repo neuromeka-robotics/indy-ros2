@@ -2,26 +2,18 @@
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
 
     <xacro:macro name="indy_ros2_control" params="
-        name
-        indy_type
-        prefix
-        sim_gazebo:=false">
+        robot_name
+        indy_type">
 
-        <ros2_control name="${name}" type="system">
+        <ros2_control name="indy" type="system">
         
             <hardware>
-                <xacro:if value="${sim_gazebo}">
-                    <plugin>gazebo_ros2_control/GazeboSystem</plugin>
-                </xacro:if>
-                <xacro:unless value="${sim_gazebo}">
-                    <plugin>fake_components/GenericSystem</plugin>
-                    <!-- <param name="fake_sensor_commands">${fake_sensor_commands}</param> -->
-                    <param name="state_following_offset">0.0</param>
-                </xacro:unless>
+                <plugin>fake_components/GenericSystem</plugin>
+                <param name="state_following_offset">0.0</param>
             </hardware>
 
             <xacro:macro name="define_control_joint" params="joint_index">
-                <joint name="${prefix}${joint_index}">
+                <joint name="${robot_name}${joint_index}">
                     <command_interface name="position">
                         <param name="min">{-2*pi}</param>
                         <param name="max">{2*pi}</param>
@@ -50,5 +42,5 @@
         </ros2_control>
 
     </xacro:macro>
-
+    
 </robot>

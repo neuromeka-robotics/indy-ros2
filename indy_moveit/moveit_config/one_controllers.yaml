@@ -1,0 +1,15 @@
+controller_names:
+    - robot0_joint_trajectory_controller
+
+
+robot0_joint_trajectory_controller:
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+        - robot0_joint0
+        - robot0_joint1
+        - robot0_joint2
+        - robot0_joint3
+        - robot0_joint4
+        - robot0_joint5

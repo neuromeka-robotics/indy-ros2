@@ -1,0 +1,50 @@
+desc_file_name: four_indy.urdf.xacro
+robot_names: [robot0, robot1, robot2, robot3]
+
+robot0:
+  robot_type: indy12_v2       # indy7, indy7_v2, indy12, indy12_v2, indyrp2, indyrp2_v2
+  robot_ip: 192.168.20.10
+  origin:
+    xyz: [0.0, 0.0, 0.0]
+    rpy: [0.0, 0.0, 0.0]        # Change yaw value to rotate
+  dof: 6
+  home_pose: [0.0, 0.0, -1.57, 0.0, -1.57, 0.0 ]
+  pub_rate: 100.0
+  indy_eye: false
+  gripper_di: 8
+  
+robot1:
+  robot_type: indy12_v2       # indy7, indy7_v2, indy12, indy12_v2, indyrp2, indyrp2_v2
+  robot_ip: 192.168.20.10
+  origin:
+    xyz: [0.0, 0.0, 0.0]
+    rpy: [0.0, 0.0, 0.0]        # Change yaw value to rotate
+  dof: 6
+  home_pose: [0.0, 0.0, -1.57, 0.0, -1.57, 0.0 ]
+  pub_rate: 100.0
+  indy_eye: false
+  gripper_di: 8
+
+robot2:
+  robot_type: indy12_v2   # indy7, indy7_v2, indy12, indy12_v2, indyrp2, indyrp2_v2
+  robot_ip: 192.168.20.11
+  origin:
+    xyz: [0.0, 0.0, 0.0]
+    rpy: [0.0, 0.0, 0.0]        # Change yaw value to rotate
+  dof: 6
+  home_pose: [ 0.0, 0.0, -1.57, 0.0, -1.57, 0.0 ]
+  pub_rate: 100.0
+  indy_eye: false
+  gripper_di: 8
+
+robot3:
+  robot_type: indyrp2   # indy7, indy7_v2, indy12, indy12_v2, indyrp2, indyrp2_v2
+  robot_ip: 192.168.20.12
+  origin:
+    xyz: [0.0, 0.0, 0.0]
+    rpy: [0.0, 0.0, 1.57]        # Change yaw value to rotate
+  dof: 7
+  home_pose: [ 0.0, 0.0, 0.0, -1.57, 0.0, -1.57, 0.0 ]
+  pub_rate: 100.0
+  indy_eye: false
+  gripper_di: 8

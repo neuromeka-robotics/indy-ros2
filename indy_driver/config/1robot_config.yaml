@@ -1,0 +1,14 @@
+desc_file_name: one_indy.urdf.xacro
+robot_names: [robot0]
+
+robot0:
+  robot_type: indy7       # indy7, indy7_v2, indy12, indy12_v2, indyrp2, indyrp2_v2
+  robot_ip: 192.168.0.87
+  origin:
+    xyz: [1.0, 0.0, 0.0]
+    rpy: [0.0, 0.0, 3.141592]        # Change yaw value to rotate
+  dof: 6
+  home_pose: [0.0, 0.0, -1.57, 0.0, -1.57, 0.0]
+  pub_rate: 20.0
+  indy_eye: false
+  gripper_di: 8

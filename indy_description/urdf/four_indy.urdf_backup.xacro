@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="indy">
+
+    <!-- import main macro -->
+    <xacro:include filename="$(find indy_description)/urdf/indy_macro.xacro"/>
+
+    <!-- robot name parameter -->
+    <xacro:arg name="robot0_name" default="robot0_"/>
+    <xacro:arg name="origin0_xyz" default="0 0 0" />
+    <xacro:arg name="origin0_rpy" default="0 0 0" />
+    <xacro:arg name="indy0_type" default="indy7"/>
+    <xacro:arg name="indy0_eye" default="false"/>
+
+    <xacro:arg name="robot1_name" default="robot1_"/>
+    <xacro:arg name="origin1_xyz" default="1 0 0" />
+    <xacro:arg name="origin1_rpy" default="0 0 0" />
+    <xacro:arg name="indy1_type" default="indy7"/>
+    <xacro:arg name="indy1_eye" default="false"/>
+
+    <xacro:arg name="robot2_name" default="robot2_"/>
+    <xacro:arg name="origin2_xyz" default="1 1 0" />
+    <xacro:arg name="origin2_rpy" default="0 0 0" />
+    <xacro:arg name="indy2_type" default="indy7"/>
+    <xacro:arg name="indy2_eye" default="false"/>
+
+    <xacro:arg name="robot3_name" default="robot3_"/>
+    <xacro:arg name="origin3_xyz" default="0 1 0" />
+    <xacro:arg name="origin3_rpy" default="0 0 0" />
+    <xacro:arg name="indy3_type" default="indy7"/>
+    <xacro:arg name="indy3_eye" default="false"/>
+
+    <!-- parameters -->
+    <xacro:arg name="joint0_limit_params" default="$(find indy_description)/urdf/config/$(arg indy0_type)/joint_limits.yaml"/>
+    <xacro:arg name="kinematics0_params" default="$(find indy_description)/urdf/config/$(arg indy0_type)/kinematics.yaml"/>
+    <xacro:arg name="physical0_params" default="$(find indy_description)/urdf/config/$(arg indy0_type)/physical_parameters.yaml"/>
+    <xacro:arg name="visual0_params" default="$(find indy_description)/urdf/config/$(arg indy0_type)/visual_parameters.yaml"/>
+
+    <xacro:arg name="joint1_limit_params" default="$(find indy_description)/urdf/config/$(arg indy1_type)/joint_limits.yaml"/>
+    <xacro:arg name="kinematics1_params" default="$(find indy_description)/urdf/config/$(arg indy1_type)/kinematics.yaml"/>
+    <xacro:arg name="physical1_params" default="$(find indy_description)/urdf/config/$(arg indy1_type)/physical_parameters.yaml"/>
+    <xacro:arg name="visual1_params" default="$(find indy_description)/urdf/config/$(arg indy1_type)/visual_parameters.yaml"/>
+
+    <xacro:arg name="joint2_limit_params" default="$(find indy_description)/urdf/config/$(arg indy2_type)/joint_limits.yaml"/>
+    <xacro:arg name="kinematics2_params" default="$(find indy_description)/urdf/config/$(arg indy2_type)/kinematics.yaml"/>
+    <xacro:arg name="physical2_params" default="$(find indy_description)/urdf/config/$(arg indy2_type)/physical_parameters.yaml"/>
+    <xacro:arg name="visual2_params" default="$(find indy_description)/urdf/config/$(arg indy2_type)/visual_parameters.yaml"/>
+
+    <xacro:arg name="joint3_limit_params" default="$(find indy_description)/urdf/config/$(arg indy3_type)/joint_limits.yaml"/>
+    <xacro:arg name="kinematics3_params" default="$(find indy_description)/urdf/config/$(arg indy3_type)/kinematics.yaml"/>
+    <xacro:arg name="physical3_params" default="$(find indy_description)/urdf/config/$(arg indy3_type)/physical_parameters.yaml"/>
+    <xacro:arg name="visual3_params" default="$(find indy_description)/urdf/config/$(arg indy3_type)/visual_parameters.yaml"/>
+
+    <link name="world" />
+
+    <!-- define robot -->
+    <xacro:macro name="define_robot" params="name type eye xyz rpy limit kine physic visual">
+        <xacro:indy_robot
+            robot_name="${name}"
+            indy_type="${type}"
+            indy_eye="${eye}"
+            parent="world"
+            joint_limits_parameters_file="${limit}"
+            kinematics_parameters_file="${kine}"
+            physical_parameters_file="${physic}"
+            visual_parameters_file="${visual}"
+            >
+            <origin xyz="${xyz}" rpy="${rpy}" />
+        </xacro:indy_robot>
+
+    </xacro:macro>
+
+    <xacro:define_robot name="$(arg robot0_name)" type="$(arg indy0_type)" eye="$(arg indy0_eye)" 
+                        xyz="$(arg origin0_xyz)" rpy="$(arg origin0_rpy)" 
+                        limit="$(arg joint0_limit_params)" kine="$(arg kinematics0_params)" 
+                        physic="$(arg physical0_params)" visual="$(arg visual0_params)"/>
+
+    <xacro:define_robot name="$(arg robot1_name)" type="$(arg indy1_type)" eye="$(arg indy1_eye)" 
+                        xyz="$(arg origin1_xyz)" rpy="$(arg origin1_rpy)"
+                        limit="$(arg joint1_limit_params)" kine="$(arg kinematics1_params)" 
+                        physic="$(arg physical1_params)" visual="$(arg visual1_params)"/>   
+
+    <xacro:define_robot name="$(arg robot2_name)" type="$(arg indy2_type)" eye="$(arg indy2_eye)" 
+                        xyz="$(arg origin2_xyz)" rpy="$(arg origin2_rpy)"
+                        limit="$(arg joint2_limit_params)" kine="$(arg kinematics2_params)" 
+                        physic="$(arg physical2_params)" visual="$(arg visual2_params)"/>
+
+    <xacro:define_robot name="$(arg robot3_name)" type="$(arg indy3_type)" eye="$(arg indy3_eye)" 
+                        xyz="$(arg origin3_xyz)" rpy="$(arg origin3_rpy)"
+                        limit="$(arg joint3_limit_params)" kine="$(arg kinematics3_params)" 
+                        physic="$(arg physical3_params)" visual="$(arg visual3_params)"/>
+
+</robot>

@@ -3,50 +3,68 @@ from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, Opaq
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.substitutions import FindPackageShare
+from ament_index_python.packages import get_package_share_directory
+
+import sys
+import os
+__driver_dir = get_package_share_directory('indy_driver')
+sys.path.append(os.path.join(__driver_dir, "nrmk_utils"))
+from file_io import *
 
 def launch_setup(context, *args, **kwargs):
     
-    # description_package = FindPackageShare('indy_description')
     indy_driver_package = FindPackageShare('indy_driver')
     moveit_config_package = FindPackageShare('indy_moveit')
 
-    # Initialize Arguments
-    name = LaunchConfiguration("name")
-    indy_ip = LaunchConfiguration("indy_ip")
-    indy_type = LaunchConfiguration("indy_type")
-    indy_eye = LaunchConfiguration("indy_eye")
-    indy_sw = LaunchConfiguration("indy_sw")
-    servo_mode = LaunchConfiguration("servo_mode")
-    prefix = LaunchConfiguration("prefix")
+    config_file = LaunchConfiguration("config_file").perform(context)
+
+    config_dict = load_yaml(os.path.join(__driver_dir, "config", config_file))
+    desc_file_name = config_dict["desc_file_name"]
+    robot_names = config_dict["robot_names"]
+
+    robot_config_dict = {}
+    moveit_launch_arguments = {}
+
+    for i, robot_name in enumerate(robot_names):
+        robot_config = config_dict[robot_name]
+        robot_config["robot_name"] = robot_name
+        robot_config_dict[robot_name] = robot_config
+
+        moveit_launch_arguments.update(
+            {
+                f" robot{i}_name": robot_name,
+                f" origin{i}_xyz": f'"{" ".join(map(str, robot_config["origin"]["xyz"]))}"',
+                f" origin{i}_rpy": f'"{" ".join(map(str, robot_config["origin"]["rpy"]))}"',
+                f" indy{i}_type": robot_config["robot_type"],
+                f" indy{i}_eye": str(robot_config["indy_eye"]).lower()
+            }
+        )
+
+
+    bringup_launch_arguments = {
+        "config_file": config_file,
+        "launch_rviz": "false"
+    }
+
+    moveit_launch_arguments.update(
+        {
+            "robot_quantity": str(len(robot_names)),
+            "launch_rviz_moveit": "true",
+        }
+    )
 
     indy_bringup_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [indy_driver_package, "/launch", "/indy_bringup.launch.py"]
         ),
-        launch_arguments={
-            "name": name,
-            "indy_ip": indy_ip,
-            "indy_type": indy_type,
-            "indy_eye": indy_eye,
-            "indy_sw": indy_sw,
-            "prefix": prefix,
-            "launch_rviz": "false",
-        }.items(),
+        launch_arguments=bringup_launch_arguments.items(),
     )
 
     indy_moveit_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [moveit_config_package, "/launch", "/moveit.launch.py"]
         ),
-        launch_arguments={
-            "name": name,
-            "indy_type": indy_type,
-            "indy_eye": indy_eye,
-            "servo_mode": servo_mode,
-            "prefix": prefix,
-            "use_sim_time": "false",
-            "launch_rviz_moveit": "true", # if name == "launch_rviz" => spawn 2 rviz
-        }.items(),
+        launch_arguments=moveit_launch_arguments.items(),
     )
 
     nodes_to_launch = [
@@ -58,63 +76,10 @@ def launch_setup(context, *args, **kwargs):
 
 
 def generate_launch_description():
-    declared_arguments = []
-
-    declared_arguments.append(
+    return LaunchDescription([
         DeclareLaunchArgument(
-            "name",
-            default_value="indy"
-        )
-    )
-
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "indy_ip", 
-            description="IP address for real robot"
-        )
-    )
-
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "indy_type",
-            default_value="indy7",
-            description="Type of Indy robot.",
-            choices=["indy7", "indy7_v2" , "indy12", "indy12_v2", "indyrp2", "indyrp2_v2"]
-        )
-    )
-
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "indy_eye",
-            default_value="false",
-            description="Work with Indy Eye",
-        )
-    )
-
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "indy_sw",
-            description="Software Version",
-            default_value="2",
-            choices=["2", "3"]
-        )
-    )
-
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "servo_mode",
-            default_value="false",
-            description="Servoing mode",
-        )
-    )
- 
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "prefix",
-            default_value='""',
-            description="Prefix of the joint names, useful for multi-robot setup. \
-            If changed than also joint names in the controllers configuration have to be updated."
-        )
-    )
-
-    return LaunchDescription(declared_arguments + [OpaqueFunction(function=launch_setup)])
+            "config_file",
+            default_value="1robot_config.yaml",
+            description="Robot configurations file name"
+        ),
+        OpaqueFunction(function=launch_setup)])

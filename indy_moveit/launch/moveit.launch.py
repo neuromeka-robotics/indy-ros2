@@ -14,33 +14,68 @@ def launch_setup(context, *args, **kwargs):
     description_package = FindPackageShare('indy_description')
     moveit_config_package = FindPackageShare('indy_moveit')
 
-    # Initialize Arguments
-    name = LaunchConfiguration("name")
-    indy_type = LaunchConfiguration("indy_type")
-    indy_eye = LaunchConfiguration("indy_eye")
-    servo_mode = LaunchConfiguration("servo_mode")
-    prefix = LaunchConfiguration("prefix")
+    robot_quantity = LaunchConfiguration("robot_quantity")
     launch_rviz_moveit = LaunchConfiguration("launch_rviz_moveit")
-    use_sim_time = LaunchConfiguration("use_sim_time")
+
+    desc_file_name = "one_indy.urdf.xacro"
+    semantic_file_name = "one_indy.srdf.xacro"
+    kinematics_file_name = "one_kinematics.yaml"
+    controller_file_name = "one_controllers.yaml"
+    ompl_file_name = "one_ompl_planning.yaml"
+
+    if int(robot_quantity.perform(context)) == 2:
+        desc_file_name = "two_indy.urdf.xacro"
+        semantic_file_name = "two_indy.srdf.xacro"
+        kinematics_file_name = "two_kinematics.yaml"
+        controller_file_name = "two_controllers.yaml"
+        ompl_file_name = "two_ompl_planning.yaml"
+    elif int(robot_quantity.perform(context)) == 4:
+        desc_file_name = "four_indy.urdf.xacro"
+        semantic_file_name = "four_indy.srdf.xacro"
+        kinematics_file_name = "four_kinematics.yaml"
+        controller_file_name = "four_controllers.yaml"
+        ompl_file_name = "four_ompl_planning.yaml"
+    
+    robot_config = {}
+    robot_description_parts = []
+    robot_semantic_description_parts = []
+
+    for i in range(int(robot_quantity.perform(context))):
+        robot_name = LaunchConfiguration(f"robot{i}_name")
+        robot_xyz = LaunchConfiguration(f"robot{i}_xyz")
+        robot_rpy = LaunchConfiguration(f"robot{i}_rpy")
+        indy_type = LaunchConfiguration(f"indy{i}_type")
+        indy_eye = LaunchConfiguration(f"indy{i}_eye")
+        
+        robot_description_parts.extend(
+            [
+                f" robot{i}_name:={robot_name.perform(context)}_",
+                f" origin{i}_xyz:={robot_xyz.perform(context)}",
+                f" origin{i}_rpy:={robot_rpy.perform(context)}",
+                f" indy{i}_type:={indy_type.perform(context)}",
+                f" indy{i}_eye:={indy_eye.perform(context)}",
+            ]
+        )
+
+        robot_semantic_description_parts.extend(
+            [
+                f" robot{i}_name:={robot_name.perform(context)}_",
+                f" indy{i}_type:={indy_type.perform(context)}",
+            ]
+        )
+
+        robot_config[f"robot{i}"] = {
+            "robot_name": robot_name,
+            "indy_type": indy_type,
+        }
 
     robot_description_content = Command(
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
-            PathJoinSubstitution([description_package, "urdf", "indy.urdf.xacro"]),
+            PathJoinSubstitution([description_package, "urdf", desc_file_name]),
             " ",
-            "name:=",
-            name,
-            " ",
-            "indy_type:=",
-            indy_type,
-            " ",
-            "indy_eye:=",
-            indy_eye,
-            " ",
-            "prefix:=",
-            prefix,
-        ]
+        ] + robot_description_parts
     )
     robot_description = {"robot_description": robot_description_content}
 
@@ -49,27 +84,17 @@ def launch_setup(context, *args, **kwargs):
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
-            PathJoinSubstitution([moveit_config_package, "srdf", "indy.srdf.xacro"]),
+            PathJoinSubstitution([moveit_config_package, "srdf", semantic_file_name]),
             " ",
-            "name:=",
-            name,
-            " ",
-            "indy_type:=",
-            indy_type,
-            " ",
-            "indy_eye:=",
-            indy_eye,
-            " ",
-            "prefix:=",
-            prefix,
-        ]
+        ] + robot_semantic_description_parts
     )
+
     robot_description_semantic = {"robot_description_semantic": robot_description_semantic_content}
 
     robot_description_kinematics = PathJoinSubstitution(
-        [moveit_config_package, "moveit_config", "kinematics.yaml"]
+        [moveit_config_package, "moveit_config", kinematics_file_name]
     )
-    
+
     ompl_planning_pipeline_config = {
         "move_group": {
             "planning_plugin": "ompl_interface/OMPLPlanner",
@@ -77,14 +102,19 @@ def launch_setup(context, *args, **kwargs):
             "start_state_max_bounds_error": 0.5,
         }
     }
-    ompl_planning_yaml = load_yaml("indy_moveit", "moveit_config/ompl_planning.yaml")
+    ompl_planning_yaml = load_yaml("indy_moveit", "moveit_config/"+ompl_file_name)
     ompl_planning_pipeline_config["move_group"].update(ompl_planning_yaml)
 
-    # Trajectory Execution Configuration
-    if (indy_type.perform(context) == 'indyrp2') or (indy_type.perform(context) == 'indyrp2_v2'):
-        controllers_yaml = load_yaml("indy_moveit", "moveit_config/controllers_7dof.yaml")
-    else:
-        controllers_yaml = load_yaml("indy_moveit", "moveit_config/controllers_6dof.yaml")
+    controllers_yaml = load_yaml("indy_moveit", "moveit_config/"+controller_file_name)
+    for robot_key, robot_conf in robot_config.items():
+        if (robot_conf['indy_type'].perform(context) == 'indyrp2') or (robot_conf['indy_type'].perform(context) == 'indyrp2_v2'):
+            controller_name = robot_conf['robot_name'].perform(context) + "_joint_trajectory_controller"
+            if controller_name in controllers_yaml["controller_names"]:
+                controller = controllers_yaml[controller_name]
+                joints = controller.get("joints", [])
+                joints.append(robot_conf['robot_name'].perform(context) + "_joint6")
+                controller["joints"] = joints
+    # print(controllers_yaml)
 
     moveit_controllers = {
         "moveit_simple_controller_manager": controllers_yaml,
@@ -118,19 +148,12 @@ def launch_setup(context, *args, **kwargs):
             trajectory_execution,
             moveit_controllers,
             planning_scene_monitor_parameters,
-            {"use_sim_time": use_sim_time},
         ],
     )
 
-    # rviz with moveit configuration
-    if servo_mode.perform(context) == 'true':
-        rviz_config_file = PathJoinSubstitution(
-            [moveit_config_package, "rviz_config", "indy_servo.rviz"]
-        )    
-    else:
-        rviz_config_file = PathJoinSubstitution(
-            [moveit_config_package, "rviz_config", "indy_moveit.rviz"]
-        )
+    rviz_config_file = PathJoinSubstitution(
+        [moveit_config_package, "rviz_config", "indy_moveit.rviz"]
+    )
 
     rviz_node = Node(
         condition=IfCondition(launch_rviz_moveit),
@@ -147,107 +170,74 @@ def launch_setup(context, *args, **kwargs):
         ],
     )
 
-    # Servo node for realtime control
-    servo_yaml = load_yaml("indy_moveit", "moveit_config/indy_servo.yaml")
-    servo_params = {"moveit_servo": servo_yaml}
-    container = ComposableNodeContainer(
-        name="moveit_servo_container",
-        namespace="/",
-        package="rclcpp_components",
-        executable="component_container",
-        composable_node_descriptions=[
-            ComposableNode(
-                package="moveit_servo",
-                plugin="moveit_servo::ServoServer",
-                name="servo_server",
-                parameters=[
-                    servo_params,
-                    robot_description,
-                    robot_description_semantic,
-                ],
-                # extra_arguments=[{"use_intra_process_comms": True}],
-            ),
-            ComposableNode(
-                package="indy_moveit",
-                plugin="moveit_servo::JoyToServoPub",
-                name="controller_to_servo_node",
-                # extra_arguments=[{"use_intra_process_comms": True}],
-            ),
-            ComposableNode(
-                package="joy",
-                plugin="joy::Joy",
-                name="joy_node",
-                extra_arguments=[{
-                    "use_intra_process_comms": True,
-                    "deadzone": 0.35
-                }],
-            )
-        ],
-        output="screen",
-    )
-
-    if servo_mode.perform(context) == 'true':        
-        nodes_to_start = [container, rviz_node]
-    else:
-        nodes_to_start = [move_group_node, rviz_node]
-
+    nodes_to_start = [move_group_node, rviz_node]
     return nodes_to_start
 
 
 def generate_launch_description():
     declared_arguments = []
 
+    robots = [
+        {"name": "robot0", "xyz": '"0 0 0"', "rpy": '"0 0 0"', "indy_type": "indy7", "indy_eye": "false"},
+        {"name": "robot1", "xyz": '"0 1 0"', "rpy": '"0 0 0"', "indy_type": "indy12_v2", "indy_eye": "false"},
+        {"name": "robot2", "xyz": '"1 1 0"', "rpy": '"0 0 0"', "indy_type": "indy7_v2", "indy_eye": "false"},
+        {"name": "robot3", "xyz": '"1 0 0"', "rpy": '"0 0 0"', "indy_type": "indyrp2", "indy_eye": "true"}
+    ]
+
+    for i, robot in enumerate(robots):
+        declared_arguments.append(
+            DeclareLaunchArgument(
+                f"{robot['name']}_name",
+                default_value=robot['name']
+            )
+        )
+
+        declared_arguments.append(
+            DeclareLaunchArgument(
+                f"{robot['name']}_xyz",
+                default_value=robot['xyz'],
+            )
+        )
+
+        declared_arguments.append(
+            DeclareLaunchArgument(
+                f"{robot['name']}_rpy",
+                default_value=robot['rpy'],
+            )
+        )
+
+        declared_arguments.append(
+            DeclareLaunchArgument(
+                f"indy{i}_type",
+                default_value=robot['indy_type'],
+                description="Type of Indy robot.",
+                choices=["indy7", "indy7_v2", "indy12", "indy12_v2", "indyrp2", "indyrp2_v2"]
+            )
+        )
+
+        declared_arguments.append(
+            DeclareLaunchArgument(
+                f"indy{i}_eye",
+                default_value=robot['indy_eye'],
+                description="Work with Indy Eye",
+            )
+        )
+
     declared_arguments.append(
         DeclareLaunchArgument(
-            "name",
-            default_value="indy"
+            "robot_quantity",
+            default_value="1",
+            description="Robot quantity. Valid number are 1, 2 and 4",
+            choices=["1", "2", "4"]
         )
     )
 
     declared_arguments.append(
         DeclareLaunchArgument(
-            "indy_type",
-            default_value="indy7",
-            description="Type of Indy robot.",
-            choices=["indy7", "indy7_v2" , "indy12", "indy12_v2", "indyrp2", "indyrp2_v2"]
+        "launch_rviz_moveit", 
+        default_value="true", 
+        description="Launch RViz?"
         )
-    )
-
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "indy_eye",
-            default_value="false",
-            description="Work with Indy Eye",
-        )
-    )
-
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "servo_mode",
-            default_value="false",
-            description="Servoing mode",
-        )
-    )
-
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "prefix",
-            default_value='""',
-            description="Prefix of the joint names, useful for multi-robot setup. \
-            If changed than also joint names in the controllers configuration have to be updated."
-        )
-    )
-
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "use_sim_time",
-            default_value="false",
-            description="Make MoveIt to use simulation time. This is needed for the trajectory planing in simulation.",
-        )
-    )
-
-    declared_arguments.append(
-        DeclareLaunchArgument("launch_rviz_moveit", default_value="true", description="Launch RViz?")
     )
 
     return LaunchDescription(declared_arguments + [OpaqueFunction(function=launch_setup)])

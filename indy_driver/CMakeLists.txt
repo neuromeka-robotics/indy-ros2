@@ -19,6 +19,8 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
 
+# ament_export_dependencies(rosidl_default_runtime)
+
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -28,22 +30,26 @@ find_package(ament_cmake_python REQUIRED)
 # )
 
 install(DIRECTORY
-  indy_utils
-  DESTINATION lib/${PROJECT_NAME}
+  launch
+  DESTINATION share/${PROJECT_NAME}/
 )
 
 install(DIRECTORY
-  launch controller
+  client_wrapper gRPCServerGenPython nrmk_utils config
   DESTINATION share/${PROJECT_NAME}/
 )
 
 install(PROGRAMS
   ${PROJECT_NAME}/indy_driver.py
+  ${PROJECT_NAME}/indy_xbox.py
+  ${PROJECT_NAME}/indy_sigma.py
+  ${PROJECT_NAME}/indy_keyboard.py
+  ${PROJECT_NAME}/indy_keyboard_sub.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
 # Install Python modules
-ament_python_install_package(${PROJECT_NAME})
+# ament_python_install_package(${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

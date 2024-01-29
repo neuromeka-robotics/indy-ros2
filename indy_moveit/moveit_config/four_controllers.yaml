@@ -1,0 +1,54 @@
+controller_names:
+    - robot0_joint_trajectory_controller
+    - robot1_joint_trajectory_controller
+    - robot2_joint_trajectory_controller
+    - robot3_joint_trajectory_controller
+
+robot0_joint_trajectory_controller:
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+        - robot0_joint0
+        - robot0_joint1
+        - robot0_joint2
+        - robot0_joint3
+        - robot0_joint4
+        - robot0_joint5
+
+robot1_joint_trajectory_controller:
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+        - robot1_joint0
+        - robot1_joint1
+        - robot1_joint2
+        - robot1_joint3
+        - robot1_joint4
+        - robot1_joint5
+
+robot2_joint_trajectory_controller:
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+        - robot2_joint0
+        - robot2_joint1
+        - robot2_joint2
+        - robot2_joint3
+        - robot2_joint4
+        - robot2_joint5
+
+robot3_joint_trajectory_controller:
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+        - robot3_joint0
+        - robot3_joint1
+        - robot3_joint2
+        - robot3_joint3
+        - robot3_joint4
+        - robot3_joint5
+        
