@@ -25,7 +25,28 @@
         <xacro:define_initialize initial_positions_file="${initial_positions_file}"              
             visual_parameters_file="${visual_parameters_file}" indy_type="${indy_type}"/>
 
-        <xacro:property name="indy_material" value="metal_white"/>
+        <xacro:if value="${ indy_type == 'indy7' or indy_type == 'indy7_v2' or indy_type == 'indyrp2' or 
+                            indy_type == 'indyrp2_v2' or indy_type == 'indy12' or indy_type == 'indy12_v2' or 
+                            indy_type == 'nuri3s' or indy_type == 'nuri4s' or indy_type == 'nuri7c' or indy_type == 'nuri20c' or indy_type == 'opti5'}">
+            <xacro:property name="material_0" value="indy_white"/>
+            <xacro:property name="material_1" value="indy_white"/>
+            <xacro:property name="material_2" value="indy_white"/>
+            <xacro:property name="material_3" value="indy_white"/>
+            <xacro:property name="material_4" value="indy_white"/>
+            <xacro:property name="material_5" value="indy_white"/>
+            <xacro:property name="material_6" value="indy_white"/>
+            <xacro:property name="material_7" value="indy_white"/>
+        </xacro:if>
+        
+        <xacro:if value="${indy_type == 'icon3' or indy_type == 'icon7l'}">
+            <xacro:property name="material_0" value="icon_grey"/>
+            <xacro:property name="material_1" value="icon_green"/>
+            <xacro:property name="material_2" value="icon_green"/>
+            <xacro:property name="material_3" value="icon_green"/>
+            <xacro:property name="material_4" value="icon_green"/>
+            <xacro:property name="material_5" value="icon_grey"/>
+            <xacro:property name="material_6" value="icon_grey"/>
+        </xacro:if>
 
         <!-- links -  main serial chain -->
         <xacro:macro name="define_link" params="link_index link_mesh">
@@ -37,7 +58,32 @@
                     <geometry>
                         <xacro:get_mesh name="${link_mesh}" type="visual"/>
                     </geometry>
-                    <material name="${indy_material}"/>
+
+                    <xacro:if value="${link_index == 'link0'}">
+                        <material name="${material_0}"/>
+                    </xacro:if>
+                    <xacro:if value="${link_index == 'link1'}">
+                        <material name="${material_1}"/>
+                    </xacro:if>
+                    <xacro:if value="${link_index == 'link2'}">
+                        <material name="${material_2}"/>
+                    </xacro:if>
+                    <xacro:if value="${link_index == 'link3'}">
+                        <material name="${material_3}"/>
+                    </xacro:if>
+                    <xacro:if value="${link_index == 'link4'}">
+                        <material name="${material_4}"/>
+                    </xacro:if>
+                    <xacro:if value="${link_index == 'link5'}">
+                        <material name="${material_5}"/>
+                    </xacro:if>
+                    <xacro:if value="${link_index == 'link6'}">
+                        <material name="${material_6}"/>
+                    </xacro:if>
+                    <xacro:if value="${link_index == 'link7'}">
+                        <material name="${material_7}"/>
+                    </xacro:if>
+
                 </visual>
                 <collision>
                     <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -129,19 +175,37 @@
 
         <xacro:if value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
             <xacro:define_joint joint_index="joint6" link_1_index="link6" link_2_index="link7"/>
+            <xacro:property name="config_kinematics_parameters" value="${xacro.load_yaml(kinematics_parameters_file)}"/>
+            <xacro:property name="sec_kinematics" value="${config_kinematics_parameters['kinematics']}" />
             <joint name="${prefix}joint_tcp" type="fixed">
                 <parent link="${prefix}link7"/>
                 <child link="${prefix}tcp"/>
-                <origin xyz="0 0 0.06" rpy="0 0 0"/>
-            </joint>   
+                <!-- <origin xyz="0 0 0.06" rpy="0 0 0"/> -->
+                <origin
+                    xyz="${sec_kinematics['tcp']['x']} 
+                        ${sec_kinematics['tcp']['y']} 
+                        ${sec_kinematics['tcp']['z']}" 
+                    rpy="${sec_kinematics['tcp']['roll']}
+                        ${sec_kinematics['tcp']['pitch']}
+                        ${sec_kinematics['tcp']['yaw']}"/>
+            </joint>
         </xacro:if>
 
         <xacro:unless value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
+            <xacro:property name="config_kinematics_parameters" value="${xacro.load_yaml(kinematics_parameters_file)}"/>
+            <xacro:property name="sec_kinematics" value="${config_kinematics_parameters['kinematics']}" />
             <joint name="${prefix}joint_tcp" type="fixed">
                 <parent link="${prefix}link6"/>
                 <child link="${prefix}tcp"/>
-                <origin xyz="0 0 0.06" rpy="0 0 0"/>
-            </joint>    
+                <!-- <origin xyz="0 0 0.06" rpy="0 0 0"/> -->
+                <origin
+                    xyz="${sec_kinematics['tcp']['x']} 
+                        ${sec_kinematics['tcp']['y']} 
+                        ${sec_kinematics['tcp']['z']}" 
+                    rpy="${sec_kinematics['tcp']['roll']}
+                        ${sec_kinematics['tcp']['pitch']}
+                        ${sec_kinematics['tcp']['yaw']}"/>
+            </joint>
         </xacro:unless>
 
         <!-- ros2 control -->

@@ -1,3 +1,6 @@
+import os
+from ament_index_python.packages import get_package_share_directory
+
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, RegisterEventHandler, OpaqueFunction
 from launch.event_handlers import OnProcessExit
@@ -95,6 +98,17 @@ def launch_setup(context, *args, **kwargs):
                    '-name', 'indy',
                    '-allow_renaming', 'false'],
     )
+    
+    bridge_params = os.path.join(get_package_share_directory('indy_gazebo'),'config','gz_bridge.yaml')
+    ros_gz_bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        arguments=[
+            '--ros-args',
+            '-p',
+            f'config_file:={bridge_params}',
+        ]
+    )
 
     rviz_node = Node(
         condition=IfCondition(launch_rviz),
@@ -133,6 +147,7 @@ def launch_setup(context, *args, **kwargs):
         gazebo,
         gazebo_spawn_robot,
         robot_state_publisher_node,
+        ros_gz_bridge,
         # joint_state_broadcaster_spawner,
         # joint_controller_spawner,
         delay_joint_state_broadcaster_spawner,
@@ -156,7 +171,7 @@ def generate_launch_description():
             "indy_type",
             default_value="indy7",
             description="Type of Indy robot.",
-            choices=["indy7", "indy7_v2" , "indy12", "indy12_v2", "indyrp2", "indyrp2_v2"]
+            choices=["indy7", "indy7_v2" , "indy12", "indy12_v2", "indyrp2", "indyrp2_v2", "icon7l", "icon3", "nuri3s", "nuri4s", "nuri7c", "nuri20c", "opti5"]
         )
     )
 

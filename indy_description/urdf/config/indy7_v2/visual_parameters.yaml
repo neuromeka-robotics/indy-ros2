@@ -62,3 +62,12 @@ mesh_files:
       mesh:
         package: indy_description
         path: meshes/indy7_v2/collision/Indy7_v2_6.stl
+  link6_eye:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/indy7_v2/visual/Indy7_v2_eye_6.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/indy7_v2/collision/Indy7_v2_eye_6.stl

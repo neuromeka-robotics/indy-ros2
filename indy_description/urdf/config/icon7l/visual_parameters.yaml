@@ -1,0 +1,64 @@
+mesh_files:
+  link0:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon7l/visual/ICoN7L_0.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon7l/collision/ICoN7L_0.stl
+  link1:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon7l/visual/ICoN7L_1.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon7l/collision/ICoN7L_1.stl
+  link2:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon7l/visual/ICoN7L_2.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon7l/collision/ICoN7L_2.stl
+  link3:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon7l/visual/ICoN7L_3.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon7l/collision/ICoN7L_3.stl
+  link4:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon7l/visual/ICoN7L_4.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon7l/collision/ICoN7L_4.stl
+  link5:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon7l/visual/ICoN7L_5.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon7l/collision/ICoN7L_5.stl
+  link6:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon7l/visual/ICoN7L_6.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon7l/collision/ICoN7L_6.stl

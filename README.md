@@ -49,6 +49,15 @@ ros-jazzy-gz-ros2-control \
 ros-jazzy-ros-gz
 ```
 
+**Switch to Cyclone DDS**
+```
+sudo apt install ros-humble-rmw-cyclonedds-cpp
+```
+Add this to ~/.bashrc to source it automatically
+```
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+```
+
 ### Download the source code and build
 
 ```
@@ -118,7 +127,7 @@ ros2 launch indy_gazebo indy_gazebo.launch.py indy_type:=indy7
 ```
 ros2 launch indy_moveit indy_moveit_gazebo.launch.py indy_type:=indy7
 ```
-<!-- 
+
 **Start Indy with Servoing**
 
 ```
@@ -132,7 +141,7 @@ ros2 run indy_driver servo_keyboard_input.py --ros-args -p is_sim:=true
 ```
 ```
 ros2 run indy_driver servo_joy_input.py --ros-args -p is_sim:=true
-``` -->
+```
 
 ### Real Robot
 

@@ -108,9 +108,11 @@ class KeyboardControl(Node):
 
         # parameters
         self.declare_parameter('is_sim', True)
+        self.declare_parameter('joint_num', 6)
         # self.declare_parameter('robot_name', 'indy7')
         # self.robot_name = self.get_parameter('robot_name').get_parameter_value().string_value
         self.isSim = self.get_parameter('is_sim').get_parameter_value().bool_value
+        self.joint_num = self.get_parameter('joint_num').get_parameter_value().integer_value
 
         # service client for indy
         if not self.isSim:
@@ -118,6 +120,10 @@ class KeyboardControl(Node):
             while not self.cli.wait_for_service(timeout_sec=1.0):
                 self.get_logger().info('indy_srv service not available, waiting again...')
             self.indy_req = IndyService.Request()
+
+        threading.Thread(target=self.inactivity_monitor, daemon=True).start()
+        self.last_publish_time = time.time()
+        self.publish_lock = threading.Lock()
 
         # default speed of joint, task
         self.joint_angular_vel  = 0.3
@@ -186,6 +192,10 @@ class KeyboardControl(Node):
         print("---------Only Real Robot----------")
         print("Use 'H' to move Home, 'Z' to move Zero, 'S' to Recover, 'P' to stop Teleop")
 
+        self.servo_cmd_type.command_type = ServoCommandType.Request.TWIST
+        self.get_logger().info("Switching to input type: Twist")
+        self.servo_service()
+
         try:
             while True:
                 self.key = self.reader.read_one()
@@ -194,7 +204,6 @@ class KeyboardControl(Node):
                 joint_msg = JointJog()
                 publish_twist = False
                 publish_joint = False
-
                 if not self.isSim: # if this is real robot
                     if self.key == chr(KEYCODE_P):
                         if self.indy_service(MSG_TELE_STOP):
@@ -337,11 +346,16 @@ class KeyboardControl(Node):
                     twist_msg.header.stamp = self.get_clock().now().to_msg()
                     twist_msg.header.frame_id = self.frame_to_publish
                     self.twist_pub.publish(twist_msg)
+                    with self.publish_lock:
+                        self.last_publish_time = time.time()
+                        
                 elif publish_joint:
                     joint_msg.header.stamp = self.get_clock().now().to_msg()
                     joint_msg.header.frame_id = BASE_FRAME_ID
                     self.joint_pub.publish(joint_msg)
-
+                    with self.publish_lock:
+                        self.last_publish_time = time.time()
+                
             if not self.isSim:
                 self.indy_service(MSG_TELE_STOP)
 
@@ -349,6 +363,32 @@ class KeyboardControl(Node):
             if not self.isSim:
                 self.indy_service(MSG_TELE_STOP)
             print(f"Exception: {e}")
+
+    def inactivity_monitor(self):
+        while rclpy.ok():
+            time.sleep(0.05)
+            
+            with self.publish_lock:
+                elapsed = time.time() - self.last_publish_time
+                
+            if elapsed > 0.5:
+                # Publish zero twist
+                zero_twist = TwistStamped()
+                zero_twist.header.stamp = self.get_clock().now().to_msg()
+                zero_twist.header.frame_id = self.frame_to_publish
+                self.twist_pub.publish(zero_twist)
+
+                # Publish zero joint
+                zero_joint = JointJog()
+                zero_joint.header.stamp = self.get_clock().now().to_msg()
+                zero_joint.header.frame_id = BASE_FRAME_ID            
+                zero_joint.joint_names = list(KEYCODE_TO_JOINTS.values())[:self.joint_num]
+                zero_joint.velocities = [0.0 for _ in zero_joint.joint_names]
+                zero_joint.displacements = [0.0 for _ in zero_joint.joint_names]
+                self.joint_pub.publish(zero_joint)
+
+                with self.publish_lock:
+                    self.last_publish_time = time.time()
 
 def main(args=None):
     rclpy.init(args=args)
