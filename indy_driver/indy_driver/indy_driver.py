@@ -251,7 +251,7 @@ class IndyROSConnector(Node):
         control_data = self.indy.get_control_data()
         joint_state_msg.position = degs2rads(control_data['q'])
         joint_state_msg.velocity = degs2rads(control_data['qdot'])
-        # joint_state_msg.effort = get_control_torque() TODO
+        joint_state_msg.effort = self.indy.get_control_state()['tau_act']
         self.joint_state_feedback.positions = joint_state_msg.position
         self.joint_state_pub.publish(joint_state_msg)
     
