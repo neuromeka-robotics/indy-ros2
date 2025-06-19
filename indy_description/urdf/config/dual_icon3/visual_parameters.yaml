@@ -1,0 +1,158 @@
+mesh_files:
+  body_base:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/dual_icon3/visual/Body_base.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/dual_icon3/collision/Body_base.stl
+  body_frame:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/dual_icon3/visual/Body_frame.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/dual_icon3/collision/Body_frame.stl
+  body_cover:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/dual_icon3/visual/Body_cover.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/dual_icon3/collision/Body_cover.stl
+    
+  # left arm
+  left_arm_link0:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/visual/ICoN3_0.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/collision/ICoN3_0.stl
+  left_arm_link1:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/visual/ICoN3_1.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/collision/ICoN3_1.stl
+  left_arm_link2:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/visual/ICoN3_2.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/collision/ICoN3_2.stl
+  left_arm_link3:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/visual/ICoN3_3.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/collision/ICoN3_3.stl
+  left_arm_link4:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/visual/ICoN3_4.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/collision/ICoN3_4.stl
+  left_arm_link5:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/visual/ICoN3_5.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/collision/ICoN3_5.stl
+  left_arm_link6:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/visual/ICoN3_6.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/collision/ICoN3_6.stl
+
+  # right arm
+  right_arm_link0:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/visual/ICoN3_0.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/collision/ICoN3_0.stl
+  right_arm_link1:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/visual/ICoN3_1.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/collision/ICoN3_1.stl
+  right_arm_link2:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/visual/ICoN3_2.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/collision/ICoN3_2.stl
+  right_arm_link3:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/visual/ICoN3_3.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/collision/ICoN3_3.stl
+  right_arm_link4:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/visual/ICoN3_4.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/collision/ICoN3_4.stl
+  right_arm_link5:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/visual/ICoN3_5.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/collision/ICoN3_5.stl
+  right_arm_link6:
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/visual/ICoN3_6.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/icon3/collision/ICoN3_6.stl

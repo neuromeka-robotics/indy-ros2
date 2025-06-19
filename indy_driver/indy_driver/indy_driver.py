@@ -304,8 +304,8 @@ class IndyROSConnector(Node):
     # Timer callback for publish
     def timer_callback(self):
         self.joint_state_publisher()
-        self.publish_servo_rx_data()
-        self.publish_servo_tx_data()
+        # self.publish_servo_rx_data()
+        # self.publish_servo_tx_data()
 
     '''
     Indy follow joint trajectory 

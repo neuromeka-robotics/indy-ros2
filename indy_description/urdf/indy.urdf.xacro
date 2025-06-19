@@ -18,6 +18,7 @@
     <xacro:arg name="kinematics_params" default="$(find indy_description)/urdf/config/$(arg indy_type)/kinematics.yaml"/>
     <xacro:arg name="physical_params" default="$(find indy_description)/urdf/config/$(arg indy_type)/physical_parameters.yaml"/>
     <xacro:arg name="visual_params" default="$(find indy_description)/urdf/config/$(arg indy_type)/visual_parameters.yaml"/>
+    <xacro:arg name="joint_axes_params" default="$(find indy_description)/urdf/config/$(arg indy_type)/joint_axes.yaml"/>
     <xacro:arg name="initial_positions" default="$(find indy_description)/urdf/config/initial_positions.yaml"/>
     <xacro:arg name="transmission_hw_interface" default=""/>
 
@@ -39,6 +40,7 @@
         kinematics_parameters_file="$(arg kinematics_params)"
         physical_parameters_file="$(arg physical_params)"
         visual_parameters_file="$(arg visual_params)"
+        joint_axes_parameters_file="$(arg joint_axes_params)"
         transmission_hw_interface="$(arg transmission_hw_interface)"
         initial_positions_file="$(arg initial_positions)"
         sim_gazebo="$(arg sim_gazebo)"
