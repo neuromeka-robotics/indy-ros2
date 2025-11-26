@@ -15,6 +15,9 @@ find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "srv/IndyService.srv"
+  "msg/ServoTx.msg"
+  "msg/ServoRx.msg"
+  "msg/ServoDataArray.msg"
 )
 
 if(BUILD_TESTING)

@@ -1,0 +1,232 @@
+inertia_parameters:
+  body_base_mass: 5.726
+  body_frame_mass: 23.464
+  body_cover_mass: 61.443
+
+  # left arm
+  left_arm_link0_mass: 6.568
+  left_arm_link1_mass: 2.983
+  left_arm_link2_mass: 5.667
+  left_arm_link3_mass: 2.922
+  left_arm_link4_mass: 3.269
+  left_arm_link5_mass: 1.670
+  left_arm_link6_mass: 0.272
+ 
+  # right arm
+  right_arm_link0_mass: 6.568
+  right_arm_link1_mass: 2.983
+  right_arm_link2_mass: 5.667
+  right_arm_link3_mass: 2.922
+  right_arm_link4_mass: 3.269
+  right_arm_link5_mass: 1.670
+  right_arm_link6_mass: 0.272
+
+  body_base:
+    ixx: 0.024968
+    iyy: 0.024968
+    izz: 0.047968
+    ixy: 0.000000
+    iyz: 0.000000
+    ixz: 0.000000
+
+  body_frame:
+    ixx: 4.565827
+    iyy: 4.672750
+    izz: 0.233592
+    ixy: 0.000000
+    iyz: -0.000027
+    ixz: -0.031929
+
+  body_cover:
+    ixx: 10.164663
+    iyy: 9.509362
+    izz: 2.004066
+    ixy: 0.000080
+    iyz: 0.001490
+    ixz: -0.355422
+
+  # left arm
+  left_arm_link0:
+    ixx: 0.036615476
+    iyy: 0.045081494
+    izz: 0.032810217 
+    ixy: -0.002034665
+    iyz: 0.000178649
+    ixz: 0.005558115
+
+  left_arm_link1:
+    ixx: 0.025856240
+    iyy: 0.018711126
+    izz: 0.014823463
+    ixy: -0.000122011
+    iyz: 0.004101675
+    ixz: -0.000122978
+
+  left_arm_link2:
+    ixx: 0.059807757
+    iyy: 0.051489100
+    izz: 0.020935533
+    ixy: 0.000049409
+    iyz: -0.000795126
+    ixz: -0.002553581
+
+  left_arm_link3:
+    ixx: 0.007076576
+    iyy: 0.005617412
+    izz: 0.007241272
+    ixy: 0.000361564 
+    iyz: 0.000302648
+    ixz: 0.000669577
+
+  left_arm_link4:
+    ixx: 0.003834949
+    iyy: 0.021384314
+    izz: 0.021676984
+    ixy: -0.000143086
+    iyz: 0.000011847
+    ixz: -0.000093784
+
+  left_arm_link5:
+    ixx: 0.000116129
+    iyy: 0.001960741
+    izz: 0.001997393
+    ixy: -0.000049576
+    iyz: 0.000001193
+    ixz: 0.000000708
+
+  left_arm_link6:
+    ixx: 0.000145396
+    iyy: 0.000079816
+    izz: 0.000077334
+    ixy: 0.000000019
+    iyz: 0.0
+    ixz: 0.0
+
+  # right arm
+  right_arm_link0:
+    ixx: 0.036615476
+    iyy: 0.045081494
+    izz: 0.032810217 
+    ixy: -0.002034665
+    iyz: 0.000178649
+    ixz: 0.005558115
+
+  right_arm_link1:
+    ixx: 0.025856240
+    iyy: 0.018711126
+    izz: 0.014823463
+    ixy: -0.000122011
+    iyz: 0.004101675
+    ixz: -0.000122978
+
+  right_arm_link2:
+    ixx: 0.059807757
+    iyy: 0.051489100
+    izz: 0.020935533
+    ixy: 0.000049409
+    iyz: -0.000795126
+    ixz: -0.002553581
+
+  right_arm_link3:
+    ixx: 0.007076576
+    iyy: 0.005617412
+    izz: 0.007241272
+    ixy: 0.000361564 
+    iyz: 0.000302648
+    ixz: 0.000669577
+
+  right_arm_link4:
+    ixx: 0.003834949
+    iyy: 0.021384314
+    izz: 0.021676984
+    ixy: -0.000143086
+    iyz: 0.000011847
+    ixz: -0.000093784
+
+  right_arm_link5:
+    ixx: 0.000116129
+    iyy: 0.001960741
+    izz: 0.001997393
+    ixy: -0.000049576
+    iyz: 0.000001193
+    ixz: 0.000000708
+
+  right_arm_link6:
+    ixx: 0.000145396
+    iyy: 0.000079816
+    izz: 0.000077334
+    ixy: 0.000000019
+    iyz: 0.0
+    ixz: 0.0
+    
+  center_of_mass:
+    body_base:
+      x: 0.000000
+      y: 0.000000
+      z: 0.008986
+    body_frame:
+      x: 0.001336
+      y: 0.017855
+      z: 0.261572
+    body_cover:
+      x: -0.012687
+      y: 0.008506
+      z: 0.411406
+
+    left_arm_link0:
+      x: -0.033213
+      y: -0.001385
+      z: 0.101897
+    left_arm_link1:
+      x: 0.001336
+      y: 0.017855
+      z: 0.261572
+    left_arm_link2:
+      x: -0.012687
+      y: 0.008506
+      z: 0.411406
+    left_arm_link3:
+      x: -0.007513
+      y: 0.016906
+      z: 0.583953
+    left_arm_link4:
+      x: 0.150496
+      y: -0.000380
+      z: 0.609627
+    left_arm_link5:
+      x: 0.319227
+      y: 0.001458
+      z: 0.610932
+    left_arm_link6:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+
+    right_arm_link0:
+      x: -0.033213
+      y: -0.001385
+      z: 0.101897
+    right_arm_link1:
+      x: 0.001336
+      y: 0.017855
+      z: 0.261572
+    right_arm_link2:
+      x: -0.012687
+      y: 0.008506
+      z: 0.411406
+    right_arm_link3:
+      x: -0.007513
+      y: 0.016906
+      z: 0.583953
+    right_arm_link4:
+      x: 0.150496
+      y: -0.000380
+      z: 0.609627
+    right_arm_link5:
+      x: 0.319227
+      y: 0.001458
+      z: 0.610932
+    right_arm_link6:
+      x: 0.0
+      y: 0.0
+      z: 0.0

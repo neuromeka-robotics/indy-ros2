@@ -1,0 +1,30 @@
+octomap:
+  frame: world
+  resolution: 0.05
+  max_range: 5.0
+
+sensors:
+  - camera_pointcloud
+  - camera_depth_image
+
+camera_pointcloud:
+  sensor_plugin: occupancy_map_monitor/PointCloudOctomapUpdater
+  point_cloud_topic: /camera/camera/depth/color/points
+  max_range: 5.0
+  point_subsample: 1
+  padding_offset: 0.02
+  padding_scale: 1.0
+  max_update_rate: 5.0
+  filtered_cloud_topic: /camera/camera/filtered_points
+
+camera_depth_image:
+  sensor_plugin: occupancy_map_monitor/DepthImageOctomapUpdater
+  image_topic: /camera/camera/aligned_depth_to_color/image_raw
+  camera_info_topic: /camera/camera/aligned_depth_to_color/camera_info
+  queue_size: 5
+  near_clipping_plane_distance: 0.3
+  far_clipping_plane_distance: 5.0
+  shadow_threshold: 0.2
+  padding_scale: 1.0
+  max_update_rate: 5.0
+  filtered_cloud_topic: /camera/camera/aligned_depth_to_color/filtered_points

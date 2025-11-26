@@ -4,7 +4,6 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, OpaqueFunction
 from launch.conditions import IfCondition
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
-from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from indy_moveit.launch_common import load_yaml
 from launch_ros.descriptions import ComposableNode
@@ -23,6 +22,7 @@ def launch_setup(context, *args, **kwargs):
     prefix = LaunchConfiguration("prefix")
     launch_rviz_moveit = LaunchConfiguration("launch_rviz_moveit")
     use_sim_time = LaunchConfiguration("use_sim_time")
+    enable_3d_perception = LaunchConfiguration("enable_3d_perception")
 
     robot_description_content = Command(
         [
@@ -124,22 +124,42 @@ def launch_setup(context, *args, **kwargs):
         "publish_transforms_updates": True,
     }
     
+    move_group_parameters = [
+        robot_description,
+        robot_description_semantic,
+        robot_description_kinematics,
+        robot_description_planning,
+        ompl_planning_pipeline_config,
+        trajectory_execution,
+        moveit_controllers,
+        planning_scene_monitor_parameters,
+        {"use_sim_time": use_sim_time},
+    ]
+
+    if enable_3d_perception.perform(context).lower() in ("true", "1"):
+        sensors_3d_yaml = load_yaml("indy_moveit", "moveit_config/sensor_3d.yaml") or {}
+        sensor_entries = {
+            key: value for key, value in sensors_3d_yaml.items() if key != "octomap"
+        }
+        if sensor_entries:
+            move_group_parameters.append(sensor_entries)
+
+        octomap_cfg = sensors_3d_yaml.get("octomap", {})
+        if octomap_cfg:
+            move_group_parameters.append(
+                {
+                    "octomap_frame": octomap_cfg.get("frame", "world"),
+                    "octomap_resolution": octomap_cfg.get("resolution", 0.05),
+                    "max_range": octomap_cfg.get("max_range", 5.0),
+                }
+            )
+    
     # Start the actual move_group node/action server  
     move_group_node = Node(
         package="moveit_ros_move_group",
         executable="move_group",
         output="screen",
-        parameters=[
-            robot_description,
-            robot_description_semantic,
-            robot_description_kinematics,
-            robot_description_planning,
-            ompl_planning_pipeline_config,
-            trajectory_execution,
-            moveit_controllers,
-            planning_scene_monitor_parameters,
-            {"use_sim_time": use_sim_time},
-        ],
+        parameters=move_group_parameters,
     )
 
     # rviz with moveit configuration
@@ -268,6 +288,14 @@ def generate_launch_description():
 
     declared_arguments.append(
         DeclareLaunchArgument("launch_rviz_moveit", default_value="true", description="Launch RViz?")
+    )
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "enable_3d_perception",
+            default_value="false",
+            description="Enable MoveIt Octomap updates from depth sensors.",
+        )
     )
 
     return LaunchDescription(declared_arguments + [OpaqueFunction(function=launch_setup)])

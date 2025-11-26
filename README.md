@@ -14,21 +14,20 @@ This repository contains ROS2 drivers for Indy7, Indy7V2, IndyRP2, IndyRP2V2, In
 
 The following software needs to be installed:
 - [ROS2 Jazzy](https://docs.ros.org/en/jazzy/Installation.html)
-- [Neuromeka Package](https://github.com/neuromeka-robotics/neuromeka-package)
-    ```
-    pip3 install neuromeka
-    ```
 
 ## Installation
 
 ### Install dependencies
 ```
+sudo apt install python3-colcon-common-extensions
 sudo apt install python3-rosdep
 sudo rosdep init
 rosdep update
 sudo apt update
 
-sudo apt install -y ros-jazzy-xacro \
+sudo apt install -y ros-jazzy-ament-cmake
+ros-jazzy-xacro \
+ros-jazzy-ros-base \
 ros-jazzy-moveit \
 ros-jazzy-moveit-servo \
 ros-jazzy-moveit-visual-tools \
@@ -46,28 +45,57 @@ ros-jazzy-joint-trajectory-controller \
 ros-jazzy-rviz-visual-tools \
 ros-jazzy-geometric-shapes \
 ros-jazzy-gz-ros2-control \
-ros-jazzy-ros-gz
+ros-jazzy-ros-gz \
+ros-jazzy-realsense2-camera \
+ros-jazzy-realsense2-description \
+ros-jazzy-librealsense2*
 ```
 
 **Switch to Cyclone DDS**
 ```
-sudo apt install ros-humble-rmw-cyclonedds-cpp
+sudo apt install ros-jazzy-rmw-cyclonedds-cpp
 ```
 Add this to ~/.bashrc to source it automatically
 ```
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ```
 
-### Download the source code and build
+### Download the source code
 
 ```
-git clone <this repository url>
+source /opt/ros/jazzy/setup.bash
+git clone https://github.com/neuromeka-robotics/indy-ros2 -b jazzy-indyDCP3
 cd ~/indy-ros2/
+```
+
+### Setup [Neuromeka Package](https://github.com/neuromeka-robotics/neuromeka-package) and build
+
+```
+sudo apt install python3-venv
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install catkin_pkg empy lark-parser
+pip install pyyaml jinja2 typeguard neuromeka
+rosdep install --from-paths src --ignore-src -r -y 
 colcon build
+```
+
+To deactivate the venv
+
+```
+deactivate
 ```
 
 ### Source the setup file
 ```
+. install/setup.bash
+```
+
+### Setup when open new terminal
+```
+cd ~/indy-ros2/
+source .venv/bin/activate
 . install/setup.bash
 ```
 
@@ -156,6 +184,15 @@ ros2 launch indy_driver indy_bringup.launch.py indy_type:=indy7 indy_ip:=192.168
 ```
 ros2 launch indy_moveit indy_moveit_real_robot.launch.py indy_type:=indy7 indy_ip:=192.168.xxx.xxx
 ```
+
+Enable the RealSense pipeline:
+
+```
+ros2 launch indy_moveit indy_moveit_real_robot.launch.py \
+	indy_type:=indy7 indy_ip:=192.168.xxx.xxx enable_realsense:=true
+```
+
+Use the optional arguments `realsense_namespace`, `camera_parent_frame`, `camera_link_frame`, and `camera_pose_*` to match your mount point.
 
 **Start Indy with Servoing**
 

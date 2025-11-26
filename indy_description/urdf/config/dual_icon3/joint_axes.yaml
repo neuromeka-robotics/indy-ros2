@@ -1,0 +1,15 @@
+# Format: joint_name: [x, y, z] where xyz defines the axis direction
+joint_axes:
+  base_frame: [0, 0, 1]
+  left_arm_joint0: [0, 0, 1]
+  left_arm_joint1: [0, 0, 1]
+  left_arm_joint2: [0, 0, 1]
+  left_arm_joint3: [0, 0, 1]
+  left_arm_joint4: [0, 0, 1]
+  left_arm_joint5: [0, 0, 1]
+  right_arm_joint0: [0, 0, 1]
+  right_arm_joint1: [0, 0, 1]
+  right_arm_joint2: [0, 0, 1]
+  right_arm_joint3: [0, 0, 1]
+  right_arm_joint4: [0, 0, 1]
+  right_arm_joint5: [0, 0, 1]

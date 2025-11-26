@@ -313,7 +313,7 @@ class KeyboardControl(Node):
                     if self.isValid():
                         joint_msg.joint_names.append(KEYCODE_TO_JOINTS[ord(self.key)])
                         joint_msg.velocities.append(self.joint_angular_vel)
-                        joint_msg.displacements.append(0.0)
+                        # joint_msg.displacements.append(0.0)
                         publish_joint = True
                         # print(f"MOVE {joint_name}")
 
@@ -384,7 +384,7 @@ class KeyboardControl(Node):
                 zero_joint.header.frame_id = BASE_FRAME_ID            
                 zero_joint.joint_names = list(KEYCODE_TO_JOINTS.values())[:self.joint_num]
                 zero_joint.velocities = [0.0 for _ in zero_joint.joint_names]
-                zero_joint.displacements = [0.0 for _ in zero_joint.joint_names]
+                # zero_joint.displacements = [0.0 for _ in zero_joint.joint_names]
                 self.joint_pub.publish(zero_joint)
 
                 with self.publish_lock:

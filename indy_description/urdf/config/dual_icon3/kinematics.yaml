@@ -1,0 +1,134 @@
+# How links connect together
+kinematics:
+  base_frame:
+    x: 0.0
+    y: 0.0
+    z: 0.0285
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  frame_cover:
+    x: 0.0
+    y: 0.0
+    z: 0.0116
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+
+  left_arm_connect:
+    x: 0.011367 #008367
+    y: 0.042157
+    z: 0.541659
+    roll: -1.570796327
+    pitch: 0.0
+    yaw: -0.261799388
+
+  right_arm_connect:
+    x: 0.011367
+    y: -0.042157
+    z: 0.541659
+    roll: 1.570796327
+    pitch: 0.0
+    yaw: 0.261799388
+
+# left arm
+  left_arm_joint0:
+    x: 0.0
+    y: 0.0
+    z: 0.156
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  left_arm_joint1:
+    x: 0.0
+    y: 0.0
+    z: 0.174
+    roll: 1.570796327
+    pitch: 0.0
+    yaw: 3.14159265
+  left_arm_joint2:
+    x: 0.0
+    y: 0.26
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 1.570796327
+  left_arm_joint3:
+    x: 0.021
+    y: 0.0625
+    z: 0.0
+    roll: -1.570796327
+    pitch: 1.570796327
+    yaw: 0.0
+  left_arm_joint4:
+    x: 0.0
+    y: 0.0
+    z: 0.237
+    roll: 1.570796327
+    pitch: -1.570796327
+    yaw: -1.570796327
+  left_arm_joint5:
+    x: 0.0685
+    y: 0.0
+    z: 0.0
+    roll: 1.570796327
+    pitch: 0.0
+    yaw: 1.570796327
+  left_arm_tcp:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+
+# right arm
+  right_arm_joint0:
+    x: 0.0
+    y: 0.0
+    z: 0.156
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  right_arm_joint1:
+    x: 0.0
+    y: 0.0
+    z: 0.174
+    roll: 1.570796327
+    pitch: 0.0
+    yaw: 3.14159265
+  right_arm_joint2:
+    x: 0.0
+    y: 0.26
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 1.570796327
+  right_arm_joint3:
+    x: 0.021
+    y: 0.0625
+    z: 0.0
+    roll: -1.570796327
+    pitch: 1.570796327
+    yaw: 0.0
+  right_arm_joint4:
+    x: 0.0
+    y: 0.0
+    z: 0.237
+    roll: 1.570796327
+    pitch: -1.570796327
+    yaw: -1.570796327
+  right_arm_joint5:
+    x: 0.0685
+    y: 0.0
+    z: 0.0
+    roll: 1.570796327
+    pitch: 0.0
+    yaw: 1.570796327
+  right_arm_tcp:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
