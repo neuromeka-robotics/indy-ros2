@@ -87,7 +87,7 @@ def launch_setup(context, *args, **kwargs):
         PythonLaunchDescriptionSource(
             [FindPackageShare("ros_gz_sim"), "/launch/gz_sim.launch.py"]
         ),
-        launch_arguments=[('gz_args', [' -r -v 4 empty.sdf'])]
+        launch_arguments=[('gz_args', [' -r -v 4 ', PathJoinSubstitution([FindPackageShare('indy_gazebo'), 'worlds', 'camera_world.sdf'])])]
     )
 
     gazebo_spawn_robot = Node(
