@@ -214,7 +214,7 @@ class IndyROSConnector(Node):
         if self.previous_joint_trajectory_sub != joint_state_list[0]:
             # if TELE MODE
             if self.indy_msg_status == MSG_TELE_JOINT_ABS:
-                self.indy.movetelej_abs(jpos=rads2degs(joint_state_list[0]))
+                self.indy.movetelej_abs(jpos=rads2degs(joint_state_list[0]), vel_ratio=0.8, acc_ratio=7.0)
 
             self.previous_joint_trajectory_sub = joint_state_list[0]
     
@@ -361,7 +361,7 @@ class IndyROSConnector(Node):
             # send waypoints
             for j_pos in self.joint_state_list:
                 try:
-                    self.indy.movetelej_abs(jpos=rads2degs(j_pos))
+                    self.indy.movetelej_abs(jpos=rads2degs(j_pos), vel_ratio=0.8, acc_ratio=7.0)
                 except Exception as e:
                     self.get_logger().error('THERE ARE ISSUE WHEN EXECUTE WAYPOINT, PLEASE TRY AGAIN!')
                     is_cancel = True
