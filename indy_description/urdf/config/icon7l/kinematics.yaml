@@ -40,7 +40,7 @@ kinematics:
     y: 0.089
     z: 0.0
     roll: 1.570796327
-    pitch: 0.0
+    pitch: 1.570796327
     yaw: 3.14159265
   tcp:
     x: 0.0

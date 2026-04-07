@@ -12,13 +12,16 @@
 
     <xacro:arg name="indy_eye" default="false"/>
 
+    <xacro:property name="arg_indy_type" value="$(arg indy_type)"/>
+    <xacro:property name="config_indy_type" value="${'indy7_v2' if arg_indy_type == 'indy7_v3' else arg_indy_type}"/>
+
     <!-- parameters -->
     <xacro:arg name="prefix" default="" />
-    <xacro:arg name="joint_limit_params" default="$(find indy_description)/urdf/config/$(arg indy_type)/joint_limits.yaml"/>
-    <xacro:arg name="kinematics_params" default="$(find indy_description)/urdf/config/$(arg indy_type)/kinematics.yaml"/>
-    <xacro:arg name="physical_params" default="$(find indy_description)/urdf/config/$(arg indy_type)/physical_parameters.yaml"/>
-    <xacro:arg name="visual_params" default="$(find indy_description)/urdf/config/$(arg indy_type)/visual_parameters.yaml"/>
-    <xacro:arg name="joint_axes_params" default="$(find indy_description)/urdf/config/$(arg indy_type)/joint_axes.yaml"/>
+    <xacro:arg name="joint_limit_params" default="$(find indy_description)/urdf/config/${config_indy_type}/joint_limits.yaml"/>
+    <xacro:arg name="kinematics_params" default="$(find indy_description)/urdf/config/${config_indy_type}/kinematics.yaml"/>
+    <xacro:arg name="physical_params" default="$(find indy_description)/urdf/config/${config_indy_type}/physical_parameters.yaml"/>
+    <xacro:arg name="visual_params" default="$(find indy_description)/urdf/config/${config_indy_type}/visual_parameters.yaml"/>
+    <xacro:arg name="joint_axes_params" default="$(find indy_description)/urdf/config/${config_indy_type}/joint_axes.yaml"/>
     <xacro:arg name="initial_positions" default="$(find indy_description)/urdf/config/initial_positions.yaml"/>
     <xacro:arg name="transmission_hw_interface" default=""/>
 

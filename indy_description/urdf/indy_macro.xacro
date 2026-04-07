@@ -26,10 +26,10 @@
         <xacro:define_initialize initial_positions_file="${initial_positions_file}"              
             visual_parameters_file="${visual_parameters_file}" indy_type="${indy_type}"/>
 
-        <xacro:if value="${ indy_type == 'indy7' or indy_type == 'indy7_v2' or indy_type == 'indyrp2' or 
+        <xacro:if value="${ indy_type == 'indy7' or indy_type == 'indy7_v2' or indy_type == 'indy7_v3' or indy_type == 'indyrp2' or 
                             indy_type == 'indyrp2_v2' or indy_type == 'indy12' or indy_type == 'indy12_v2' or 
                             indy_type == 'nuri3s' or indy_type == 'nuri4s' or indy_type == 'nuri7c' or 
-                            indy_type == 'nuri20c' or indy_type == 'opti5'}">
+                            indy_type == 'nuri20c' or indy_type == 'nuri30s' or indy_type == 'opti5'}">
             <xacro:property name="material_0" value="indy_white"/>
             <xacro:property name="material_1" value="indy_white"/>
         </xacro:if>
