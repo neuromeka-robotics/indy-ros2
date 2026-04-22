@@ -196,7 +196,7 @@
   <joint name="joint0" type="revolute">
     <parent link="link0"/>
     <child link="link1"/>
-    <origin rpy="0                         0                         0" xyz="0                          0                          0.13"/>
+    <origin rpy="0                         0                         0" xyz="0                          0                          0.1305"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.1" friction="10.0"/>
     <limit effort="431.97" lower="-3.0543261909900767" upper="3.0543261909900767" velocity="2.0943951023931953"/>
@@ -204,7 +204,7 @@
   <joint name="joint1" type="revolute">
     <parent link="link1"/>
     <child link="link2"/>
-    <origin rpy="1.570796327                         -1.570796327                         0" xyz="0                          -0.1275                          0.22"/>
+    <origin rpy="1.570796327                         -1.570796327                         0" xyz="0                          -0.128                          0.2195"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.1" friction="10.0"/>
     <limit effort="431.97" lower="-3.0543261909900767" upper="3.0543261909900767" velocity="2.0943951023931953"/>
@@ -244,7 +244,7 @@
   <joint name="tcp" type="fixed">
     <parent link="link6"/>
     <child link="tcp"/>
-    <origin rpy="0.0                         0.0                         0.0" xyz="0.0                          0.0                          0.06"/>
+    <origin rpy="0.0                         0.0                         0.0" xyz="0.0                          0.0                          0.056"/>
   </joint>
   <ros2_control name="indy" type="system">
     <hardware>

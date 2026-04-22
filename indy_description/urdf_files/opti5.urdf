@@ -244,7 +244,7 @@
   <joint name="tcp" type="fixed">
     <parent link="link6"/>
     <child link="tcp"/>
-    <origin rpy="0.0                         0.0                         0.0" xyz="0.0                          0.0                          0.0605"/>
+    <origin rpy="0.0                         0.0                         0.0" xyz="0.0                          0.0                          0.054"/>
   </joint>
   <ros2_control name="indy" type="system">
     <hardware>
