@@ -13,7 +13,7 @@
     <xacro:arg name="indy_eye" default="false"/>
 
     <xacro:property name="arg_indy_type" value="$(arg indy_type)"/>
-    <xacro:property name="config_indy_type" value="${'indy7_v2' if arg_indy_type == 'indy7_v3' else arg_indy_type}"/>
+    <xacro:property name="config_indy_type" value="${arg_indy_type}"/>
 
     <!-- parameters -->
     <xacro:arg name="prefix" default="" />

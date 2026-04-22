@@ -51,160 +51,140 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indyrp2/visual/IndyRP2_0.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indy7_v3/visual/Indy7_v3_0.stl"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indyrp2/collision/IndyRP2_0.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indy7_v3/collision/Indy7_v3_0.stl"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="1.6703078"/>
-      <origin rpy="0 0 0" xyz="0.00131966                             -2.18e-06                             0.03212832"/>
-      <inertia ixx="0.00661309" ixy="1.83e-06" ixz="2.695e-05" iyy="0.00644765" iyz="-2.7e-07" izz="0.0079209"/>
+      <mass value="1.66957888"/>
+      <origin rpy="0 0 0" xyz="0.00133032                             -2.18e-06                             0.03163661"/>
+      <inertia ixx="0.00655829" ixy="1.83e-06" ixz="2.634e-05" iyy="0.00639165" iyz="-2.7e-07" izz="0.00791712"/>
     </inertial>
   </link>
   <link name="link1">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indyrp2/visual/IndyRP2_1.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indy7_v3/visual/Indy7_v3_1.stl"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indyrp2/collision/IndyRP2_1.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indy7_v3/collision/Indy7_v3_1.stl"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="11.44444535"/>
-      <origin rpy="0 0 0" xyz="-0.00023749                             -0.04310313                             0.13245396"/>
-      <inertia ixx="0.35065005" ixy="0.00011931" ixz="-0.00037553" iyy="0.304798" iyz="-0.10984447" izz="0.06003147"/>
+      <mass value="11.43955917"/>
+      <origin rpy="0 0 0" xyz="-0.00027386                             -0.04348767                             0.13216705"/>
+      <inertia ixx="0.35097123" ixy="0.00013006" ixz="-0.00042705" iyy="0.3043588" iyz="-0.11072619" izz="0.06048047"/>
     </inertial>
   </link>
   <link name="link2">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indyrp2/visual/IndyRP2_2.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indy7_v3/visual/Indy7_v3_2.stl"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indyrp2/collision/IndyRP2_2.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indy7_v3/collision/Indy7_v3_2.stl"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="4.43308185"/>
-      <origin rpy="0 0 0" xyz="-0.21209188                             -1.715e-05                             0.07901191"/>
-      <inertia ixx="0.03742681" ixy="3.176e-05" ixz="-0.07906734" iyy="0.32119654" iyz="-8.08e-06" izz="0.29396155"/>
+      <mass value="6.11383823"/>
+      <origin rpy="0 0 0" xyz="-0.00010864                             0.29071865                             0.04588251"/>
+      <inertia ixx="0.74655601" ixy="-0.00032714" ixz="4.81e-06" iyy="0.03850444" iyz="0.05314531" izz="0.72200046"/>
     </inertial>
   </link>
   <link name="link3">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indyrp2/visual/IndyRP2_3.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indy7_v3/visual/Indy7_v3_3.stl"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indyrp2/collision/IndyRP2_3.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indy7_v3/collision/Indy7_v3_3.stl"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="2.87045928"/>
-      <origin rpy="0 0 0" xyz="3.637e-05                             0.07143055                             0.0774605"/>
-      <inertia ixx="0.0409816" ixy="7.47e-06" ixz="9.16e-06" iyy="0.02106773" iyz="0.01817157" izz="0.02277477"/>
+      <mass value="2.68211719"/>
+      <origin rpy="0 0 0" xyz="6.691e-05                             -0.16802208                             -0.07025671"/>
+      <inertia ixx="0.11373278" ixy="-3.686e-05" ixz="-1.286e-05" iyy="0.01627234" iyz="0.03355709" izz="0.10021441"/>
     </inertial>
   </link>
   <link name="link4">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indyrp2/visual/IndyRP2_4.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indy7_v3/visual/Indy7_v3_4.stl"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indyrp2/collision/IndyRP2_4.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indy7_v3/collision/Indy7_v3_4.stl"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="2.68206064"/>
-      <origin rpy="0 0 0" xyz="-0.16804016                             0.00021421                             -0.07000383"/>
-      <inertia ixx="0.0161721" ixy="-0.00011817" ixz="0.03341882" iyy="0.11364055" iyz="-4.371e-05" izz="0.10022522"/>
+      <mass value="2.12830848"/>
+      <origin rpy="0 0 0" xyz="-0.00026808                             -0.07105971                             0.07645329"/>
+      <inertia ixx="0.02795227" ixy="3.938e-05" ixz="-4.713e-05" iyy="0.0143985" iyz="-0.01265087" izz="0.01495514"/>
     </inertial>
   </link>
   <link name="link5">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indyrp2/visual/IndyRP2_5.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indy7_v3/visual/Indy7_v3_5.stl"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indyrp2/collision/IndyRP2_5.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indy7_v3/collision/Indy7_v3_5.stl"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="2.12987371"/>
-      <origin rpy="0 0 0" xyz="-0.00026847                             -0.0709844                             0.07649128"/>
-      <inertia ixx="0.02798891" ixy="3.893e-05" ixz="-4.768e-05" iyy="0.01443076" iyz="-0.01266296" izz="0.01496211"/>
+      <mass value="2.32413397"/>
+      <origin rpy="0 0 0" xyz="-0.00022538                             -0.00354123                             0.07650762"/>
+      <inertia ixx="0.01771876" ixy="9.04e-06" ixz="-4.336e-05" iyy="0.01593616" iyz="-0.00069656" izz="0.00358348"/>
     </inertial>
   </link>
   <link name="link6">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indyrp2/visual/IndyRP2_6.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indy7_v3/visual/Indy7_v3_6.stl"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indyrp2/collision/IndyRP2_6.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indy7_v3/collision/Indy7_v3_6.stl"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="2.22412271"/>
-      <origin rpy="0 0 0" xyz="-0.09796232                             -0.00023114                             0.06445892"/>
-      <inertia ixx="0.01105297" ixy="5.517e-05" ixz="-0.01481977" iyy="0.03698291" iyz="-3.74e-05" izz="0.02754795"/>
-    </inertial>
-  </link>
-  <link name="link7">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indyrp2/visual/IndyRP2_7.stl"/>
-      </geometry>
-      <material name="indy_white"/>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/indyrp2/collision/IndyRP2_7.stl"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.38254932"/>
-      <origin rpy="0 0 0" xyz="8.147e-05                             -0.00046556                             0.03079097"/>
-      <inertia ixx="0.00078982" ixy="-3.4e-07" ixz="8.3e-07" iyy="0.00079764" iyz="-5.08e-06" izz="0.00058319"/>
+      <mass value="0.39652271"/>
+      <origin rpy="0 0 0" xyz="0.0                             -0.00071501                             0.03219123"/>
+      <inertia ixx="0.00077839" ixy="2.6e-07" ixz="0.0" iyy="0.00076561" iyz="-6.99e-06" izz="0.00051275"/>
     </inertial>
   </link>
   <link name="tcp"/>
@@ -216,7 +196,7 @@
   <joint name="joint0" type="revolute">
     <parent link="link0"/>
     <child link="link1"/>
-    <origin rpy="0                         0                         0" xyz="0                          0                          0.0772"/>
+    <origin rpy="0                         0                         0" xyz="0                          0                          0.0785"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.1" friction="10.0"/>
     <limit effort="431.97" lower="-3.0543261909900767" upper="3.0543261909900767" velocity="2.6179938779914944"/>
@@ -224,7 +204,7 @@
   <joint name="joint1" type="revolute">
     <parent link="link1"/>
     <child link="link2"/>
-    <origin rpy="1.570796327                         1.570796327                         0" xyz="0                          -0.1093                          0.2228"/>
+    <origin rpy="3.1415926536                         1.570796327                         1.570796327" xyz="0                          -0.1105                          0.2215"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.1" friction="10.0"/>
     <limit effort="431.97" lower="-3.0543261909900767" upper="3.0543261909900767" velocity="2.6179938779914944"/>
@@ -232,7 +212,7 @@
   <joint name="joint2" type="revolute">
     <parent link="link2"/>
     <child link="link3"/>
-    <origin rpy="-1.570796327                         0                         1.570796327" xyz="-0.384                          0                          0.0847"/>
+    <origin rpy="0                         0                         0" xyz="-0.45                          0                          -0.0335"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.1" friction="10.0"/>
     <limit effort="197.23" lower="-3.0543261909900767" upper="3.0543261909900767" velocity="2.6179938779914944"/>
@@ -240,15 +220,15 @@
   <joint name="joint3" type="revolute">
     <parent link="link3"/>
     <child link="link4"/>
-    <origin rpy="1.570796327                         1.570796327                         0" xyz="0                          0.1153                          0.0655"/>
+    <origin rpy="1.570796327                         0                         -1.570796327" xyz="-0.2845                          0                          -0.0735"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.1" friction="10.0"/>
-    <limit effort="197.23" lower="-3.0543261909900767" upper="3.0543261909900767" velocity="2.6179938779914944"/>
+    <limit effort="79.79" lower="-3.0543261909900767" upper="3.0543261909900767" velocity="3.141592653589793"/>
   </joint>
   <joint name="joint4" type="revolute">
     <parent link="link4"/>
     <child link="link5"/>
-    <origin rpy="-1.570796327                         0                         1.570796327" xyz="-0.2665                          0                          -0.0747"/>
+    <origin rpy="-1.570796327                         0                         0" xyz="0                          0.1405                          0.065486"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.1" friction="10.0"/>
     <limit effort="79.79" lower="-3.0543261909900767" upper="3.0543261909900767" velocity="3.141592653589793"/>
@@ -256,23 +236,15 @@
   <joint name="joint5" type="revolute">
     <parent link="link5"/>
     <child link="link6"/>
-    <origin rpy="1.570796327                         1.570796327                         0" xyz="0                          -0.1143                          0.0835"/>
+    <origin rpy="1.570796327                         3.1415926536                         0" xyz="0                          -0.050495                          0.058505"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.1" friction="10.0"/>
-    <limit effort="79.79" lower="-3.0543261909900767" upper="3.0543261909900767" velocity="3.141592653589793"/>
-  </joint>
-  <joint name="joint6" type="revolute">
-    <parent link="link6"/>
-    <child link="link7"/>
-    <origin rpy="-1.570796327                         0                         1.570796327" xyz="-0.168                          0                          0.0687"/>
-    <axis xyz="0 0 1"/>
-    <dynamics damping="0.1" friction="10.0"/>
-    <limit effort="79.79" lower="-3.0543261909900767" upper="3.0543261909900767" velocity="3.141592653589793"/>
+    <limit effort="79.79" lower="-3.7524578917878086" upper="3.7524578917878086" velocity="3.141592653589793"/>
   </joint>
   <joint name="tcp_fixed" type="fixed">
-    <parent link="link7"/>
+    <parent link="link6"/>
     <child link="tcp"/>
-    <origin rpy="0.0                         0.0                         0.0" xyz="0.0                          0.0                          0.06"/>
+    <origin rpy="0.0                         0.0                         0.0" xyz="0.0                          0.0                          0.0557"/>
   </joint>
   <ros2_control name="indy" type="system">
     <hardware>
@@ -327,7 +299,7 @@
         <param name="max">3.15</param>
       </command_interface>
       <state_interface name="position">
-        <param name="initial_value">0.0</param>
+        <param name="initial_value">-1.57</param>
       </state_interface>
       <state_interface name="velocity">
         <param name="initial_value">0.0</param>
@@ -346,7 +318,7 @@
         <param name="max">3.15</param>
       </command_interface>
       <state_interface name="position">
-        <param name="initial_value">-1.57</param>
+        <param name="initial_value">0.0</param>
       </state_interface>
       <state_interface name="velocity">
         <param name="initial_value">0.0</param>
@@ -365,25 +337,6 @@
         <param name="max">3.15</param>
       </command_interface>
       <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="effort">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-    </joint>
-    <joint name="joint5">
-      <command_interface name="position">
-        <param name="min">-6.283185</param>
-        <param name="max">6.283185</param>
-      </command_interface>
-      <command_interface name="velocity">
-        <param name="min">-3.15</param>
-        <param name="max">3.15</param>
-      </command_interface>
-      <state_interface name="position">
         <param name="initial_value">-1.57</param>
       </state_interface>
       <state_interface name="velocity">
@@ -393,7 +346,7 @@
         <param name="initial_value">0.0</param>
       </state_interface>
     </joint>
-    <joint name="joint6">
+    <joint name="joint5">
       <command_interface name="position">
         <param name="min">-6.283185</param>
         <param name="max">6.283185</param>

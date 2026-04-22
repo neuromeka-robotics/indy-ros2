@@ -269,7 +269,7 @@
     <dynamics damping="0.1" friction="10.0"/>
     <limit effort="79.79" lower="-3.0543261909900767" upper="3.0543261909900767" velocity="3.141592653589793"/>
   </joint>
-  <joint name="tcp" type="fixed">
+  <joint name="tcp_fixed" type="fixed">
     <parent link="link7"/>
     <child link="tcp"/>
     <origin rpy="0.0                         0.0                         0.0" xyz="0.0                          0.0                          0.06"/>

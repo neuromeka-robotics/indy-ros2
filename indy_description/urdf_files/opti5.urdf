@@ -241,10 +241,10 @@
     <dynamics damping="0.1" friction="10.0"/>
     <limit effort="124.23" lower="-3.141592653589793" upper="3.141592653589793" velocity="3.2986722862692828"/>
   </joint>
-  <joint name="tcp" type="fixed">
+  <joint name="tcp_fixed" type="fixed">
     <parent link="link6"/>
     <child link="tcp"/>
-    <origin rpy="0.0                         0.0                         0.0" xyz="0.0                          0.0                          0.0605"/>
+    <origin rpy="0.0                         0.0                         0.0" xyz="0.0                          0.0                          0.054"/>
   </joint>
   <ros2_control name="indy" type="system">
     <hardware>

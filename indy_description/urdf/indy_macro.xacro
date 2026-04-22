@@ -134,7 +134,7 @@
         </xacro:unless>
 
         <!-- joints -->
-        <xacro:macro name="define_joint" params="joint_type joint_index parent_link child_link">
+        <xacro:macro name="define_joint" params="joint_type joint_name origin_key parent_link child_link">
             <xacro:property name="config_joint_limit_parameters" value="${xacro.load_yaml(joint_limits_parameters_file)}"/>
             <xacro:property name="config_kinematics_parameters" value="${xacro.load_yaml(kinematics_parameters_file)}"/>
             <xacro:property name="config_joint_axes_parameters" value="${xacro.load_yaml(joint_axes_parameters_file)}"/>
@@ -142,23 +142,23 @@
             <xacro:property name="sec_limits" value="${config_joint_limit_parameters['joint_limits']}"/>
             <xacro:property name="sec_joint_axes" value="${config_joint_axes_parameters['joint_axes']}" />
 
-            <joint name="${prefix}${joint_index}" type="${joint_type}">
+            <joint name="${prefix}${joint_name}" type="${joint_type}">
                 <parent link="${prefix}${parent_link}"/>
                 <child link="${prefix}${child_link}"/>
                 <origin
-                    xyz="${sec_kinematics[joint_index]['x']} 
-                        ${sec_kinematics[joint_index]['y']} 
-                        ${sec_kinematics[joint_index]['z']}" 
-                    rpy="${sec_kinematics[joint_index]['roll']}
-                        ${sec_kinematics[joint_index]['pitch']}
-                        ${sec_kinematics[joint_index]['yaw']}"/>
+                    xyz="${sec_kinematics[origin_key]['x']} 
+                        ${sec_kinematics[origin_key]['y']} 
+                        ${sec_kinematics[origin_key]['z']}" 
+                    rpy="${sec_kinematics[origin_key]['roll']}
+                        ${sec_kinematics[origin_key]['pitch']}
+                        ${sec_kinematics[origin_key]['yaw']}"/>
                         
                 <xacro:if value="${joint_type == 'revolute' or joint_type == 'continuous'}">
                     <!-- Use configurable axis if available, fallback to default [0,0,1] -->
-                    <xacro:if value="${joint_index in sec_joint_axes}">
-                        <axis xyz="${sec_joint_axes[joint_index][0]} ${sec_joint_axes[joint_index][1]} ${sec_joint_axes[joint_index][2]}"/>
+                    <xacro:if value="${origin_key in sec_joint_axes}">
+                        <axis xyz="${sec_joint_axes[origin_key][0]} ${sec_joint_axes[origin_key][1]} ${sec_joint_axes[origin_key][2]}"/>
                     </xacro:if>
-                    <xacro:unless value="${joint_index in sec_joint_axes}">
+                    <xacro:unless value="${origin_key in sec_joint_axes}">
                         <axis xyz="0 0 1"/>
                     </xacro:unless>
                     <dynamics damping="0.1" friction="10.0"/>
@@ -166,10 +166,10 @@
 
                 <xacro:if value="${joint_type == 'revolute'}">
                     <limit
-                        lower="${sec_limits[joint_index]['min_position']}" 
-                        upper="${sec_limits[joint_index]['max_position']}"
-                        effort="${sec_limits[joint_index]['max_effort']}" 
-                        velocity="${sec_limits[joint_index]['max_velocity']}"/>
+                        lower="${sec_limits[origin_key]['min_position']}" 
+                        upper="${sec_limits[origin_key]['max_position']}"
+                        effort="${sec_limits[origin_key]['max_effort']}" 
+                        velocity="${sec_limits[origin_key]['max_velocity']}"/>
                 </xacro:if>                
             </joint>
         </xacro:macro>
@@ -181,27 +181,27 @@
                 <child link="$(arg prefix)body_base"/>
             </joint>
 
-            <xacro:define_joint joint_type="revolute" joint_index="base_frame" parent_link="body_base" child_link="body_frame"/>
-            <xacro:define_joint joint_type="fixed" joint_index="frame_cover" parent_link="body_frame" child_link="body_cover"/>
+            <xacro:define_joint joint_type="revolute" joint_name="base_frame" origin_key="base_frame" parent_link="body_base" child_link="body_frame"/>
+            <xacro:define_joint joint_type="fixed" joint_name="frame_cover" origin_key="frame_cover" parent_link="body_frame" child_link="body_cover"/>
 
-            <xacro:define_joint joint_type="fixed" joint_index="left_arm_connect" parent_link="body_frame" child_link="left_arm_link0"/>
-            <xacro:define_joint joint_type="fixed" joint_index="right_arm_connect" parent_link="body_frame" child_link="right_arm_link0"/>
+            <xacro:define_joint joint_type="fixed" joint_name="left_arm_connect" origin_key="left_arm_connect" parent_link="body_frame" child_link="left_arm_link0"/>
+            <xacro:define_joint joint_type="fixed" joint_name="right_arm_connect" origin_key="right_arm_connect" parent_link="body_frame" child_link="right_arm_link0"/>
 
-            <xacro:define_joint joint_type="revolute" joint_index="left_arm_joint0" parent_link="left_arm_link0" child_link="left_arm_link1"/>
-            <xacro:define_joint joint_type="revolute" joint_index="left_arm_joint1" parent_link="left_arm_link1" child_link="left_arm_link2"/>
-            <xacro:define_joint joint_type="revolute" joint_index="left_arm_joint2" parent_link="left_arm_link2" child_link="left_arm_link3"/>
-            <xacro:define_joint joint_type="revolute" joint_index="left_arm_joint3" parent_link="left_arm_link3" child_link="left_arm_link4"/>
-            <xacro:define_joint joint_type="revolute" joint_index="left_arm_joint4" parent_link="left_arm_link4" child_link="left_arm_link5"/>
-            <xacro:define_joint joint_type="revolute" joint_index="left_arm_joint5" parent_link="left_arm_link5" child_link="left_arm_link6"/>
-            <xacro:define_joint joint_type="fixed"    joint_index="left_arm_tcp" parent_link="left_arm_link6" child_link="left_arm_tcp"/>
+            <xacro:define_joint joint_type="revolute" joint_name="left_arm_joint0" origin_key="left_arm_joint0" parent_link="left_arm_link0" child_link="left_arm_link1"/>
+            <xacro:define_joint joint_type="revolute" joint_name="left_arm_joint1" origin_key="left_arm_joint1" parent_link="left_arm_link1" child_link="left_arm_link2"/>
+            <xacro:define_joint joint_type="revolute" joint_name="left_arm_joint2" origin_key="left_arm_joint2" parent_link="left_arm_link2" child_link="left_arm_link3"/>
+            <xacro:define_joint joint_type="revolute" joint_name="left_arm_joint3" origin_key="left_arm_joint3" parent_link="left_arm_link3" child_link="left_arm_link4"/>
+            <xacro:define_joint joint_type="revolute" joint_name="left_arm_joint4" origin_key="left_arm_joint4" parent_link="left_arm_link4" child_link="left_arm_link5"/>
+            <xacro:define_joint joint_type="revolute" joint_name="left_arm_joint5" origin_key="left_arm_joint5" parent_link="left_arm_link5" child_link="left_arm_link6"/>
+            <xacro:define_joint joint_type="fixed" joint_name="left_arm_tcp_fixed" origin_key="left_arm_tcp" parent_link="left_arm_link6" child_link="left_arm_tcp"/>
 
-            <xacro:define_joint joint_type="revolute" joint_index="right_arm_joint0" parent_link="right_arm_link0" child_link="right_arm_link1"/>
-            <xacro:define_joint joint_type="revolute" joint_index="right_arm_joint1" parent_link="right_arm_link1" child_link="right_arm_link2"/>
-            <xacro:define_joint joint_type="revolute" joint_index="right_arm_joint2" parent_link="right_arm_link2" child_link="right_arm_link3"/>
-            <xacro:define_joint joint_type="revolute" joint_index="right_arm_joint3" parent_link="right_arm_link3" child_link="right_arm_link4"/>
-            <xacro:define_joint joint_type="revolute" joint_index="right_arm_joint4" parent_link="right_arm_link4" child_link="right_arm_link5"/>
-            <xacro:define_joint joint_type="revolute" joint_index="right_arm_joint5" parent_link="right_arm_link5" child_link="right_arm_link6"/>
-            <xacro:define_joint joint_type="fixed"    joint_index="right_arm_tcp" parent_link="right_arm_link6" child_link="right_arm_tcp"/>
+            <xacro:define_joint joint_type="revolute" joint_name="right_arm_joint0" origin_key="right_arm_joint0" parent_link="right_arm_link0" child_link="right_arm_link1"/>
+            <xacro:define_joint joint_type="revolute" joint_name="right_arm_joint1" origin_key="right_arm_joint1" parent_link="right_arm_link1" child_link="right_arm_link2"/>
+            <xacro:define_joint joint_type="revolute" joint_name="right_arm_joint2" origin_key="right_arm_joint2" parent_link="right_arm_link2" child_link="right_arm_link3"/>
+            <xacro:define_joint joint_type="revolute" joint_name="right_arm_joint3" origin_key="right_arm_joint3" parent_link="right_arm_link3" child_link="right_arm_link4"/>
+            <xacro:define_joint joint_type="revolute" joint_name="right_arm_joint4" origin_key="right_arm_joint4" parent_link="right_arm_link4" child_link="right_arm_link5"/>
+            <xacro:define_joint joint_type="revolute" joint_name="right_arm_joint5" origin_key="right_arm_joint5" parent_link="right_arm_link5" child_link="right_arm_link6"/>
+            <xacro:define_joint joint_type="fixed" joint_name="right_arm_tcp_fixed" origin_key="right_arm_tcp" parent_link="right_arm_link6" child_link="right_arm_tcp"/>
         </xacro:if>
 
         <xacro:unless value="${indy_type == 'dual_icon3'}">
@@ -211,19 +211,19 @@
                 <child link="$(arg prefix)link0"/>
             </joint>
 
-            <xacro:define_joint joint_type="revolute" joint_index="joint0" parent_link="link0" child_link="link1"/>
-            <xacro:define_joint joint_type="revolute" joint_index="joint1" parent_link="link1" child_link="link2"/>
-            <xacro:define_joint joint_type="revolute" joint_index="joint2" parent_link="link2" child_link="link3"/>
-            <xacro:define_joint joint_type="revolute" joint_index="joint3" parent_link="link3" child_link="link4"/>
-            <xacro:define_joint joint_type="revolute" joint_index="joint4" parent_link="link4" child_link="link5"/>
-            <xacro:define_joint joint_type="revolute" joint_index="joint5" parent_link="link5" child_link="link6"/>
+            <xacro:define_joint joint_type="revolute" joint_name="joint0" origin_key="joint0" parent_link="link0" child_link="link1"/>
+            <xacro:define_joint joint_type="revolute" joint_name="joint1" origin_key="joint1" parent_link="link1" child_link="link2"/>
+            <xacro:define_joint joint_type="revolute" joint_name="joint2" origin_key="joint2" parent_link="link2" child_link="link3"/>
+            <xacro:define_joint joint_type="revolute" joint_name="joint3" origin_key="joint3" parent_link="link3" child_link="link4"/>
+            <xacro:define_joint joint_type="revolute" joint_name="joint4" origin_key="joint4" parent_link="link4" child_link="link5"/>
+            <xacro:define_joint joint_type="revolute" joint_name="joint5" origin_key="joint5" parent_link="link5" child_link="link6"/>
 
             <xacro:if value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
-                <xacro:define_joint joint_type="revolute" joint_index="joint6" parent_link="link6" child_link="link7"/>
-                <xacro:define_joint joint_type="fixed" joint_index="tcp" parent_link="link7" child_link="tcp"/>
+                <xacro:define_joint joint_type="revolute" joint_name="joint6" origin_key="joint6" parent_link="link6" child_link="link7"/>
+                <xacro:define_joint joint_type="fixed" joint_name="tcp_fixed" origin_key="tcp" parent_link="link7" child_link="tcp"/>
             </xacro:if>
             <xacro:unless value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
-                <xacro:define_joint joint_type="fixed" joint_index="tcp" parent_link="link6" child_link="tcp"/>
+                <xacro:define_joint joint_type="fixed" joint_name="tcp_fixed" origin_key="tcp" parent_link="link6" child_link="tcp"/>
             </xacro:unless>
         </xacro:unless>
 
