@@ -26,10 +26,10 @@
         <xacro:define_initialize initial_positions_file="${initial_positions_file}"              
             visual_parameters_file="${visual_parameters_file}" indy_type="${indy_type}"/>
 
-        <xacro:if value="${ indy_type == 'indy7' or indy_type == 'indy7_v2' or indy_type == 'indy7_v3' or indy_type == 'indyrp2' or 
-                            indy_type == 'indyrp2_v2' or indy_type == 'indy12' or indy_type == 'indy12_v2' or 
-                            indy_type == 'nuri3s' or indy_type == 'nuri4s' or indy_type == 'nuri7c' or 
-                            indy_type == 'nuri20c' or indy_type == 'nuri30s' or indy_type == 'opti5'}">
+        <xacro:if value="${ indy_type == 'indy7' or indy_type == 'indy7_v2' or indy_type == 'indy7_v3' or indy_type == 'indyrp2' or
+                            indy_type == 'indyrp2_v2' or indy_type == 'indy12' or indy_type == 'indy12_v2' or indy_type == 'indy12_v3' or
+                            indy_type == 'nuri3s' or indy_type == 'nuri4s' or indy_type == 'nuri7c' or indy_type == 'nuri12c' or
+                            indy_type == 'nuri20c' or indy_type == 'nuri30' or indy_type == 'opti5'}">
             <xacro:property name="material_0" value="indy_white"/>
             <xacro:property name="material_1" value="indy_white"/>
         </xacro:if>
@@ -46,15 +46,18 @@
                 <xacro:property name="config_physical_parameters" value="${xacro.load_yaml(physical_parameters_file)}"/>
                 <xacro:property name="sec_inertia_parameters" value="${config_physical_parameters['inertia_parameters']}" />
                 <xacro:if value="${visual_name != ''}">
+                    <xacro:property name="visual_link_entry" value="${sec_mesh_files[visual_name]}"/>
+                    <xacro:property name="visual_origin_xyz" value="${visual_link_entry['visual_origin']['xyz'] if 'visual_origin' in visual_link_entry else '0 0 0'}"/>
+                    <xacro:property name="visual_origin_rpy" value="${visual_link_entry['visual_origin']['rpy'] if 'visual_origin' in visual_link_entry else '0 0 0'}"/>
                     <visual>
-                        <origin xyz="0 0 0" rpy="0 0 0"/>
+                        <origin xyz="${visual_origin_xyz}" rpy="${visual_origin_rpy}"/>
                         <geometry>
                             <xacro:get_mesh name="${visual_name}" type="visual"/>
                         </geometry>
                         <material name="${material}"/>
                     </visual>
                     <collision>
-                        <origin xyz="0 0 0" rpy="0 0 0"/>
+                        <origin xyz="${visual_origin_xyz}" rpy="${visual_origin_rpy}"/>
                         <geometry>
                             <xacro:get_mesh name="${visual_name}" type="collision"/>
                         </geometry>
