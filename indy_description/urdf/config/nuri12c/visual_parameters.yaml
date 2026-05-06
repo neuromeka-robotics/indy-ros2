@@ -1,0 +1,85 @@
+mesh_files:
+  link0:
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/nuri12c/visual/Nuri12c_0.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/nuri12c/collision/Nuri12c_0.stl
+  link1:
+    visual_origin:
+      xyz: "0 0 -0.061"
+      rpy: "0 0 0"
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/nuri12c/visual/Nuri12c_1.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/nuri12c/collision/Nuri12c_1.stl
+  link2:
+    visual_origin:
+      xyz: "0 0.10 -0.286"
+      rpy: "0 0 0"
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/nuri12c/visual/Nuri12c_2.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/nuri12c/collision/Nuri12c_2.stl
+  link3:
+    visual_origin:
+      xyz: "0 0.10 -1.046"
+      rpy: "0 0 0"
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/nuri12c/visual/Nuri12c_3.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/nuri12c/collision/Nuri12c_3.stl
+  link4:
+    visual_origin:
+      xyz: "0 0 -1.252"
+      rpy: "0 0 0"
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/nuri12c/visual/Nuri12c_4.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/nuri12c/collision/Nuri12c_4.stl
+  link5:
+    visual_origin:
+      xyz: "0 -0.079 -1.586"
+      rpy: "0 0 0"
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/nuri12c/visual/Nuri12c_5.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/nuri12c/collision/Nuri12c_5.stl
+  link6:
+    visual_origin:
+      xyz: "0 -0.150 -1.665"
+      rpy: "0 0 0"
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/nuri12c/visual/Nuri12c_6.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/nuri12c/collision/Nuri12c_6.stl

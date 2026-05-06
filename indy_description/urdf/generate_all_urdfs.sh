@@ -1,7 +1,13 @@
 #!/bin/bash
 
 # List of indy types
-indy_types=("indy7" "indy7_v2" "indy7_v3" "indy12" "indy12_v2" "indyrp2" "indyrp2_v2" "icon7l" "icon3" "nuri3s" "nuri4s" "nuri7c" "nuri20c" "nuri30s" "opti5"  "dual_icon3")
+indy_types=(
+    "indy7" "indy7_v2" "indy7_v3" "indy12" "indy12_v2" "indy12_v3" 
+    "indyrp2" "indyrp2_v2" 
+    "icon7l" "icon3" 
+    "nuri3s" "nuri4s" "nuri7c" "nuri12c" "nuri20c" "nuri30" 
+    "opti5"  
+    "dual_icon3")
 
 script_dir=$(cd "$(dirname "$0")" && pwd)
 output_dir="${script_dir}/../urdf_files"
