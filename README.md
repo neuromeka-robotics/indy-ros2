@@ -102,7 +102,7 @@ source .venv/bin/activate
 ## Usage
 
 Use **indy_type** to choose specific robot **(indy7, indy7_v2, indy7_v3, indy12, indyrp2, indyrp2_v2)**.
-Use **indy_eye** to enable Indy Eye model **(support indy7, indyrp2)**.
+Use **indy_eye** to enable Indy Eye model **(support indy7, indy7_v3, indy12_v3, indyrp2)**.
 To enable Indy Eye, add **indy_eye:=true** to the end of command
 
 If not specified, the default value will be indy7.

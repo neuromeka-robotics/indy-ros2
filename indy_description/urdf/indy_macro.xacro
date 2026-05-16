@@ -117,10 +117,10 @@
             <xacro:define_link link_name="link4" physic_name="link4" visual_name="link4" material="${material_1}" gazebo_material=""/>
             <xacro:define_link link_name="link5" physic_name="link5" visual_name="link5" material="${material_0}" gazebo_material=""/>
 
-            <xacro:if value="${indy_eye and not (indy_type == 'indyrp2' or indy_type == 'indyrp2_v2')}">
+            <xacro:if value="${indy_eye and (indy_type == 'indy7' or indy_type == 'indy7_v2' or indy_type == 'indy7_v3' or indy_type == 'indy12_v3')}">
                 <xacro:define_link link_name="link6" physic_name="link6" visual_name="link6_eye" material="${material_0}" gazebo_material=""/>
             </xacro:if>
-            <xacro:unless value="${indy_eye and not (indy_type == 'indyrp2' or indy_type == 'indyrp2_v2')}">
+            <xacro:unless value="${indy_eye and (indy_type == 'indy7' or indy_type == 'indy7_v2' or indy_type == 'indy7_v3' or indy_type == 'indy12_v3')}">
                 <xacro:define_link link_name="link6" physic_name="link6" visual_name="link6" material="${material_0}" gazebo_material=""/>
             </xacro:unless>
 

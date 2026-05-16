@@ -14,7 +14,7 @@ output_dir="${script_dir}/../urdf_files"
 
 for indy_type in "${indy_types[@]}"
 do
-    if [[ "$indy_type" == "indy7" || "$indy_type" == "indyrp2" ]]; then
+    if [[ "$indy_type" == "indy7" || "$indy_type" == "indy7_v3" || "$indy_type" == "indy12_v3" || "$indy_type" == "indyrp2" ]]; then
         for indy_eye in "true" "false"
         do
             if [ "$indy_eye" = "true" ]; then

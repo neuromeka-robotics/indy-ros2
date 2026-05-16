@@ -83,3 +83,15 @@ mesh_files:
       mesh:
         package: indy_description
         path: meshes/indy12_v3/collision/Indy12_v3_6.stl
+  link6_eye:
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+    visual:
+      mesh:
+        package: indy_description
+        path: meshes/indy12_v3/visual/Indy12_v3_eye_6.stl
+    collision:
+      mesh:
+        package: indy_description
+        path: meshes/indy12_v3/collision/Indy12_v3_eye_6.stl
