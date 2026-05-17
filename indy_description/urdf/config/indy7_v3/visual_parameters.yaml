@@ -62,13 +62,12 @@ mesh_files:
       mesh:
         package: indy_description
         path: meshes/indy7_v3/collision/Indy7_v3_6.stl
-  # v3 currently has no dedicated eye mesh; reuse standard link6 mesh for link6_eye requests.
   link6_eye:
     visual:
       mesh:
         package: indy_description
-        path: meshes/indy7_v3/visual/Indy7_v3_6.stl
+        path: meshes/indy7_v3/visual/Indy7_v3_eye_6.stl
     collision:
       mesh:
         package: indy_description
-        path: meshes/indy7_v3/collision/Indy7_v3_6.stl
+        path: meshes/indy7_v3/collision/Indy7_v3_eye_6.stl
