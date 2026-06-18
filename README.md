@@ -90,11 +90,29 @@ colcon build
 
 ## Usage
 
-Use **indy_type** to choose specific robot **(indy7, indy7_v2, indy12, indyrp2, indyrp2_v2)**.\
-Use **indy_eye** to enable Indy Eye model **(support indy7, indyrp2, indy7_v2, indyrp2_v2)**.\
-To enable Indy Eye, add **indy_eye:=true** to the end of command
+Use **indy_type** to choose the robot model.
 
-If not specified, the default value will be indy7.\
+Supported **indy_type** values:
+
+```
+indy7, indy7_v2, indy7_v3, indy12, indy12_v2, indy12_v3,
+indyrp2, indyrp2_v2, icon7l, icon3,
+nuri3s, nuri4s, nuri7c, nuri12c, nuri20c, nuri30,
+opti5
+```
+
+Use **indy_eye** to enable the Indy Eye model.
+
+Supported **indy_eye** values:
+
+```
+indy7, indy7_v2, indy7_v3, indy12_v3, indyrp2, indyrp2_v2
+```
+
+To enable Indy Eye, add **indy_eye:=true** to the end of command.
+
+If not specified, the default value will be indy7.
+
 When used with a real robot, you need to provide an **indy_ip** value.
 
 **Servoing mode with Joy Controller (tested with XBOX ONE S gamepad)**\
