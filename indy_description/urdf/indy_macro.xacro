@@ -40,6 +40,9 @@
             <xacro:property name="material_2" value="indy_white"/>
         </xacro:if>
 
+        <xacro:property name="supports_link6_eye" value="${indy_type == 'indy7' or indy_type == 'indy7_v2' or indy_type == 'indy7_v3' or indy_type == 'indy12_v3'}"/>
+        <xacro:property name="supports_link7_eye" value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}"/>
+
         <!-- links -  main serial chain -->
         <xacro:macro name="define_link" params="link_name physic_name visual_name material gazebo_material">
             <link name="${prefix}${link_name}">
@@ -117,16 +120,19 @@
             <xacro:define_link link_name="link4" physic_name="link4" visual_name="link4" material="${material_1}" gazebo_material=""/>
             <xacro:define_link link_name="link5" physic_name="link5" visual_name="link5" material="${material_0}" gazebo_material=""/>
 
-            <xacro:if value="${indy_eye and (indy_type == 'indy7' or indy_type == 'indy7_v2' or indy_type == 'indy7_v3' or indy_type == 'indy12_v3')}">
-                <xacro:define_link link_name="link6" physic_name="link6" visual_name="link6_eye" material="${material_0}" gazebo_material=""/>
+            <xacro:if value="${indy_eye and supports_link6_eye}">
+                <xacro:define_link link_name="link6" physic_name="link6_eye" visual_name="link6_eye" material="${material_0}" gazebo_material=""/>
             </xacro:if>
-            <xacro:unless value="${indy_eye and (indy_type == 'indy7' or indy_type == 'indy7_v2' or indy_type == 'indy7_v3' or indy_type == 'indy12_v3')}">
+            <xacro:unless value="${indy_eye}">
                 <xacro:define_link link_name="link6" physic_name="link6" visual_name="link6" material="${material_0}" gazebo_material=""/>
             </xacro:unless>
+            <xacro:if value="${indy_eye and supports_link7_eye}">
+                <xacro:define_link link_name="link6" physic_name="link6" visual_name="link6" material="${material_0}" gazebo_material=""/>
+            </xacro:if>
 
             <xacro:if value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
                 <xacro:if value="${indy_eye}">
-                    <xacro:define_link link_name="link7" physic_name="link7" visual_name="link7_eye" material="${material_0}" gazebo_material=""/>
+                    <xacro:define_link link_name="link7" physic_name="link7_eye" visual_name="link7_eye" material="${material_0}" gazebo_material=""/>
                 </xacro:if>
                 <xacro:unless value="${indy_eye}">
                     <xacro:define_link link_name="link7" physic_name="link7" visual_name="link7" material="${material_0}" gazebo_material=""/>
