@@ -1,0 +1,547 @@
+mesh_files:
+  base_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/base_link.glb"
+        scale: "1 1 1"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/base_link.STL"
+        scale: "1 1 1"
+    visual_origin:
+      xyz: "-0.0093 0 0.995"
+      rpy: "0 0 0"
+  torso_yaw:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/link_1.STL"
+        scale: "1 1 1"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/link_1.STL"
+        scale: "1 1 1"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  torso_pitch:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/link_2.STL"
+        scale: "1 1 1"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/link_2.STL"
+        scale: "1 1 1"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  head_pitch:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/link_3.STL"
+        scale: "1 1 1"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/link_3.STL"
+        scale: "1 1 1"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  head_yaw:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/link_4.STL"
+        scale: "1 1 1"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/link_4.STL"
+        scale: "1 1 1"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_arm_base:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/AR5-5_07L-W4C4A2_base.stl"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/AR5-5_07L-W4C4A2_base.stl"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_arm_link_1:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/AR5-5_07L-W4C4A2_link1.stl"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/AR5-5_07L-W4C4A2_link1.stl"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_arm_link_2:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/AR5-5_07L-W4C4A2_link2.stl"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/AR5-5_07L-W4C4A2_link2.stl"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_arm_link_3:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/AR5-5_07L-W4C4A2_link3.stl"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/AR5-5_07L-W4C4A2_link3.stl"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_arm_link_4:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/AR5-5_07L-W4C4A2_link4.stl"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/AR5-5_07L-W4C4A2_link4.stl"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_arm_link_5:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/AR5-5_07L-W4C4A2_link5.stl"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/AR5-5_07L-W4C4A2_link5.stl"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_arm_link_6:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/AR5-5_07L-W4C4A2_link6.stl"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/AR5-5_07L-W4C4A2_link6.stl"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_arm_link_7:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/AR5-5_07L-W4C4A2_link7.stl"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/AR5-5_07L-W4C4A2_link7.stl"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_arm_base:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/AR5-5_07R-W4C4A2_base.stl"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/AR5-5_07R-W4C4A2_base.stl"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_arm_link_1:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/AR5-5_07R-W4C4A2_link1.stl"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/AR5-5_07R-W4C4A2_link1.stl"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_arm_link_2:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/AR5-5_07R-W4C4A2_link2.stl"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/AR5-5_07R-W4C4A2_link2.stl"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_arm_link_3:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/AR5-5_07R-W4C4A2_link3.stl"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/AR5-5_07R-W4C4A2_link3.stl"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_arm_link_4:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/AR5-5_07R-W4C4A2_link4.stl"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/AR5-5_07R-W4C4A2_link4.stl"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_arm_link_5:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/AR5-5_07R-W4C4A2_link5.stl"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/AR5-5_07R-W4C4A2_link5.stl"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_arm_link_6:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/AR5-5_07R-W4C4A2_link6.stl"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/AR5-5_07R-W4C4A2_link6.stl"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_arm_link_7:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/AR5-5_07R-W4C4A2_link7.stl"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/AR5-5_07R-W4C4A2_link7.stl"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_gripper_base_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_base_link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_base_link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_gripper_finger1_knuckle_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_crank_Link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_crank_Link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_gripper_finger2_knuckle_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_crank_Link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_crank_Link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_gripper_finger1_finger_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_rod_link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_rod_link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_gripper_finger2_finger_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_rod_link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_rod_link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_gripper_finger1_inner_knuckle_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_proximal_phalanx_Link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_proximal_phalanx_Link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_gripper_finger2_inner_knuckle_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_proximal_phalanx_Link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_proximal_phalanx_Link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_gripper_finger1_finger_tip_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_distal_phalanx_Link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_distal_phalanx_Link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  right_gripper_finger2_finger_tip_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_distal_phalanx_Link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_distal_phalanx_Link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_gripper_base_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_base_link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_base_link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_gripper_finger1_knuckle_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_crank_Link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_crank_Link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_gripper_finger2_knuckle_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_crank_Link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_crank_Link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_gripper_finger1_finger_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_rod_link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_rod_link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_gripper_finger2_finger_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_rod_link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_rod_link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_gripper_finger1_inner_knuckle_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_proximal_phalanx_Link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_proximal_phalanx_Link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_gripper_finger2_inner_knuckle_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_proximal_phalanx_Link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_proximal_phalanx_Link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_gripper_finger1_finger_tip_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_distal_phalanx_Link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_distal_phalanx_Link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"
+  left_gripper_finger2_finger_tip_link:
+    visual:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/visual/gripper_distal_phalanx_Link.glb"
+        scale: "0.001 0.001 0.001"
+    collision:
+      mesh:
+        package: indy_description
+        path: "meshes/eir/collision/gripper_distal_phalanx_Link.STL"
+        scale: "0.001 0.001 0.001"
+    visual_origin:
+      xyz: "0 0 0"
+      rpy: "0 0 0"

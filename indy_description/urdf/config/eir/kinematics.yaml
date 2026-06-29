@@ -1,0 +1,281 @@
+kinematics:
+  Joint_L0:
+    x: 5.7565e-05
+    y: 0
+    z: 1.016733575
+    roll: 0
+    pitch: 0
+    yaw: 0
+  Joint_L1:
+    x: -0.050058
+    y: 0
+    z: 0.0755
+    roll: -1.5708
+    pitch: 1.4225
+    yaw: 3.1416
+  Joint_L2_U:
+    x: -0.33832
+    y: 0
+    z: 0.0455
+    roll: 0
+    pitch: 0
+    yaw: 1.7191
+  Joint_L3_U:
+    x: 0
+    y: 0.1245
+    z: -0.0455
+    roll: -1.5708
+    pitch: 0
+    yaw: 0
+  left_arm_base_joint:
+    x: -0.338315178494814
+    y: 0
+    z: -0.0825000000000538
+    roll: -3.14159265358979
+    pitch: 0
+    yaw: -2.99325809784717
+  Joint_L2_L:
+    x: 0
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 3.14159265358979
+  Joint_L3_L:
+    x: 0
+    y: 0
+    z: 0.1745
+    roll: 0
+    pitch: 0
+    yaw: 0
+  Joint_L4_L:
+    x: 0
+    y: 0
+    z: 0.314
+    roll: 0
+    pitch: 0
+    yaw: 0
+  Joint_L5_L:
+    x: 0.01
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+  Joint_L6_L:
+    x: -0.01
+    y: 0
+    z: 0.272
+    roll: 0
+    pitch: 0
+    yaw: 0
+  Joint_L7_L:
+    x: 0
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+  Joint_L8_L:
+    x: 0
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+  right_arm_base_joint:
+    x: -0.338315178494814
+    y: 0
+    z: 0.0825000000000538
+    roll: 0
+    pitch: 0
+    yaw: -2.99325809784717
+  Joint_L2_R:
+    x: 0
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: -3.14159265358979
+  Joint_L3_R:
+    x: 0
+    y: 0
+    z: 0.1745
+    roll: 0
+    pitch: 0
+    yaw: 0
+  Joint_L4_R:
+    x: 0
+    y: 0
+    z: 0.314
+    roll: 0
+    pitch: 0
+    yaw: 0
+  Joint_L5_R:
+    x: 0.01
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+  Joint_L6_R:
+    x: -0.01
+    y: 0
+    z: 0.272
+    roll: 0
+    pitch: 0
+    yaw: 0
+  Joint_L7_R:
+    x: 0
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+  Joint_L8_R:
+    x: 0
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+  eir_to_right_gripper:
+    x: 0
+    y: 0
+    z: 0.097
+    roll: 0
+    pitch: -1.57075
+    yaw: 0
+  right_gripper_base_joint:
+    x: 0
+    y: 0
+    z: 0
+    roll: 1.57075
+    pitch: 0
+    yaw: 1.57075
+  right_gripper_finger1_joint:
+    x: -0.016
+    y: 0
+    z: 0.10586
+    roll: 0.0
+    pitch: 0.0
+    yaw: 3.14
+  right_gripper_finger2_joint:
+    x: 0.016
+    y: 0
+    z: 0.10586
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  right_gripper_finger1_finger_joint:
+    x: 0.0292080077784
+    y: 0.0
+    z: -0.0227132622407
+    roll: 0
+    pitch: 0
+    yaw: 0
+  right_gripper_finger2_finger_joint:
+    x: 0.0292080077784
+    y: 0.0
+    z: -0.0227132622407
+    roll: 0
+    pitch: 0
+    yaw: 0
+  right_gripper_finger1_inner_knuckle_joint:
+    x: -0.016
+    y: 0
+    z: 0.10586
+    roll: 0.0
+    pitch: 0.0
+    yaw: 3.14
+  right_gripper_finger2_inner_knuckle_joint:
+    x: 0.016
+    y: 0
+    z: 0.10586
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  right_gripper_finger1_finger_tip_joint:
+    x: 0.0394969463769
+    y: 0.0
+    z: 0.0382752038125
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  right_gripper_finger2_finger_tip_joint:
+    x: 0.0394969463769
+    y: 0.0
+    z: 0.0382752038125
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  eir_to_left_gripper:
+    x: 0
+    y: 0
+    z: 0.097
+    roll: 0
+    pitch: -1.57075
+    yaw: 0
+  left_gripper_base_joint:
+    x: 0
+    y: 0
+    z: 0
+    roll: 1.57075
+    pitch: 0
+    yaw: 1.57075
+  left_gripper_finger1_joint:
+    x: -0.016
+    y: 0
+    z: 0.10586
+    roll: 0.0
+    pitch: 0.0
+    yaw: 3.14
+  left_gripper_finger2_joint:
+    x: 0.016
+    y: 0
+    z: 0.10586
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  left_gripper_finger1_finger_joint:
+    x: 0.0292080077784
+    y: 0.0
+    z: -0.0227132622407
+    roll: 0
+    pitch: 0
+    yaw: 0
+  left_gripper_finger2_finger_joint:
+    x: 0.0292080077784
+    y: 0.0
+    z: -0.0227132622407
+    roll: 0
+    pitch: 0
+    yaw: 0
+  left_gripper_finger1_inner_knuckle_joint:
+    x: -0.016
+    y: 0
+    z: 0.10586
+    roll: 0.0
+    pitch: 0.0
+    yaw: 3.14
+  left_gripper_finger2_inner_knuckle_joint:
+    x: 0.016
+    y: 0
+    z: 0.10586
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  left_gripper_finger1_finger_tip_joint:
+    x: 0.0394969463769
+    y: 0.0
+    z: 0.0382752038125
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  left_gripper_finger2_finger_tip_joint:
+    x: 0.0394969463769
+    y: 0.0
+    z: 0.0382752038125
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0

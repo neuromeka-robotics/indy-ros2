@@ -58,4 +58,72 @@
 
     </xacro:macro>
 
+    <xacro:macro name="eir_ros2_control" params="
+        name
+        prefix
+        gripper_dh_ag95:=false
+        sim_gazebo:=false">
+
+        <ros2_control name="${name}" type="system">
+
+            <hardware>
+                <xacro:if value="${sim_gazebo}">
+                    <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+                </xacro:if>
+                <xacro:unless value="${sim_gazebo}">
+                    <plugin>fake_components/GenericSystem</plugin>
+                    <param name="state_following_offset">0.0</param>
+                </xacro:unless>
+            </hardware>
+
+            <xacro:macro name="define_eir_control_joint" params="joint_name">
+                <joint name="${prefix}${joint_name}">
+                    <command_interface name="position">
+                        <param name="min">-6.283185</param>
+                        <param name="max">6.283185</param>
+                    </command_interface>
+                    <command_interface name="velocity">
+                        <param name="min">-6.283185</param>
+                        <param name="max">6.283185</param>
+                    </command_interface>
+                    <state_interface name="position">
+                        <param name="initial_value">0.0</param>
+                    </state_interface>
+                    <state_interface name="velocity">
+                        <param name="initial_value">0.0</param>
+                    </state_interface>
+                    <state_interface name="effort">
+                        <param name="initial_value">0.0</param>
+                    </state_interface>
+                </joint>
+            </xacro:macro>
+
+            <xacro:define_eir_control_joint joint_name="Joint_L0"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L1"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L2_U"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L3_U"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L2_L"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L3_L"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L4_L"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L5_L"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L6_L"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L7_L"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L8_L"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L2_R"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L3_R"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L4_R"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L5_R"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L6_R"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L7_R"/>
+            <xacro:define_eir_control_joint joint_name="Joint_L8_R"/>
+
+            <xacro:if value="${gripper_dh_ag95}">
+                <xacro:define_eir_control_joint joint_name="right_gripper_finger1_joint"/>
+                <xacro:define_eir_control_joint joint_name="left_gripper_finger1_joint"/>
+            </xacro:if>
+
+        </ros2_control>
+
+    </xacro:macro>
+
 </robot>

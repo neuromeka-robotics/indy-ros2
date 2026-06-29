@@ -62,9 +62,9 @@
       </geometry>
     </collision>
     <inertial>
-      <mass value="2.56262283"/>
-      <origin rpy="0 0 0" xyz="-0.001                             -2e-06                             0.038"/>
-      <inertia ixx="0.008056" ixy="-2.397e-07" ixz="0.0" iyy="0.008427" iyz="1.169e-07" izz="0.013632"/>
+      <mass value="2.5639949"/>
+      <origin rpy="0 0 0" xyz="-0.0053580799                             0.0010952229                             0.041080571"/>
+      <inertia ixx="0.011840045" ixy="0.00015345028" ixz="-1.9166466e-05" iyy="0.01291117" iyz="4.4622537e-06" izz="0.019892667"/>
     </inertial>
   </link>
   <link name="link1">
@@ -82,9 +82,9 @@
       </geometry>
     </collision>
     <inertial>
-      <mass value="23.04941339"/>
-      <origin rpy="0 0 0" xyz="0.0                             -0.021                             0.189"/>
-      <inertia ixx="0.22526" ixy="-3.792e-08" ixz="-3.19e-07" iyy="0.218165" iyz="0.038667" izz="0.117064"/>
+      <mass value="23.991417"/>
+      <origin rpy="0 0 0" xyz="0.0                             -0.04628755                             0.17423713"/>
+      <inertia ixx="0.31079456" ixy="4.473904e-07" ixz="-7.1161376e-07" iyy="0.25607777" iyz="0.10540077" izz="0.096811426"/>
     </inertial>
   </link>
   <link name="link2">
@@ -102,9 +102,9 @@
       </geometry>
     </collision>
     <inertial>
-      <mass value="14.27904794"/>
-      <origin rpy="0 0 0" xyz="0.0                             -0.098                             0.315"/>
-      <inertia ixx="0.741326" ixy="-1.528e-07" ixz="-1.864e-07" iyy="0.738491" iyz="-0.022308" izz="0.049422"/>
+      <mass value="14.931367"/>
+      <origin rpy="0 0 0" xyz="0.0                             -0.03796122                             0.41832688"/>
+      <inertia ixx="1.0481153" ixy="9.1247592e-07" ixz="8.7287698e-06" iyy="0.96904005" iyz="-0.19191021" izz="0.13012325"/>
     </inertial>
   </link>
   <link name="link3">
@@ -122,9 +122,9 @@
       </geometry>
     </collision>
     <inertial>
-      <mass value="4.33211778"/>
-      <origin rpy="0 0 0" xyz="0.0                             0.098                             0.05"/>
-      <inertia ixx="0.023631" ixy="3.278e-07" ixz="2.416e-07" iyy="0.022992" iyz="-0.002235" izz="0.011496"/>
+      <mass value="5.3500368"/>
+      <origin rpy="0 0 0" xyz="-3.7141264e-06                             0.10013676                             0.13999988"/>
+      <inertia ixx="0.042990983" ixy="1.1655473e-06" ixz="-1.9790555e-06" iyy="0.042253646" iyz="-0.005185641" izz="0.011989256"/>
     </inertial>
   </link>
   <link name="link4">
@@ -142,9 +142,9 @@
       </geometry>
     </collision>
     <inertial>
-      <mass value="5.29001581"/>
-      <origin rpy="0 0 0" xyz="0.0                             -0.013                             0.213"/>
-      <inertia ixx="0.075253" ixy="-2.092e-08" ixz="8.477e-08" iyy="0.073664" iyz="0.0078" izz="0.011555"/>
+      <mass value="5.1733062"/>
+      <origin rpy="0 0 0" xyz="8.2319326e-06                             -0.075271718                             0.27420351"/>
+      <inertia ixx="0.086583577" ixy="8.7589438e-08" ixz="-3.2270119e-06" iyy="0.069998384" iyz="0.025267556" izz="0.025843928"/>
     </inertial>
   </link>
   <link name="link5">
@@ -162,9 +162,9 @@
       </geometry>
     </collision>
     <inertial>
-      <mass value="3.54429783"/>
-      <origin rpy="0 0 0" xyz="0.0                             -0.094                             -0.011"/>
-      <inertia ixx="0.01233" ixy="4.076e-09" ixz="-7.92e-09" iyy="0.011189" iyz="-0.000457" izz="0.007992"/>
+      <mass value="3.9260857"/>
+      <origin rpy="0 0 0" xyz="0.0                             -0.074288857                             0.044124102"/>
+      <inertia ixx="0.013412193" ixy="0.0" ixz="0.0" iyy="0.012954506" iyz="0.00086883427" izz="0.0058507005"/>
     </inertial>
   </link>
   <link name="link6">
@@ -182,9 +182,9 @@
       </geometry>
     </collision>
     <inertial>
-      <mass value="3.6323592"/>
-      <origin rpy="0 0 0" xyz="0.0                             -0.001                             0.034"/>
-      <inertia ixx="0.004929" ixy="-4.35e-07" ixz="-1.613e-07" iyy="0.004224" iyz="1.885e-06" izz="0.007041"/>
+      <mass value="0.887075491127"/>
+      <origin rpy="0 0 0" xyz="2.17331859894e-06                             -0.000628178290982                             0.033844039508"/>
+      <inertia ixx="0.0011214414669" ixy="-1.03823475721e-07" ixz="-4.0075812525e-08" iyy="0.00111609104385" iyz="4.61270816142e-07" izz="0.00163506774304"/>
     </inertial>
   </link>
   <link name="tcp"/>
@@ -241,7 +241,7 @@
     <dynamics damping="0.1" friction="10.0"/>
     <limit effort="79.79" lower="-3.7524578917878086" upper="3.7524578917878086" velocity="2.6179938779914944"/>
   </joint>
-  <joint name="tcp_fixed" type="fixed">
+  <joint name="tcp" type="fixed">
     <parent link="link6"/>
     <child link="tcp"/>
     <origin rpy="0.0                         0.0                         0.0" xyz="0.0                          0.0                          0.074"/>
@@ -249,121 +249,122 @@
   <ros2_control name="indy" type="system">
     <hardware>
       <plugin>fake_components/GenericSystem</plugin>
+      <!-- <param name="fake_sensor_commands">${fake_sensor_commands}</param> -->
       <param name="state_following_offset">0.0</param>
     </hardware>
     <joint name="joint0">
       <command_interface name="position">
-        <param name="min">-6.283185</param>
-        <param name="max">6.283185</param>
+        <param name="min">{-2*pi}</param>
+        <param name="max">{2*pi}</param>
       </command_interface>
       <command_interface name="velocity">
         <param name="min">-3.15</param>
         <param name="max">3.15</param>
       </command_interface>
+      <!-- <state_interface name="position"/> -->
       <state_interface name="position">
         <param name="initial_value">0.0</param>
       </state_interface>
+      <!-- <state_interface name="velocity"/> -->
       <state_interface name="velocity">
         <param name="initial_value">0.0</param>
       </state_interface>
-      <state_interface name="effort">
-        <param name="initial_value">0.0</param>
-      </state_interface>
+      <state_interface name="effort"/>
     </joint>
     <joint name="joint1">
       <command_interface name="position">
-        <param name="min">-6.283185</param>
-        <param name="max">6.283185</param>
+        <param name="min">{-2*pi}</param>
+        <param name="max">{2*pi}</param>
       </command_interface>
       <command_interface name="velocity">
         <param name="min">-3.15</param>
         <param name="max">3.15</param>
       </command_interface>
+      <!-- <state_interface name="position"/> -->
       <state_interface name="position">
         <param name="initial_value">0.0</param>
       </state_interface>
+      <!-- <state_interface name="velocity"/> -->
       <state_interface name="velocity">
         <param name="initial_value">0.0</param>
       </state_interface>
-      <state_interface name="effort">
-        <param name="initial_value">0.0</param>
-      </state_interface>
+      <state_interface name="effort"/>
     </joint>
     <joint name="joint2">
       <command_interface name="position">
-        <param name="min">-6.283185</param>
-        <param name="max">6.283185</param>
+        <param name="min">{-2*pi}</param>
+        <param name="max">{2*pi}</param>
       </command_interface>
       <command_interface name="velocity">
         <param name="min">-3.15</param>
         <param name="max">3.15</param>
       </command_interface>
+      <!-- <state_interface name="position"/> -->
       <state_interface name="position">
         <param name="initial_value">-1.57</param>
       </state_interface>
+      <!-- <state_interface name="velocity"/> -->
       <state_interface name="velocity">
         <param name="initial_value">0.0</param>
       </state_interface>
-      <state_interface name="effort">
-        <param name="initial_value">0.0</param>
-      </state_interface>
+      <state_interface name="effort"/>
     </joint>
     <joint name="joint3">
       <command_interface name="position">
-        <param name="min">-6.283185</param>
-        <param name="max">6.283185</param>
+        <param name="min">{-2*pi}</param>
+        <param name="max">{2*pi}</param>
       </command_interface>
       <command_interface name="velocity">
         <param name="min">-3.15</param>
         <param name="max">3.15</param>
       </command_interface>
+      <!-- <state_interface name="position"/> -->
       <state_interface name="position">
         <param name="initial_value">0.0</param>
       </state_interface>
+      <!-- <state_interface name="velocity"/> -->
       <state_interface name="velocity">
         <param name="initial_value">0.0</param>
       </state_interface>
-      <state_interface name="effort">
-        <param name="initial_value">0.0</param>
-      </state_interface>
+      <state_interface name="effort"/>
     </joint>
     <joint name="joint4">
       <command_interface name="position">
-        <param name="min">-6.283185</param>
-        <param name="max">6.283185</param>
+        <param name="min">{-2*pi}</param>
+        <param name="max">{2*pi}</param>
       </command_interface>
       <command_interface name="velocity">
         <param name="min">-3.15</param>
         <param name="max">3.15</param>
       </command_interface>
+      <!-- <state_interface name="position"/> -->
       <state_interface name="position">
         <param name="initial_value">-1.57</param>
       </state_interface>
+      <!-- <state_interface name="velocity"/> -->
       <state_interface name="velocity">
         <param name="initial_value">0.0</param>
       </state_interface>
-      <state_interface name="effort">
-        <param name="initial_value">0.0</param>
-      </state_interface>
+      <state_interface name="effort"/>
     </joint>
     <joint name="joint5">
       <command_interface name="position">
-        <param name="min">-6.283185</param>
-        <param name="max">6.283185</param>
+        <param name="min">{-2*pi}</param>
+        <param name="max">{2*pi}</param>
       </command_interface>
       <command_interface name="velocity">
         <param name="min">-3.15</param>
         <param name="max">3.15</param>
       </command_interface>
+      <!-- <state_interface name="position"/> -->
       <state_interface name="position">
         <param name="initial_value">0.0</param>
       </state_interface>
+      <!-- <state_interface name="velocity"/> -->
       <state_interface name="velocity">
         <param name="initial_value">0.0</param>
       </state_interface>
-      <state_interface name="effort">
-        <param name="initial_value">0.0</param>
-      </state_interface>
+      <state_interface name="effort"/>
     </joint>
   </ros2_control>
   <!-- Add URDF transmission elements (for ros_control) -->
