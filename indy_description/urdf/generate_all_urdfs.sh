@@ -6,7 +6,7 @@ indy_types=(
     "indyrp2" "indyrp2_v2" 
     "icon7l" "icon3" 
     "nuri3s" "nuri4s" "nuri7c" "nuri12c" "nuri20c" "nuri30" 
-    "opti5"  
+    "opti5" "eir"
     "dual_icon3")
 
 script_dir=$(cd "$(dirname "$0")" && pwd)
@@ -14,7 +14,25 @@ output_dir="${script_dir}/../urdf_files"
 
 for indy_type in "${indy_types[@]}"
 do
-    if [[ "$indy_type" == "indy7" || "$indy_type" == "indy7_v3" || "$indy_type" == "indy12_v3" || "$indy_type" == "indyrp2" ]]; then
+    if [[ "$indy_type" == "eir" ]]; then
+        for gripper_dh_ag95 in "true" "false"
+        do
+            if [ "$gripper_dh_ag95" = "true" ]; then
+                output_file="${output_dir}/${indy_type}_dh_ag95.urdf"
+            else
+                output_file="${output_dir}/${indy_type}.urdf"
+            fi
+
+            echo "Generating URDF for ${indy_type} with gripper_dh_ag95=${gripper_dh_ag95}..."
+            ros2 run xacro xacro indy.urdf.xacro -o ${output_file} indy_type:=${indy_type} gripper_dh_ag95:=${gripper_dh_ag95} name:=indy
+
+            if [ $? -eq 0 ]; then
+                echo "URDF file generated successfully: ${output_file}"
+            else
+                echo "Failed to generate URDF file for ${indy_type} with gripper_dh_ag95=${gripper_dh_ag95}."
+            fi
+        done
+    elif [[ "$indy_type" == "indy7" || "$indy_type" == "indy7_v3" || "$indy_type" == "indy12_v3" || "$indy_type" == "indyrp2" ]]; then
         for indy_eye in "true" "false"
         do
             if [ "$indy_eye" = "true" ]; then

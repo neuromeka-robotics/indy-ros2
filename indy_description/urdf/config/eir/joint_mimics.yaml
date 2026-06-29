@@ -1,0 +1,59 @@
+# help gripper mimic joints to move together with the main gripper joints. 
+# The mimic joints are used to simulate the movement of the fingers and knuckles based on the movement of the main gripper joints. The multiplier and offset values are used to define the relationship between the main joint and the mimic joints.
+joint_mimics:
+  right_gripper_finger2_joint:
+    joint: right_gripper_finger1_joint
+    multiplier: 1
+    offset: 0
+  right_gripper_finger1_finger_joint:
+    joint: right_gripper_finger1_joint
+    multiplier: 0.4563942
+    offset: 0
+  right_gripper_finger2_finger_joint:
+    joint: right_gripper_finger1_joint
+    multiplier: 0.4563942
+    offset: 0
+  right_gripper_finger1_inner_knuckle_joint:
+    joint: right_gripper_finger1_joint
+    multiplier: 1.49462955
+    offset: 0
+  right_gripper_finger2_inner_knuckle_joint:
+    joint: right_gripper_finger1_joint
+    multiplier: 1.49462955
+    offset: 0
+  right_gripper_finger1_finger_tip_joint:
+    joint: right_gripper_finger1_joint
+    multiplier: 1.49462955
+    offset: 0
+  right_gripper_finger2_finger_tip_joint:
+    joint: right_gripper_finger1_joint
+    multiplier: 1.49462955
+    offset: 0
+  left_gripper_finger2_joint:
+    joint: left_gripper_finger1_joint
+    multiplier: 1
+    offset: 0
+  left_gripper_finger1_finger_joint:
+    joint: left_gripper_finger1_joint
+    multiplier: 0.4563942
+    offset: 0
+  left_gripper_finger2_finger_joint:
+    joint: left_gripper_finger1_joint
+    multiplier: 0.4563942
+    offset: 0
+  left_gripper_finger1_inner_knuckle_joint:
+    joint: left_gripper_finger1_joint
+    multiplier: 1.49462955
+    offset: 0
+  left_gripper_finger2_inner_knuckle_joint:
+    joint: left_gripper_finger1_joint
+    multiplier: 1.49462955
+    offset: 0
+  left_gripper_finger1_finger_tip_joint:
+    joint: left_gripper_finger1_joint
+    multiplier: 1.49462955
+    offset: 0
+  left_gripper_finger2_finger_tip_joint:
+    joint: left_gripper_finger1_joint
+    multiplier: 1.49462955
+    offset: 0

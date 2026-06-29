@@ -3,6 +3,7 @@
 
     <!-- import main macro -->
     <xacro:include filename="$(find indy_description)/urdf/indy_macro.xacro"/>
+    <xacro:include filename="$(find indy_description)/urdf/eir_macro.xacro"/>
 
     <!-- robot name parameter -->
     <xacro:arg name="name" default="indy"/>
@@ -11,6 +12,7 @@
     <xacro:arg name="indy_type" default="indy7"/>
 
     <xacro:arg name="indy_eye" default="false"/>
+    <xacro:arg name="gripper_dh_ag95" default="false"/>
 
     <xacro:property name="arg_indy_type" value="$(arg indy_type)"/>
     <xacro:property name="config_indy_type" value="${arg_indy_type}"/>
@@ -22,6 +24,7 @@
     <xacro:arg name="physical_params" default="$(find indy_description)/urdf/config/${config_indy_type}/physical_parameters.yaml"/>
     <xacro:arg name="visual_params" default="$(find indy_description)/urdf/config/${config_indy_type}/visual_parameters.yaml"/>
     <xacro:arg name="joint_axes_params" default="$(find indy_description)/urdf/config/${config_indy_type}/joint_axes.yaml"/>
+    <xacro:arg name="joint_mimics_params" default="$(find indy_description)/urdf/config/${config_indy_type}/joint_mimics.yaml"/>
     <xacro:arg name="initial_positions" default="$(find indy_description)/urdf/config/initial_positions.yaml"/>
     <xacro:arg name="transmission_hw_interface" default=""/>
 
@@ -31,25 +34,50 @@
 
     <link name="world" />
 
-    <!-- define robot -->
-    <!-- transmission_hw_interface use for ros1 -->
-    <xacro:indy_robot
-        name="$(arg name)"
-        indy_type="$(arg indy_type)"
-        indy_eye="$(arg indy_eye)"
-        prefix="$(arg prefix)"
-        parent="world"
-        joint_limits_parameters_file="$(arg joint_limit_params)"
-        kinematics_parameters_file="$(arg kinematics_params)"
-        physical_parameters_file="$(arg physical_params)"
-        visual_parameters_file="$(arg visual_params)"
-        joint_axes_parameters_file="$(arg joint_axes_params)"
-        transmission_hw_interface="$(arg transmission_hw_interface)"
-        initial_positions_file="$(arg initial_positions)"
-        sim_gazebo="$(arg sim_gazebo)"
-        >
-        <origin xyz="0 0 0" rpy="0 0 0" />          <!-- position robot in the world -->
-    </xacro:indy_robot>
+    <xacro:if value="${config_indy_type == 'eir'}">
+        <xacro:eir_robot
+            name="$(arg name)"
+            gripper_dh_ag95="$(arg gripper_dh_ag95)"
+            prefix="$(arg prefix)"
+            parent="world"
+            joint_limits_parameters_file="$(arg joint_limit_params)"
+            kinematics_parameters_file="$(arg kinematics_params)"
+            physical_parameters_file="$(arg physical_params)"
+            visual_parameters_file="$(arg visual_params)"
+            joint_axes_parameters_file="$(arg joint_axes_params)"
+            joint_mimics_parameters_file="$(arg joint_mimics_params)"
+            >
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </xacro:eir_robot>
+        <xacro:eir_ros2_control
+            name="$(arg name)"
+            prefix="$(arg prefix)"
+            gripper_dh_ag95="$(arg gripper_dh_ag95)"
+            sim_gazebo="$(arg sim_gazebo)"
+        />
+    </xacro:if>
+
+    <xacro:unless value="${config_indy_type == 'eir'}">
+        <!-- define robot -->
+        <!-- transmission_hw_interface use for ros1 -->
+        <xacro:indy_robot
+            name="$(arg name)"
+            indy_type="$(arg indy_type)"
+            indy_eye="$(arg indy_eye)"
+            prefix="$(arg prefix)"
+            parent="world"
+            joint_limits_parameters_file="$(arg joint_limit_params)"
+            kinematics_parameters_file="$(arg kinematics_params)"
+            physical_parameters_file="$(arg physical_params)"
+            visual_parameters_file="$(arg visual_params)"
+            joint_axes_parameters_file="$(arg joint_axes_params)"
+            transmission_hw_interface="$(arg transmission_hw_interface)"
+            initial_positions_file="$(arg initial_positions)"
+            sim_gazebo="$(arg sim_gazebo)"
+            >
+            <origin xyz="0 0 0" rpy="0 0 0" />          <!-- position robot in the world -->
+        </xacro:indy_robot>
+    </xacro:unless>
 
     <xacro:if value="$(arg sim_gazebo)">
         <gazebo reference="world"></gazebo>

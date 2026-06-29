@@ -1,0 +1,103 @@
+controller_manager:
+    ros__parameters:
+
+        update_rate: 100 # Hz
+
+        joint_state_broadcaster:
+            type: joint_state_broadcaster/JointStateBroadcaster
+
+        body_controller:
+            type: joint_trajectory_controller/JointTrajectoryController
+
+        left_arm_controller:
+            type: joint_trajectory_controller/JointTrajectoryController
+
+        right_arm_controller:
+            type: joint_trajectory_controller/JointTrajectoryController
+
+
+body_controller:
+    ros__parameters:
+        joints:
+            - Joint_L0
+            - Joint_L1
+            - Joint_L2_U
+            - Joint_L3_U
+        command_interfaces:
+            - position
+            - velocity
+        state_interfaces:
+            - position
+            - velocity
+        state_publish_rate: 50.0
+        action_monitor_rate: 20.0
+        allow_partial_joints_goal: false
+        constraints:
+            stopped_velocity_tolerance: 0.1
+            goal_time: 0.0
+            Joint_L0: { trajectory: 0.2, goal: 0.1 }
+            Joint_L1: { trajectory: 0.2, goal: 0.1 }
+            Joint_L2_U: { trajectory: 0.2, goal: 0.1 }
+            Joint_L3_U: { trajectory: 0.2, goal: 0.1 }
+
+
+left_arm_controller:
+    ros__parameters:
+        joints:
+            - Joint_L2_L
+            - Joint_L3_L
+            - Joint_L4_L
+            - Joint_L5_L
+            - Joint_L6_L
+            - Joint_L7_L
+            - Joint_L8_L
+        command_interfaces:
+            - position
+            - velocity
+        state_interfaces:
+            - position
+            - velocity
+        state_publish_rate: 50.0
+        action_monitor_rate: 20.0
+        allow_partial_joints_goal: false
+        constraints:
+            stopped_velocity_tolerance: 0.1
+            goal_time: 0.0
+            Joint_L2_L: { trajectory: 0.2, goal: 0.1 }
+            Joint_L3_L: { trajectory: 0.2, goal: 0.1 }
+            Joint_L4_L: { trajectory: 0.2, goal: 0.1 }
+            Joint_L5_L: { trajectory: 0.2, goal: 0.1 }
+            Joint_L6_L: { trajectory: 0.2, goal: 0.1 }
+            Joint_L7_L: { trajectory: 0.2, goal: 0.1 }
+            Joint_L8_L: { trajectory: 0.2, goal: 0.1 }
+
+
+right_arm_controller:
+    ros__parameters:
+        joints:
+            - Joint_L2_R
+            - Joint_L3_R
+            - Joint_L4_R
+            - Joint_L5_R
+            - Joint_L6_R
+            - Joint_L7_R
+            - Joint_L8_R
+        command_interfaces:
+            - position
+            - velocity
+        state_interfaces:
+            - position
+            - velocity
+        state_publish_rate: 50.0
+        action_monitor_rate: 20.0
+        allow_partial_joints_goal: false
+        constraints:
+            stopped_velocity_tolerance: 0.1
+            goal_time: 0.0
+            Joint_L2_R: { trajectory: 0.2, goal: 0.1 }
+            Joint_L3_R: { trajectory: 0.2, goal: 0.1 }
+            Joint_L4_R: { trajectory: 0.2, goal: 0.1 }
+            Joint_L5_R: { trajectory: 0.2, goal: 0.1 }
+            Joint_L6_R: { trajectory: 0.2, goal: 0.1 }
+            Joint_L7_R: { trajectory: 0.2, goal: 0.1 }
+            Joint_L8_R: { trajectory: 0.2, goal: 0.1 }

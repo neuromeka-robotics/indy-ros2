@@ -18,11 +18,14 @@ def launch_setup(context, *args, **kwargs):
     name = LaunchConfiguration("name")
     indy_type = LaunchConfiguration("indy_type")
     indy_eye = LaunchConfiguration("indy_eye")
+    gripper_dh_ag95 = LaunchConfiguration("gripper_dh_ag95")
     servo_mode = LaunchConfiguration("servo_mode")
     prefix = LaunchConfiguration("prefix")
     launch_rviz_moveit = LaunchConfiguration("launch_rviz_moveit")
     use_sim_time = LaunchConfiguration("use_sim_time")
     enable_3d_perception = LaunchConfiguration("enable_3d_perception")
+    is_eir = indy_type.perform(context) == 'eir'
+    is_7dof = (indy_type.perform(context) == 'indyrp2') or (indy_type.perform(context) == 'indyrp2_v2')
 
     robot_description_content = Command(
         [
@@ -38,6 +41,9 @@ def launch_setup(context, *args, **kwargs):
             " ",
             "indy_eye:=",
             indy_eye,
+            " ",
+            "gripper_dh_ag95:=",
+            gripper_dh_ag95,
             " ",
             "prefix:=",
             prefix,
@@ -61,17 +67,27 @@ def launch_setup(context, *args, **kwargs):
             "indy_eye:=",
             indy_eye,
             " ",
+            "gripper_dh_ag95:=",
+            gripper_dh_ag95,
+            " ",
             "prefix:=",
             prefix,
         ]
     )
     robot_description_semantic = {"robot_description_semantic": robot_description_semantic_content}
 
-    robot_description_kinematics = PathJoinSubstitution(
-        [moveit_config_package, "moveit_config", "kinematics.yaml"]
-    )
+    if is_eir:
+        robot_description_kinematics = PathJoinSubstitution(
+            [moveit_config_package, "moveit_config", "kinematics_eir.yaml"]
+        )
+    else:
+        robot_description_kinematics = PathJoinSubstitution(
+            [moveit_config_package, "moveit_config", "kinematics.yaml"]
+        )
 
-    if (indy_type.perform(context) == 'indyrp2') or (indy_type.perform(context) == 'indyrp2_v2'):
+    if is_eir:
+        joint_limit_yaml = load_yaml("indy_moveit", "moveit_config/joint_limits_eir.yaml")
+    elif is_7dof:
         joint_limit_yaml = load_yaml("indy_moveit", "moveit_config/joint_limits_7dof.yaml")
     else:
         joint_limit_yaml = load_yaml("indy_moveit", "moveit_config/joint_limits_6dof.yaml")
@@ -95,11 +111,16 @@ def launch_setup(context, *args, **kwargs):
             ],
         }
     }
-    ompl_planning_yaml = load_yaml("indy_moveit", "moveit_config/ompl_planning.yaml")
+    if is_eir:
+        ompl_planning_yaml = load_yaml("indy_moveit", "moveit_config/ompl_planning_eir.yaml")
+    else:
+        ompl_planning_yaml = load_yaml("indy_moveit", "moveit_config/ompl_planning.yaml")
     ompl_planning_pipeline_config["move_group"].update(ompl_planning_yaml)
 
     # Trajectory Execution Configuration
-    if (indy_type.perform(context) == 'indyrp2') or (indy_type.perform(context) == 'indyrp2_v2'):
+    if is_eir:
+        controllers_yaml = load_yaml("indy_moveit", "moveit_config/controllers_eir.yaml")
+    elif is_7dof:
         controllers_yaml = load_yaml("indy_moveit", "moveit_config/controllers_7dof.yaml")
     else:
         controllers_yaml = load_yaml("indy_moveit", "moveit_config/controllers_6dof.yaml")
@@ -249,7 +270,7 @@ def generate_launch_description():
             "indy_type",
             default_value="indy7",
             description="Type of Indy robot.",
-            choices=["indy7", "indy7_v2", "indy7_v3", "indy12", "indy12_v2", "indy12_v3", "indyrp2", "indyrp2_v2", "icon7l", "icon3", "nuri3s", "nuri4s", "nuri7c", "nuri12c", "nuri20c", "nuri30", "opti5"]
+            choices=["indy7", "indy7_v2", "indy7_v3", "indy12", "indy12_v2", "indy12_v3", "indyrp2", "indyrp2_v2", "icon7l", "icon3", "nuri3s", "nuri4s", "nuri7c", "nuri12c", "nuri20c", "nuri30", "opti5", "eir"]
         )
     )
 
@@ -258,6 +279,14 @@ def generate_launch_description():
             "indy_eye",
             default_value="false",
             description="Work with Indy Eye",
+        )
+    )
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "gripper_dh_ag95",
+            default_value="false",
+            description="Attach DH_AG95 grippers to EIR arms.",
         )
     )
 

@@ -1,0 +1,31 @@
+controller_names:
+    - left_arm_controller
+    - right_arm_controller
+
+
+left_arm_controller:
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+        - Joint_L2_L
+        - Joint_L3_L
+        - Joint_L4_L
+        - Joint_L5_L
+        - Joint_L6_L
+        - Joint_L7_L
+        - Joint_L8_L
+
+
+right_arm_controller:
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+        - Joint_L2_R
+        - Joint_L3_R
+        - Joint_L4_R
+        - Joint_L5_R
+        - Joint_L6_R
+        - Joint_L7_R
+        - Joint_L8_R

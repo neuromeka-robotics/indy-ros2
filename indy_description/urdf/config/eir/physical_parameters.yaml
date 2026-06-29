@@ -1,0 +1,485 @@
+inertia_parameters:
+  base_link_mass: 50.0
+  torso_yaw_mass: 0.75166
+  torso_pitch_mass: 2.80193942820425
+  head_pitch_mass: 0.093262
+  head_yaw_mass: 0.665242922056157
+  left_arm_link_1_mass: 2.683
+  left_arm_link_2_mass: 2.3
+  left_arm_link_3_mass: 1.862
+  left_arm_link_4_mass: 1.234
+  left_arm_link_5_mass: 1.329
+  left_arm_link_6_mass: 0.93
+  left_arm_link_7_mass: 0.33
+  right_arm_link_1_mass: 2.683
+  right_arm_link_2_mass: 2.3
+  right_arm_link_3_mass: 1.862
+  right_arm_link_4_mass: 1.234
+  right_arm_link_5_mass: 1.328
+  right_arm_link_6_mass: 0.93
+  right_arm_link_7_mass: 0.332
+  right_gripper_base_link_mass: 0.83416
+  right_gripper_finger1_knuckle_link_mass: 0.011111
+  right_gripper_finger2_knuckle_link_mass: 0.011111
+  right_gripper_finger1_finger_link_mass: 0.0222871
+  right_gripper_finger2_finger_link_mass: 0.0222871
+  right_gripper_finger1_inner_knuckle_link_mass: 0.0318004
+  right_gripper_finger2_inner_knuckle_link_mass: 0.0318004
+  right_gripper_finger1_finger_tip_link_mass: 0.0124305
+  right_gripper_finger2_finger_tip_link_mass: 0.0124305
+  left_gripper_base_link_mass: 0.83416
+  left_gripper_finger1_knuckle_link_mass: 0.011111
+  left_gripper_finger2_knuckle_link_mass: 0.011111
+  left_gripper_finger1_finger_link_mass: 0.0222871
+  left_gripper_finger2_finger_link_mass: 0.0222871
+  left_gripper_finger1_inner_knuckle_link_mass: 0.0318004
+  left_gripper_finger2_inner_knuckle_link_mass: 0.0318004
+  left_gripper_finger1_finger_tip_link_mass: 0.0124305
+  left_gripper_finger2_finger_tip_link_mass: 0.0124305
+
+  base_link:
+    ixx: 4.29442432519 #6.4416364877901815
+    iyy: 5.08043840278 #7.620657604181089
+    izz: 3.13565603723 #4.703484055846501
+    ixy: 0.0
+    iyz: 0.0
+    ixz: 0.0
+
+  torso_yaw:
+    ixx: 0.0022587
+    iyy: 0.001673
+    izz: 0.0030845
+    ixy: 4.8221E-08
+    iyz: 7.0662E-09
+    ixz: 0.00011796
+
+  torso_pitch:
+    ixx: 0.0248360845851495
+    iyy: 0.0465311418778235
+    izz: 0.0319944920228939
+    ixy: -0.00175704578755589
+    iyz: 0.000729021040869355
+    ixz: 0.0011497124782071
+
+  head_pitch:
+    ixx: 0.00025326
+    iyy: 7.7361E-05
+    izz: 0.00023679
+    ixy: -1.9944E-07
+    iyz: 6.6843E-05
+    ixz: 7.5028E-08
+
+  head_yaw:
+    ixx: 0.00255710996395198
+    iyy: 0.00181533248337575
+    izz: 0.00207622753978535
+    ixy: 1.95461477822811E-07
+    iyz: -3.21820934878939E-07
+    ixz: 0.000166533192445213
+
+  left_arm_link_1:
+    ixx: 0.00493673
+    iyy: 0.00452344
+    izz: 0.00432910
+    ixy: 0.00000160
+    iyz: -0.00000020
+    ixz: 0.00000198
+
+  left_arm_link_2:
+    ixx: 0.01151906
+    iyy: 0.00993335
+    izz: 0.00435237
+    ixy: 0.00000246
+    iyz: 0.00082477
+    ixz: -0.00000055
+
+  left_arm_link_3:
+    ixx: 0.00519681
+    iyy: 0.00470446
+    izz: 0.00266752
+    ixy: 0.00001208
+    iyz: 0.00003430
+    ixz: 0.00035761
+
+  left_arm_link_4:
+    ixx: 0.00389590
+    iyy: 0.00308657
+    izz: 0.00188364
+    ixy: -0.00004577
+    iyz: 0.00046679
+    ixz: -0.00017280
+
+  left_arm_link_5:
+    ixx: 0.00281562
+    iyy: 0.00221084
+    izz: 0.00182169
+    ixy: 0.00001782
+    iyz: 0.00002100
+    ixz: 0.00001650
+
+  left_arm_link_6:
+    ixx: 0.00072078
+    iyy: 0.00085153
+    izz: 0.00090205
+    ixy: -0.00000217
+    iyz: 0.00000048
+    ixz: 0.00000108
+
+  left_arm_link_7:
+    ixx: 0.00051942
+    iyy: 0.00079132
+    izz: 0.00045886
+    ixy: -0.00000052
+    iyz: 0.00000265
+    ixz: 0.00003721
+
+  right_arm_link_1:
+    ixx: 0.00493673
+    iyy: 0.00452344
+    izz: 0.00432910
+    ixy: 0.00000160
+    iyz: 0.00000020
+    ixz: -0.00000198
+
+  right_arm_link_2:
+    ixx: 0.01151906
+    iyy: 0.00993335
+    izz: 0.00435237
+    ixy: 0.00000246
+    iyz: -0.00082477
+    ixz: 0.00000055
+
+  right_arm_link_3:
+    ixx: 0.00519617
+    iyy: 0.00470378
+    izz: 0.00266768
+    ixy: -0.00001270
+    iyz: -0.00003329
+    ixz: 0.00035675
+
+  right_arm_link_4:
+    ixx: 0.00389593
+    iyy: 0.00308688
+    izz: 0.00188378
+    ixy: 0.00004675
+    iyz: -0.00046659
+    ixz: -0.00016955
+
+  right_arm_link_5:
+    ixx: 0.00284294
+    iyy: 0.00221035
+    izz: 0.00185120
+    ixy: -0.00001276
+    iyz: -0.00002134
+    ixz: 0.00001949
+
+  right_arm_link_6:
+    ixx: 0.00072274
+    iyy: 0.00087867
+    izz: 0.00092938
+    ixy: 0.00000186
+    iyz: 0.00000057
+    ixz: -0.00000123
+
+  right_arm_link_7:
+    ixx: 0.00052121
+    iyy: 0.00079394
+    izz: 0.00045990
+    ixy: 0.00000020
+    iyz: 0.00000098
+    ixz: 0.00003808
+
+  right_gripper_base_link:
+    ixx: 0.0013016
+    iyy: 0.00049972
+    izz: 0.001498
+    ixy: -6.9374e-07
+    iyz: 2.0244E-07
+    ixz: 5.9848e-07
+
+  right_gripper_finger1_knuckle_link:
+    ixx: 3.88172e-06
+    iyy: 1.92174e-06
+    izz: 4.32374e-06
+    ixy: -2.29456e-13
+    iyz: 2.04435e-13
+    ixz: 8.33e-07
+
+  right_gripper_finger2_knuckle_link:
+    ixx: 3.88172e-06
+    iyy: 1.92174e-06
+    izz: 4.32374e-06
+    ixy: -2.29456e-13
+    iyz: 2.04435e-13
+    ixz: 8.33e-07
+
+  right_gripper_finger1_finger_link:
+    ixx: 8.72836e-06
+    iyy: 7.26157e-06
+    izz: 3.3425e-06
+    ixy: 7.0843e-15
+    iyz: 7.6579e-15
+    ixz: -2.18833e-06
+
+  right_gripper_finger2_finger_link:
+    ixx: 8.72836e-06
+    iyy: 7.26157e-06
+    izz: 3.3425e-06
+    ixy: 7.0843e-15
+    iyz: 7.6579e-15
+    ixz: -2.18833e-06
+
+  right_gripper_finger1_inner_knuckle_link:
+    ixx: 1.39848e-05
+    iyy: 1.04943e-05
+    izz: 1.36183e-05
+    ixy: -9.54763e-15
+    iyz: 8.94585e-16
+    ixz: -5.01422e-06
+
+  right_gripper_finger2_inner_knuckle_link:
+    ixx: 1.39848e-05
+    iyy: 1.04943e-05
+    izz: 1.36183e-05
+    ixy: -9.54763e-15
+    iyz: 8.94585e-16
+    ixz: -5.01422e-06
+
+  right_gripper_finger1_finger_tip_link:
+    ixx: 2.84217e-06
+    iyy: 3.03961e-06
+    izz: 1.11815e-06
+    ixy: -2.48048e-15
+    iyz: 2.16427e-13
+    ixz: 8.24539e-07
+
+  right_gripper_finger2_finger_tip_link:
+    ixx: 2.84217e-06
+    iyy: 3.03961e-06
+    izz: 1.11815e-06
+    ixy: -2.48048e-15
+    iyz: 2.16427e-13
+    ixz: 8.24539e-07
+
+  left_gripper_base_link:
+    ixx: 0.0013016
+    iyy: 0.00049972
+    izz: 0.001498
+    ixy: -6.9374e-07
+    iyz: 2.0244E-07
+    ixz: 5.9848e-07
+
+  left_gripper_finger1_knuckle_link:
+    ixx: 3.88172e-06
+    iyy: 1.92174e-06
+    izz: 4.32374e-06
+    ixy: -2.29456e-13
+    iyz: 2.04435e-13
+    ixz: 8.33e-07
+
+  left_gripper_finger2_knuckle_link:
+    ixx: 3.88172e-06
+    iyy: 1.92174e-06
+    izz: 4.32374e-06
+    ixy: -2.29456e-13
+    iyz: 2.04435e-13
+    ixz: 8.33e-07
+
+  left_gripper_finger1_finger_link:
+    ixx: 8.72836e-06
+    iyy: 7.26157e-06
+    izz: 3.3425e-06
+    ixy: 7.0843e-15
+    iyz: 7.6579e-15
+    ixz: -2.18833e-06
+
+  left_gripper_finger2_finger_link:
+    ixx: 8.72836e-06
+    iyy: 7.26157e-06
+    izz: 3.3425e-06
+    ixy: 7.0843e-15
+    iyz: 7.6579e-15
+    ixz: -2.18833e-06
+
+  left_gripper_finger1_inner_knuckle_link:
+    ixx: 1.39848e-05
+    iyy: 1.04943e-05
+    izz: 1.36183e-05
+    ixy: -9.54763e-15
+    iyz: 8.94585e-16
+    ixz: -5.01422e-06
+
+  left_gripper_finger2_inner_knuckle_link:
+    ixx: 1.39848e-05
+    iyy: 1.04943e-05
+    izz: 1.36183e-05
+    ixy: -9.54763e-15
+    iyz: 8.94585e-16
+    ixz: -5.01422e-06
+
+  left_gripper_finger1_finger_tip_link:
+    ixx: 2.84217e-06
+    iyy: 3.03961e-06
+    izz: 1.11815e-06
+    ixy: -2.48048e-15
+    iyz: 2.16427e-13
+    ixz: 8.24539e-07
+
+  left_gripper_finger2_finger_tip_link:
+    ixx: 2.84217e-06
+    iyy: 3.03961e-06
+    izz: 1.11815e-06
+    ixy: -2.48048e-15
+    iyz: 2.16427e-13
+    ixz: 8.24539e-07
+
+  center_of_mass:
+    base_link:
+      x: -0.20018902324438095
+      y: -0.00016748905181884766
+      z: 0.48686160787940025
+    torso_yaw:
+      x: -0.012337
+      y: -4.1041E-05
+      z: 0.034779
+    torso_pitch:
+      x: -0.233640690892997
+      y: 0.0158825722088297
+      z: -0.00384063613519725
+    head_pitch:
+      x: -5.7935E-05
+      y: 0.066684
+      z: -0.029479
+    head_yaw:
+      x: 0.0366849459787648
+      y: 9.86220308261399E-05
+      z: 0.0859116093165376
+    left_arm_link_1:
+      x: 1e-06
+      y: -0.000621
+      z: 0.167909
+    left_arm_link_2:
+      x: -2e-05
+      y: -0.003081
+      z: 0.10298600000000001
+    left_arm_link_3:
+      x: 0.007097
+      y: -0.0006590000000000001
+      z: -0.016530999999999997
+    left_arm_link_4:
+      x: -0.007826
+      y: -0.004207
+      z: 0.073404
+    left_arm_link_5:
+      x: 0.00028399999999999996
+      y: 0.0016510000000000001
+      z: -0.084133
+    left_arm_link_6:
+      x: 0.005405999999999999
+      y: 0.000612
+      z: -3.9e-05
+    left_arm_link_7:
+      x: -0.00277
+      y: 0.000316
+      z: 0.054881
+    right_arm_link_1:
+      x: -1e-06
+      y: 0.000621
+      z: 0.167909
+    right_arm_link_2:
+      x: 2e-05
+      y: 0.003081
+      z: 0.10298600000000001
+    right_arm_link_3:
+      x: 0.007089000000000001
+      y: 0.000655
+      z: -0.016514
+    right_arm_link_4:
+      x: -0.007832
+      y: 0.004208999999999999
+      z: 0.073402
+    right_arm_link_5:
+      x: 0.000268
+      y: -0.0014750000000000002
+      z: -0.084143
+    right_arm_link_6:
+      x: 0.0051719999999999995
+      y: -0.000614
+      z: 5.5e-05
+    right_arm_link_7:
+      x: -0.002716
+      y: 3.1e-05
+      z: 0.054983
+    right_gripper_base_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    right_gripper_finger1_knuckle_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    right_gripper_finger2_knuckle_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    right_gripper_finger1_finger_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    right_gripper_finger2_finger_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    right_gripper_finger1_inner_knuckle_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    right_gripper_finger2_inner_knuckle_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    right_gripper_finger1_finger_tip_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    right_gripper_finger2_finger_tip_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    left_gripper_base_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    left_gripper_finger1_knuckle_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    left_gripper_finger2_knuckle_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    left_gripper_finger1_finger_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    left_gripper_finger2_finger_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    left_gripper_finger1_inner_knuckle_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    left_gripper_finger2_inner_knuckle_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    left_gripper_finger1_finger_tip_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    left_gripper_finger2_finger_tip_link:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+

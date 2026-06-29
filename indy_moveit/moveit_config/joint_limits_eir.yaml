@@ -1,0 +1,55 @@
+joint_limits:
+  Joint_L0:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L1:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L2_U:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L3_U:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L2_L:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L3_L:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L4_L:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L5_L:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L6_L:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L7_L:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L8_L:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L2_R:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L3_R:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L4_R:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L5_R:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L6_R:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L7_R:
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+  Joint_L8_R:
+    has_acceleration_limits: true
+    max_acceleration: 5.0

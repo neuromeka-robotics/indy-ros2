@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+    <xacro:macro name="eir_robot" params="
+        name
+        gripper_dh_ag95
+        prefix
+        parent
+        *origin
+        joint_limits_parameters_file
+        kinematics_parameters_file
+        physical_parameters_file
+        visual_parameters_file
+        joint_axes_parameters_file
+        joint_mimics_parameters_file">
+
+        <xacro:property name="eir_visual_parameters" value="${xacro.load_yaml(visual_parameters_file)}"/>
+        <xacro:property name="eir_mesh_files" value="${eir_visual_parameters['mesh_files']}"/>
+        <xacro:property name="eir_physical_parameters" value="${xacro.load_yaml(physical_parameters_file)}"/>
+        <xacro:property name="eir_inertia_parameters" value="${eir_physical_parameters['inertia_parameters']}"/>
+        <xacro:property name="eir_kinematics_parameters" value="${xacro.load_yaml(kinematics_parameters_file)}"/>
+        <xacro:property name="eir_kinematics" value="${eir_kinematics_parameters['kinematics']}"/>
+        <xacro:property name="eir_joint_limits_parameters" value="${xacro.load_yaml(joint_limits_parameters_file)}"/>
+        <xacro:property name="eir_joint_limits" value="${eir_joint_limits_parameters['joint_limits']}"/>
+        <xacro:property name="eir_joint_axes_parameters" value="${xacro.load_yaml(joint_axes_parameters_file)}"/>
+        <xacro:property name="eir_joint_axes" value="${eir_joint_axes_parameters['joint_axes']}"/>
+        <xacro:property name="eir_joint_mimics_parameters" value="${xacro.load_yaml(joint_mimics_parameters_file)}"/>
+        <xacro:property name="eir_joint_mimics" value="${eir_joint_mimics_parameters['joint_mimics']}"/>
+        <xacro:property name="eir_material_0" value="indy_white"/>
+
+        <xacro:macro name="eir_mesh" params="name type">
+            <xacro:property name="mesh_entry" value="${eir_mesh_files[name][type]['mesh']}"/>
+            <mesh filename="file://$(find ${mesh_entry['package']})/${mesh_entry['path']}" scale="${mesh_entry['scale']}"/>
+        </xacro:macro>
+
+        <xacro:macro name="define_eir_link" params="link_name visual_name material">
+            <link name="${prefix}${link_name}">
+                <xacro:if value="${visual_name != ''}">
+                    <xacro:property name="mesh_entry" value="${eir_mesh_files[visual_name]}"/>
+                    <visual>
+                        <origin xyz="${mesh_entry['visual_origin']['xyz']}" rpy="${mesh_entry['visual_origin']['rpy']}"/>
+                        <geometry>
+                            <xacro:eir_mesh name="${visual_name}" type="visual"/>
+                        </geometry>
+                        <xacro:if value="${material != ''}">
+                            <material name="${material}"/>
+                        </xacro:if>
+                    </visual>
+                    <collision>
+                        <origin xyz="${mesh_entry['visual_origin']['xyz']}" rpy="${mesh_entry['visual_origin']['rpy']}"/>
+                        <geometry>
+                            <xacro:eir_mesh name="${visual_name}" type="collision"/>
+                        </geometry>
+                    </collision>
+                </xacro:if>
+                <xacro:if value="${link_name + '_mass' in eir_inertia_parameters}">
+                    <inertial>
+                        <mass value="${eir_inertia_parameters[link_name + '_mass']}"/>
+                        <origin
+                            xyz="${eir_inertia_parameters['center_of_mass'][link_name]['x']} ${eir_inertia_parameters['center_of_mass'][link_name]['y']} ${eir_inertia_parameters['center_of_mass'][link_name]['z']}"
+                            rpy="0 0 0"/>
+                        <inertia
+                            ixx="${eir_inertia_parameters[link_name]['ixx']}"
+                            iyy="${eir_inertia_parameters[link_name]['iyy']}"
+                            izz="${eir_inertia_parameters[link_name]['izz']}"
+                            ixy="${eir_inertia_parameters[link_name]['ixy']}"
+                            iyz="${eir_inertia_parameters[link_name]['iyz']}"
+                            ixz="${eir_inertia_parameters[link_name]['ixz']}"/>
+                    </inertial>
+                </xacro:if>
+            </link>
+        </xacro:macro>
+
+        <xacro:macro name="define_eir_joint" params="joint_name joint_type parent_link child_link">
+            <xacro:property name="joint_origin" value="${eir_kinematics[joint_name]}"/>
+            <joint name="${prefix}${joint_name}" type="${joint_type}">
+                <parent link="${prefix}${parent_link}"/>
+                <child link="${prefix}${child_link}"/>
+                <origin
+                    xyz="${joint_origin['x']} ${joint_origin['y']} ${joint_origin['z']}"
+                    rpy="${joint_origin['roll']} ${joint_origin['pitch']} ${joint_origin['yaw']}"/>
+                <xacro:if value="${joint_name in eir_joint_axes}">
+                    <axis xyz="${eir_joint_axes[joint_name][0]} ${eir_joint_axes[joint_name][1]} ${eir_joint_axes[joint_name][2]}"/>
+                </xacro:if>
+                <xacro:if value="${joint_name in eir_joint_limits}">
+                    <limit
+                        lower="${eir_joint_limits[joint_name]['min_position']}"
+                        upper="${eir_joint_limits[joint_name]['max_position']}"
+                        effort="${eir_joint_limits[joint_name]['max_effort']}"
+                        velocity="${eir_joint_limits[joint_name]['max_velocity']}"/>
+                </xacro:if>
+                <xacro:if value="${joint_name in eir_joint_mimics}">
+                    <xacro:property name="joint_mimic" value="${eir_joint_mimics[joint_name]}"/>
+                    <mimic joint="${prefix}${joint_mimic['joint']}" multiplier="${joint_mimic['multiplier']}" offset="${joint_mimic['offset']}"/>
+                </xacro:if>
+            </joint>
+        </xacro:macro>
+
+        <joint name="${prefix}global" type="fixed">
+            <parent link="${parent}"/>
+            <child link="${prefix}base_link"/>
+            <xacro:insert_block name="origin"/>
+        </joint>
+
+        <!-- EIR body, head, and dual arms -->
+            <xacro:define_eir_link link_name="base_link" visual_name="base_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="torso_yaw" visual_name="torso_yaw" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="torso_pitch" visual_name="torso_pitch" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="head_pitch" visual_name="head_pitch" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="head_yaw" visual_name="head_yaw" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_arm_base" visual_name="left_arm_base" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_arm_link_1" visual_name="left_arm_link_1" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_arm_link_2" visual_name="left_arm_link_2" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_arm_link_3" visual_name="left_arm_link_3" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_arm_link_4" visual_name="left_arm_link_4" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_arm_link_5" visual_name="left_arm_link_5" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_arm_link_6" visual_name="left_arm_link_6" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_arm_link_7" visual_name="left_arm_link_7" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_arm_base" visual_name="right_arm_base" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_arm_link_1" visual_name="right_arm_link_1" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_arm_link_2" visual_name="right_arm_link_2" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_arm_link_3" visual_name="right_arm_link_3" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_arm_link_4" visual_name="right_arm_link_4" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_arm_link_5" visual_name="right_arm_link_5" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_arm_link_6" visual_name="right_arm_link_6" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_arm_link_7" visual_name="right_arm_link_7" material="${eir_material_0}"/>
+
+            <xacro:define_eir_joint joint_name="Joint_L0" joint_type="revolute" parent_link="base_link" child_link="torso_yaw"/>
+            <xacro:define_eir_joint joint_name="Joint_L1" joint_type="revolute" parent_link="torso_yaw" child_link="torso_pitch"/>
+            <xacro:define_eir_joint joint_name="Joint_L2_U" joint_type="revolute" parent_link="torso_pitch" child_link="head_pitch"/>
+            <xacro:define_eir_joint joint_name="Joint_L3_U" joint_type="revolute" parent_link="head_pitch" child_link="head_yaw"/>
+            <xacro:define_eir_joint joint_name="left_arm_base_joint" joint_type="fixed" parent_link="torso_pitch" child_link="left_arm_base"/>
+            <xacro:define_eir_joint joint_name="Joint_L2_L" joint_type="revolute" parent_link="left_arm_base" child_link="left_arm_link_1"/>
+            <xacro:define_eir_joint joint_name="Joint_L3_L" joint_type="revolute" parent_link="left_arm_link_1" child_link="left_arm_link_2"/>
+            <xacro:define_eir_joint joint_name="Joint_L4_L" joint_type="revolute" parent_link="left_arm_link_2" child_link="left_arm_link_3"/>
+            <xacro:define_eir_joint joint_name="Joint_L5_L" joint_type="revolute" parent_link="left_arm_link_3" child_link="left_arm_link_4"/>
+            <xacro:define_eir_joint joint_name="Joint_L6_L" joint_type="revolute" parent_link="left_arm_link_4" child_link="left_arm_link_5"/>
+            <xacro:define_eir_joint joint_name="Joint_L7_L" joint_type="revolute" parent_link="left_arm_link_5" child_link="left_arm_link_6"/>
+            <xacro:define_eir_joint joint_name="Joint_L8_L" joint_type="revolute" parent_link="left_arm_link_6" child_link="left_arm_link_7"/>
+            <xacro:define_eir_joint joint_name="right_arm_base_joint" joint_type="fixed" parent_link="torso_pitch" child_link="right_arm_base"/>
+            <xacro:define_eir_joint joint_name="Joint_L2_R" joint_type="revolute" parent_link="right_arm_base" child_link="right_arm_link_1"/>
+            <xacro:define_eir_joint joint_name="Joint_L3_R" joint_type="revolute" parent_link="right_arm_link_1" child_link="right_arm_link_2"/>
+            <xacro:define_eir_joint joint_name="Joint_L4_R" joint_type="revolute" parent_link="right_arm_link_2" child_link="right_arm_link_3"/>
+            <xacro:define_eir_joint joint_name="Joint_L5_R" joint_type="revolute" parent_link="right_arm_link_3" child_link="right_arm_link_4"/>
+            <xacro:define_eir_joint joint_name="Joint_L6_R" joint_type="revolute" parent_link="right_arm_link_4" child_link="right_arm_link_5"/>
+            <xacro:define_eir_joint joint_name="Joint_L7_R" joint_type="revolute" parent_link="right_arm_link_5" child_link="right_arm_link_6"/>
+            <xacro:define_eir_joint joint_name="Joint_L8_R" joint_type="revolute" parent_link="right_arm_link_6" child_link="right_arm_link_7"/>
+
+        <xacro:if value="${gripper_dh_ag95}">
+            <!-- Optional DH_AG95 grippers on both arms -->
+            <xacro:define_eir_link link_name="right_ee_link" visual_name="" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_gripper_base_link" visual_name="right_gripper_base_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_gripper_finger1_knuckle_link" visual_name="right_gripper_finger1_knuckle_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_gripper_finger2_knuckle_link" visual_name="right_gripper_finger2_knuckle_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_gripper_finger1_finger_link" visual_name="right_gripper_finger1_finger_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_gripper_finger2_finger_link" visual_name="right_gripper_finger2_finger_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_gripper_finger1_inner_knuckle_link" visual_name="right_gripper_finger1_inner_knuckle_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_gripper_finger2_inner_knuckle_link" visual_name="right_gripper_finger2_inner_knuckle_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_gripper_finger1_finger_tip_link" visual_name="right_gripper_finger1_finger_tip_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="right_gripper_finger2_finger_tip_link" visual_name="right_gripper_finger2_finger_tip_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_ee_link" visual_name="" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_gripper_base_link" visual_name="left_gripper_base_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_gripper_finger1_knuckle_link" visual_name="left_gripper_finger1_knuckle_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_gripper_finger2_knuckle_link" visual_name="left_gripper_finger2_knuckle_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_gripper_finger1_finger_link" visual_name="left_gripper_finger1_finger_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_gripper_finger2_finger_link" visual_name="left_gripper_finger2_finger_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_gripper_finger1_inner_knuckle_link" visual_name="left_gripper_finger1_inner_knuckle_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_gripper_finger2_inner_knuckle_link" visual_name="left_gripper_finger2_inner_knuckle_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_gripper_finger1_finger_tip_link" visual_name="left_gripper_finger1_finger_tip_link" material="${eir_material_0}"/>
+            <xacro:define_eir_link link_name="left_gripper_finger2_finger_tip_link" visual_name="left_gripper_finger2_finger_tip_link" material="${eir_material_0}"/>
+
+            <xacro:define_eir_joint joint_name="eir_to_right_gripper" joint_type="fixed" parent_link="right_arm_link_7" child_link="right_ee_link"/>
+            <xacro:define_eir_joint joint_name="right_gripper_base_joint" joint_type="fixed" parent_link="right_ee_link" child_link="right_gripper_base_link"/>
+            <xacro:define_eir_joint joint_name="right_gripper_finger1_joint" joint_type="revolute" parent_link="right_gripper_base_link" child_link="right_gripper_finger1_knuckle_link"/>
+            <xacro:define_eir_joint joint_name="right_gripper_finger2_joint" joint_type="revolute" parent_link="right_gripper_base_link" child_link="right_gripper_finger2_knuckle_link"/>
+            <xacro:define_eir_joint joint_name="right_gripper_finger1_finger_joint" joint_type="continuous" parent_link="right_gripper_finger1_knuckle_link" child_link="right_gripper_finger1_finger_link"/>
+            <xacro:define_eir_joint joint_name="right_gripper_finger2_finger_joint" joint_type="continuous" parent_link="right_gripper_finger2_knuckle_link" child_link="right_gripper_finger2_finger_link"/>
+            <xacro:define_eir_joint joint_name="right_gripper_finger1_inner_knuckle_joint" joint_type="continuous" parent_link="right_gripper_base_link" child_link="right_gripper_finger1_inner_knuckle_link"/>
+            <xacro:define_eir_joint joint_name="right_gripper_finger2_inner_knuckle_joint" joint_type="continuous" parent_link="right_gripper_base_link" child_link="right_gripper_finger2_inner_knuckle_link"/>
+            <xacro:define_eir_joint joint_name="right_gripper_finger1_finger_tip_joint" joint_type="continuous" parent_link="right_gripper_finger1_inner_knuckle_link" child_link="right_gripper_finger1_finger_tip_link"/>
+            <xacro:define_eir_joint joint_name="right_gripper_finger2_finger_tip_joint" joint_type="continuous" parent_link="right_gripper_finger2_inner_knuckle_link" child_link="right_gripper_finger2_finger_tip_link"/>
+            <xacro:define_eir_joint joint_name="eir_to_left_gripper" joint_type="fixed" parent_link="left_arm_link_7" child_link="left_ee_link"/>
+            <xacro:define_eir_joint joint_name="left_gripper_base_joint" joint_type="fixed" parent_link="left_ee_link" child_link="left_gripper_base_link"/>
+            <xacro:define_eir_joint joint_name="left_gripper_finger1_joint" joint_type="revolute" parent_link="left_gripper_base_link" child_link="left_gripper_finger1_knuckle_link"/>
+            <xacro:define_eir_joint joint_name="left_gripper_finger2_joint" joint_type="revolute" parent_link="left_gripper_base_link" child_link="left_gripper_finger2_knuckle_link"/>
+            <xacro:define_eir_joint joint_name="left_gripper_finger1_finger_joint" joint_type="continuous" parent_link="left_gripper_finger1_knuckle_link" child_link="left_gripper_finger1_finger_link"/>
+            <xacro:define_eir_joint joint_name="left_gripper_finger2_finger_joint" joint_type="continuous" parent_link="left_gripper_finger2_knuckle_link" child_link="left_gripper_finger2_finger_link"/>
+            <xacro:define_eir_joint joint_name="left_gripper_finger1_inner_knuckle_joint" joint_type="continuous" parent_link="left_gripper_base_link" child_link="left_gripper_finger1_inner_knuckle_link"/>
+            <xacro:define_eir_joint joint_name="left_gripper_finger2_inner_knuckle_joint" joint_type="continuous" parent_link="left_gripper_base_link" child_link="left_gripper_finger2_inner_knuckle_link"/>
+            <xacro:define_eir_joint joint_name="left_gripper_finger1_finger_tip_joint" joint_type="continuous" parent_link="left_gripper_finger1_inner_knuckle_link" child_link="left_gripper_finger1_finger_tip_link"/>
+            <xacro:define_eir_joint joint_name="left_gripper_finger2_finger_tip_joint" joint_type="continuous" parent_link="left_gripper_finger2_inner_knuckle_link" child_link="left_gripper_finger2_finger_tip_link"/>
+        </xacro:if>
+    </xacro:macro>
+</robot>
