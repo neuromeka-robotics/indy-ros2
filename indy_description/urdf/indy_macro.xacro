@@ -29,7 +29,7 @@
         <xacro:if value="${ indy_type == 'indy7' or indy_type == 'indy7_v2' or indy_type == 'indy7_v3' or indy_type == 'indyrp2' or
                             indy_type == 'indyrp2_v2' or indy_type == 'indy12' or indy_type == 'indy12_v2' or indy_type == 'indy12_v3' or
                             indy_type == 'nuri3s' or indy_type == 'nuri4s' or indy_type == 'nuri7c' or indy_type == 'nuri12c' or
-                            indy_type == 'nuri20c' or indy_type == 'nuri30' or indy_type == 'opti5'}">
+                            indy_type == 'nuri20c' or indy_type == 'nuri30' or indy_type == 'opti5' or indy_type == 'opti3'}">
             <xacro:property name="material_0" value="indy_white"/>
             <xacro:property name="material_1" value="indy_white"/>
         </xacro:if>

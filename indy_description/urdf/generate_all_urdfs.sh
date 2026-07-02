@@ -6,7 +6,7 @@ indy_types=(
     "indyrp2" "indyrp2_v2" 
     "icon7l" "icon3" 
     "nuri3s" "nuri4s" "nuri7c" "nuri12c" "nuri20c" "nuri30" 
-    "opti5" "eir"
+    "opti5" "opti3" "eir"
     "dual_icon3")
 
 script_dir=$(cd "$(dirname "$0")" && pwd)
