@@ -18,14 +18,21 @@ def launch_setup(context, *args, **kwargs):
     prefix = LaunchConfiguration("prefix")
     launch_rviz = LaunchConfiguration("launch_rviz")
 
-    if (indy_type.perform(context) == 'indyrp2') or (indy_type.perform(context) == 'indyrp2_v2'):
+    if indy_type.perform(context) == 'nuri5sdual':
+        initial_joint_controllers = PathJoinSubstitution(
+            [gazebo_package, "controller", "nuri5sdual_controllers.yaml"]
+        )
+        controller_names = ["left_arm_controller", "right_arm_controller"]
+    elif (indy_type.perform(context) == 'indyrp2') or (indy_type.perform(context) == 'indyrp2_v2'):
         initial_joint_controllers = PathJoinSubstitution(
             [gazebo_package, "controller", "indy_controllers_7dof.yaml"]
         )
+        controller_names = ["joint_trajectory_controller"]
     else:
         initial_joint_controllers = PathJoinSubstitution(
             [gazebo_package, "controller", "indy_controllers_6dof.yaml"]
         )
+        controller_names = ["joint_trajectory_controller"]
 
     robot_description_content = Command(
         [
@@ -71,11 +78,14 @@ def launch_setup(context, *args, **kwargs):
         output="screen",
     )
 
-    joint_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["joint_trajectory_controller", "-c", "/controller_manager"],
-    )
+    joint_controller_spawners = [
+        Node(
+            package="controller_manager",
+            executable="spawner",
+            arguments=[controller_name, "-c", "/controller_manager"],
+        )
+        for controller_name in controller_names
+    ]
 
     # Gazebo nodes
     gazebo = IncludeLaunchDescription(
@@ -114,14 +124,14 @@ def launch_setup(context, *args, **kwargs):
     delay_robot_controller_spawner = RegisterEventHandler(
         event_handler=OnProcessExit(
             target_action=joint_state_broadcaster_spawner,
-            on_exit=[joint_controller_spawner],
+            on_exit=joint_controller_spawners,
         )
     )
 
     # Delay rviz
     delay_rviz2_spawner = RegisterEventHandler(
         event_handler=OnProcessExit(
-            target_action=joint_controller_spawner,
+            target_action=joint_controller_spawners[-1],
             on_exit=[rviz_node],
         )
     )
@@ -158,7 +168,7 @@ def generate_launch_description():
             "indy_type",
             default_value="indy7",
             description="Type of Indy robot.",
-            choices=["indy7", "indy7_v2", "indy7_v3", "indy12", "indy12_v2", "indy12_v3", "indyrp2", "indyrp2_v2", "icon7l", "icon3", "nuri3s", "nuri4s", "nuri7c", "nuri12c", "nuri20c", "nuri30", "opti5", "opti3"]
+            choices=["indy7", "indy7_v2", "indy7_v3", "indy12", "indy12_v2", "indy12_v3", "indyrp2", "indyrp2_v2", "icon7l", "icon3", "nuri3s", "nuri4s", "nuri5s", "nuri5sdual", "nuri7c", "nuri12c", "nuri20c", "nuri30", "opti5", "opti3"]
         )
     )
 

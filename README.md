@@ -107,9 +107,12 @@ Supported **indy_type** values:
 ```text
 indy7, indy7_v2, indy7_v3, indy12, indy12_v2, indy12_v3,
 indyrp2, indyrp2_v2, icon7l, icon3,
-nuri3s, nuri4s, nuri7c, nuri12c, nuri20c, nuri30,
+nuri3s, nuri4s, nuri5s, nuri5sdual, nuri7c, nuri12c, nuri20c, nuri30,
 opti5, opti3, eir
 ```
+
+`nuri5sdual` supports description display and MoveIt/Gazebo simulation. Real
+robot bringup requires a dedicated dual-arm hardware interface.
 
 Use **indy_eye** to enable the Indy Eye model.
 

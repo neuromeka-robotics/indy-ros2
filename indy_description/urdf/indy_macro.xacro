@@ -28,8 +28,9 @@
 
         <xacro:if value="${ indy_type == 'indy7' or indy_type == 'indy7_v2' or indy_type == 'indy7_v3' or indy_type == 'indyrp2' or
                             indy_type == 'indyrp2_v2' or indy_type == 'indy12' or indy_type == 'indy12_v2' or indy_type == 'indy12_v3' or
-                            indy_type == 'nuri3s' or indy_type == 'nuri4s' or indy_type == 'nuri7c' or indy_type == 'nuri12c' or
-                            indy_type == 'nuri20c' or indy_type == 'nuri30' or indy_type == 'opti5' or indy_type == 'opti3'}">
+                            indy_type == 'nuri3s' or indy_type == 'nuri4s' or indy_type == 'nuri5s' or indy_type == 'nuri7c' or indy_type == 'nuri12c' or
+                            indy_type == 'nuri20c' or indy_type == 'nuri30' or indy_type == 'nuri5sdual' or
+                            indy_type == 'opti5' or indy_type == 'opti3'}">
             <xacro:property name="material_0" value="indy_white"/>
             <xacro:property name="material_1" value="indy_white"/>
         </xacro:if>
@@ -42,6 +43,7 @@
 
         <xacro:property name="supports_link6_eye" value="${indy_type == 'indy7' or indy_type == 'indy7_v2' or indy_type == 'indy7_v3' or indy_type == 'indy12_v3'}"/>
         <xacro:property name="supports_link7_eye" value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}"/>
+        <xacro:property name="is_dual_robot" value="${indy_type == 'dual_icon3' or indy_type == 'nuri5sdual'}"/>
 
         <!-- links -  main serial chain -->
         <xacro:macro name="define_link" params="link_name physic_name visual_name material gazebo_material">
@@ -84,13 +86,17 @@
             </link>
         </xacro:macro>
 
-        <xacro:if value="${indy_type == 'dual_icon3'}">
-            <!--body-->
-            <xacro:define_link link_name="body_base" physic_name="body_base" visual_name="body_base" material="${material_0}" gazebo_material=""/>
-            <xacro:define_link link_name="body_frame" physic_name="body_frame" visual_name="body_frame" material="${material_0}" gazebo_material=""/>
-            <xacro:define_link link_name="body_cover" physic_name="body_cover" visual_name="body_cover" material="${material_2}" gazebo_material=""/>
+        <xacro:if value="${is_dual_robot}">
+            <xacro:if value="${indy_type == 'dual_icon3'}">
+                <xacro:define_link link_name="body_base" physic_name="body_base" visual_name="body_base" material="${material_0}" gazebo_material=""/>
+                <xacro:define_link link_name="body_frame" physic_name="body_frame" visual_name="body_frame" material="${material_0}" gazebo_material=""/>
+                <xacro:define_link link_name="body_cover" physic_name="body_cover" visual_name="body_cover" material="${material_2}" gazebo_material=""/>
+            </xacro:if>
+            <xacro:if value="${indy_type == 'nuri5sdual'}">
+                <xacro:define_link link_name="body_base" physic_name="body_base" visual_name="body_base" material="${material_0}" gazebo_material=""/>
+            </xacro:if>
 
-            <!-- icon3 - left -->
+            <!-- left arm -->
             <xacro:define_link link_name="left_arm_link0" physic_name="left_arm_link0" visual_name="left_arm_link0" material="${material_0}" gazebo_material=""/>
             <xacro:define_link link_name="left_arm_link1" physic_name="left_arm_link1" visual_name="left_arm_link1" material="${material_1}" gazebo_material=""/>
             <xacro:define_link link_name="left_arm_link2" physic_name="left_arm_link2" visual_name="left_arm_link2" material="${material_1}" gazebo_material=""/>
@@ -99,7 +105,7 @@
             <xacro:define_link link_name="left_arm_link5" physic_name="left_arm_link5" visual_name="left_arm_link5" material="${material_0}" gazebo_material=""/>
             <xacro:define_link link_name="left_arm_link6" physic_name="left_arm_link6" visual_name="left_arm_link6" material="${material_0}" gazebo_material=""/>
 
-            <!-- icon3 - right -->
+            <!-- right arm -->
             <xacro:define_link link_name="right_arm_link0" physic_name="right_arm_link0" visual_name="right_arm_link0" material="${material_0}" gazebo_material=""/>
             <xacro:define_link link_name="right_arm_link1" physic_name="right_arm_link1" visual_name="right_arm_link1" material="${material_1}" gazebo_material=""/>
             <xacro:define_link link_name="right_arm_link2" physic_name="right_arm_link2" visual_name="right_arm_link2" material="${material_1}" gazebo_material=""/>
@@ -112,7 +118,7 @@
             <link name="${prefix}right_arm_tcp"/>
         </xacro:if>
 
-        <xacro:unless value="${indy_type == 'dual_icon3'}">
+        <xacro:unless value="${is_dual_robot}">
             <xacro:define_link link_name="link0" physic_name="link0" visual_name="link0" material="${material_0}" gazebo_material=""/>
             <xacro:define_link link_name="link1" physic_name="link1" visual_name="link1" material="${material_1}" gazebo_material=""/>
             <xacro:define_link link_name="link2" physic_name="link2" visual_name="link2" material="${material_1}" gazebo_material=""/>
@@ -183,18 +189,23 @@
             </joint>
         </xacro:macro>
 
-       <xacro:if value="${indy_type == 'dual_icon3'}">
+       <xacro:if value="${is_dual_robot}">
             <joint name="global" type="fixed">
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <parent link="${parent}"/>
                 <child link="$(arg prefix)body_base"/>
             </joint>
 
-            <xacro:define_joint joint_type="revolute" joint_index="base_frame" parent_link="body_base" child_link="body_frame"/>
-            <xacro:define_joint joint_type="fixed" joint_index="frame_cover" parent_link="body_frame" child_link="body_cover"/>
-
-            <xacro:define_joint joint_type="fixed" joint_index="left_arm_connect" parent_link="body_frame" child_link="left_arm_link0"/>
-            <xacro:define_joint joint_type="fixed" joint_index="right_arm_connect" parent_link="body_frame" child_link="right_arm_link0"/>
+            <xacro:if value="${indy_type == 'dual_icon3'}">
+                <xacro:define_joint joint_type="revolute" joint_index="base_frame" parent_link="body_base" child_link="body_frame"/>
+                <xacro:define_joint joint_type="fixed" joint_index="frame_cover" parent_link="body_frame" child_link="body_cover"/>
+                <xacro:define_joint joint_type="fixed" joint_index="left_arm_connect" parent_link="body_frame" child_link="left_arm_link0"/>
+                <xacro:define_joint joint_type="fixed" joint_index="right_arm_connect" parent_link="body_frame" child_link="right_arm_link0"/>
+            </xacro:if>
+            <xacro:if value="${indy_type == 'nuri5sdual'}">
+                <xacro:define_joint joint_type="fixed" joint_index="left_arm_connect" parent_link="body_base" child_link="left_arm_link0"/>
+                <xacro:define_joint joint_type="fixed" joint_index="right_arm_connect" parent_link="body_base" child_link="right_arm_link0"/>
+            </xacro:if>
 
             <xacro:define_joint joint_type="revolute" joint_index="left_arm_joint0" parent_link="left_arm_link0" child_link="left_arm_link1"/>
             <xacro:define_joint joint_type="revolute" joint_index="left_arm_joint1" parent_link="left_arm_link1" child_link="left_arm_link2"/>
@@ -213,7 +224,7 @@
             <xacro:define_joint joint_type="fixed"    joint_index="right_arm_tcp" parent_link="right_arm_link6" child_link="right_arm_tcp"/>
         </xacro:if>
 
-        <xacro:unless value="${indy_type == 'dual_icon3'}">
+        <xacro:unless value="${is_dual_robot}">
             <joint name="global" type="fixed">
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <parent link="${parent}"/>

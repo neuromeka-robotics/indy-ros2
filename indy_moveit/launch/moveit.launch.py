@@ -22,6 +22,7 @@ def launch_setup(context, *args, **kwargs):
     prefix = LaunchConfiguration("prefix")
     launch_rviz_moveit = LaunchConfiguration("launch_rviz_moveit")
     use_sim_time = LaunchConfiguration("use_sim_time")
+    is_nuri5sdual = indy_type.perform(context) == 'nuri5sdual'
 
     robot_description_content = Command(
         [
@@ -66,9 +67,20 @@ def launch_setup(context, *args, **kwargs):
     )
     robot_description_semantic = {"robot_description_semantic": robot_description_semantic_content}
 
-    robot_description_kinematics = PathJoinSubstitution(
-        [moveit_config_package, "moveit_config", "kinematics.yaml"]
-    )
+    if is_nuri5sdual:
+        robot_description_kinematics = PathJoinSubstitution(
+            [moveit_config_package, "moveit_config", "kinematics_nuri5sdual.yaml"]
+        )
+        robot_description_planning = {
+            "robot_description_planning": load_yaml(
+                "indy_moveit", "moveit_config/joint_limits_nuri5sdual.yaml"
+            )
+        }
+    else:
+        robot_description_kinematics = PathJoinSubstitution(
+            [moveit_config_package, "moveit_config", "kinematics.yaml"]
+        )
+        robot_description_planning = {}
     
     ompl_planning_pipeline_config = {
         "move_group": {
@@ -77,11 +89,18 @@ def launch_setup(context, *args, **kwargs):
             "start_state_max_bounds_error": 0.5,
         }
     }
-    ompl_planning_yaml = load_yaml("indy_moveit", "moveit_config/ompl_planning.yaml")
+    if is_nuri5sdual:
+        ompl_planning_yaml = load_yaml(
+            "indy_moveit", "moveit_config/ompl_planning_nuri5sdual.yaml"
+        )
+    else:
+        ompl_planning_yaml = load_yaml("indy_moveit", "moveit_config/ompl_planning.yaml")
     ompl_planning_pipeline_config["move_group"].update(ompl_planning_yaml)
 
     # Trajectory Execution Configuration
-    if (indy_type.perform(context) == 'indyrp2') or (indy_type.perform(context) == 'indyrp2_v2'):
+    if is_nuri5sdual:
+        controllers_yaml = load_yaml("indy_moveit", "moveit_config/controllers_nuri5sdual.yaml")
+    elif (indy_type.perform(context) == 'indyrp2') or (indy_type.perform(context) == 'indyrp2_v2'):
         controllers_yaml = load_yaml("indy_moveit", "moveit_config/controllers_7dof.yaml")
     else:
         controllers_yaml = load_yaml("indy_moveit", "moveit_config/controllers_6dof.yaml")
@@ -115,6 +134,7 @@ def launch_setup(context, *args, **kwargs):
             robot_description,
             robot_description_semantic,
             robot_description_kinematics,
+            robot_description_planning,
             ompl_planning_pipeline_config,
             trajectory_execution,
             moveit_controllers,
@@ -128,6 +148,10 @@ def launch_setup(context, *args, **kwargs):
         rviz_config_file = PathJoinSubstitution(
             [moveit_config_package, "rviz_config", "indy_servo.rviz"]
         )    
+    elif is_nuri5sdual:
+        rviz_config_file = PathJoinSubstitution(
+            [moveit_config_package, "rviz_config", "indy_moveit_nuri5sdual.rviz"]
+        )
     else:
         rviz_config_file = PathJoinSubstitution(
             [moveit_config_package, "rviz_config", "indy_moveit.rviz"]
@@ -211,7 +235,7 @@ def generate_launch_description():
             "indy_type",
             default_value="indy7",
             description="Type of Indy robot.",
-            choices=["indy7", "indy7_v2", "indy7_v3", "indy12", "indy12_v2", "indy12_v3", "indyrp2", "indyrp2_v2", "icon7l", "icon3", "nuri3s", "nuri4s", "nuri7c", "nuri12c", "nuri20c", "nuri30", "opti5", "opti3"]
+            choices=["indy7", "indy7_v2", "indy7_v3", "indy12", "indy12_v2", "indy12_v3", "indyrp2", "indyrp2_v2", "icon7l", "icon3", "nuri3s", "nuri4s", "nuri5s", "nuri5sdual", "nuri7c", "nuri12c", "nuri20c", "nuri30", "opti5", "opti3"]
         )
     )
 

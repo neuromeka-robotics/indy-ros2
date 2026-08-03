@@ -1,0 +1,196 @@
+inertia_parameters:
+  body_base_mass: 113.7
+
+  # left arm
+  left_arm_link0_mass: 4.986732
+  left_arm_link1_mass: 20.116164
+  left_arm_link2_mass: 26.414028
+  left_arm_link3_mass: 15.498706
+  left_arm_link4_mass: 13.487443
+  left_arm_link5_mass: 9.043200
+  left_arm_link6_mass: 1.320725
+
+  # right arm
+  right_arm_link0_mass: 4.986732
+  right_arm_link1_mass: 20.116164
+  right_arm_link2_mass: 26.414028
+  right_arm_link3_mass: 15.498706
+  right_arm_link4_mass: 13.487443
+  right_arm_link5_mass: 9.043200
+  right_arm_link6_mass: 1.320725
+
+  body_base:
+    ixx: 38.40
+    iyy: 9.272
+    izz: 35.30
+    iyz: 6.527
+    ixz: 0.01185
+    ixy: -0.03349
+
+  # left arm
+  left_arm_link0:
+    ixx: 0.009668
+    iyy: 0.009577
+    izz: 0.01225
+    iyz: 0.000013336791
+    ixz: -0.0003002
+    ixy: 0.000001153354
+  left_arm_link1:
+    ixx: 0.1578
+    iyy: 0.1594
+    izz: 0.0295
+    iyz: -0.00155
+    ixz: 0.000000498371
+    ixy: 0.000000149047
+  left_arm_link2:
+    ixx: 0.4858
+    iyy: 0.04896
+    izz: 0.4999
+    iyz: -0.00476
+    ixz: 0.001285
+    ixy: -0.06031
+  left_arm_link3:
+    ixx: 0.08397
+    iyy: 0.02727
+    izz: 0.09228
+    iyz: 0.001106
+    ixz: -0.0004487
+    ixy: 0.02021
+  left_arm_link4:
+    ixx: 0.08025
+    iyy: 0.07334
+    izz: 0.01909
+    iyz: 0.0002316
+    ixz: 0.000000862392
+    ixy: -0.000000236577
+  left_arm_link5:
+    ixx: 0.02247
+    iyy: 0.01196
+    izz: 0.01976
+    iyz: -0.0002671
+    ixz: 0.000000007368
+    ixy: 0.000000123305
+  left_arm_link6:
+    ixx: 0.0007489
+    iyy: 0.0007531
+    izz: 0.001312
+    iyz: 0.000001011397
+    ixz: -0.000000616995
+    ixy: 0.000003565389
+
+  # right arm
+  right_arm_link0:
+    ixx: 0.009668
+    iyy: 0.009577
+    izz: 0.01225
+    iyz: 0.000013336791
+    ixz: -0.0003002
+    ixy: 0.000001153354
+  right_arm_link1:
+    ixx: 0.1578
+    iyy: 0.1594
+    izz: 0.0295
+    iyz: -0.00155
+    ixz: 0.000000498371
+    ixy: 0.000000149047
+  right_arm_link2:
+    ixx: 0.4858
+    iyy: 0.04896
+    izz: 0.4999
+    iyz: -0.00476
+    ixz: 0.001285
+    ixy: -0.06031
+  right_arm_link3:
+    ixx: 0.08397
+    iyy: 0.02727
+    izz: 0.09228
+    iyz: 0.001106
+    ixz: -0.0004487
+    ixy: 0.02021
+  right_arm_link4:
+    ixx: 0.08025
+    iyy: 0.07334
+    izz: 0.01909
+    iyz: 0.0002316
+    ixz: 0.000000862392
+    ixy: -0.000000236577
+  right_arm_link5:
+    ixx: 0.02247
+    iyy: 0.01196
+    izz: 0.01976
+    iyz: -0.0002671
+    ixz: 0.000000007368
+    ixy: 0.000000123305
+  right_arm_link6:
+    ixx: 0.0007489
+    iyy: 0.0007531
+    izz: 0.001312
+    iyz: 0.000001011397
+    ixz: -0.000000616995
+    ixy: 0.000003565389
+
+  center_of_mass:
+    body_base:
+      x: -0.000537
+      y: -0.814858
+      z: 0.068372
+
+    # left arm
+    left_arm_link0:
+      x: -0.001214
+      y: -0.000051
+      z: 0.058953
+    left_arm_link1:
+      x: 0.000001
+      y: 0.001060
+      z: 0.153018
+    left_arm_link2:
+      x: 0.016059
+      y: 0.243241
+      z: 0.057930
+    left_arm_link3:
+      x: -0.026585
+      y: 0.065610
+      z: -0.039275
+    left_arm_link4:
+      x: -0.000596
+      y: -0.000746
+      z: 0.142018
+    left_arm_link5:
+      x: 0.0
+      y: -0.0031234
+      z: -0.056013
+    left_arm_link6:
+      x: -0.000109
+      y: 0.000057
+      z: 0.0105466
+
+    # right arm
+    right_arm_link0:
+      x: -0.001214
+      y: -0.000051
+      z: 0.058953
+    right_arm_link1:
+      x: 0.000001
+      y: 0.001060
+      z: 0.153018
+    right_arm_link2:
+      x: 0.016059
+      y: 0.243241
+      z: 0.057930
+    right_arm_link3:
+      x: -0.026585
+      y: 0.065610
+      z: -0.039275
+    right_arm_link4:
+      x: -0.000596
+      y: -0.000746
+      z: 0.142018
+    right_arm_link5:
+      x: 0.0
+      y: -0.0031234
+      z: -0.056013
+    right_arm_link6:
+      x: -0.000109
+      y: 0.000057
+      z: 0.0105466

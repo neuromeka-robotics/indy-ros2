@@ -10,6 +10,81 @@
         <!--JOINTS - When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
         <!--CHAINS - When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
         <!--SUBGROUPS - Groups can also be formed by referencing to already defined group names-->
+        <xacro:if value="${indy_type == 'nuri5sdual'}">
+            <group name="${prefix}left_arm">
+                <chain base_link="${prefix}left_arm_link0" tip_link="${prefix}left_arm_tcp" />
+            </group>
+            <group name="${prefix}right_arm">
+                <chain base_link="${prefix}right_arm_link0" tip_link="${prefix}right_arm_tcp" />
+            </group>
+            <group name="${prefix}dual_arm">
+                <group name="${prefix}left_arm" />
+                <group name="${prefix}right_arm" />
+            </group>
+
+            <group_state name="${prefix}LeftHome" group="${prefix}left_arm">
+                <joint name="${prefix}left_arm_joint0" value="0" />
+                <joint name="${prefix}left_arm_joint1" value="0" />
+                <joint name="${prefix}left_arm_joint2" value="0" />
+                <joint name="${prefix}left_arm_joint3" value="0" />
+                <joint name="${prefix}left_arm_joint4" value="0" />
+                <joint name="${prefix}left_arm_joint5" value="0" />
+            </group_state>
+            <group_state name="${prefix}RightHome" group="${prefix}right_arm">
+                <joint name="${prefix}right_arm_joint0" value="0" />
+                <joint name="${prefix}right_arm_joint1" value="0" />
+                <joint name="${prefix}right_arm_joint2" value="0" />
+                <joint name="${prefix}right_arm_joint3" value="0" />
+                <joint name="${prefix}right_arm_joint4" value="0" />
+                <joint name="${prefix}right_arm_joint5" value="0" />
+            </group_state>
+            <group_state name="${prefix}LeftZero" group="${prefix}left_arm">
+                <joint name="${prefix}left_arm_joint0" value="0" />
+                <joint name="${prefix}left_arm_joint1" value="0" />
+                <joint name="${prefix}left_arm_joint2" value="0" />
+                <joint name="${prefix}left_arm_joint3" value="0" />
+                <joint name="${prefix}left_arm_joint4" value="0" />
+                <joint name="${prefix}left_arm_joint5" value="0" />
+            </group_state>
+            <group_state name="${prefix}RightZero" group="${prefix}right_arm">
+                <joint name="${prefix}right_arm_joint0" value="0" />
+                <joint name="${prefix}right_arm_joint1" value="0" />
+                <joint name="${prefix}right_arm_joint2" value="0" />
+                <joint name="${prefix}right_arm_joint3" value="0" />
+                <joint name="${prefix}right_arm_joint4" value="0" />
+                <joint name="${prefix}right_arm_joint5" value="0" />
+            </group_state>
+
+            <virtual_joint name="FixedBase" type="fixed" parent_frame="global" child_link="world" />
+            <disable_collisions link1="${prefix}body_base" link2="${prefix}left_arm_link0" reason="Adjacent" />
+            <disable_collisions link1="${prefix}body_base" link2="${prefix}right_arm_link0" reason="Adjacent" />
+            <disable_collisions link1="${prefix}left_arm_link0" link2="${prefix}left_arm_link1" reason="Adjacent" />
+            <disable_collisions link1="${prefix}left_arm_link1" link2="${prefix}left_arm_link2" reason="Adjacent" />
+            <disable_collisions link1="${prefix}left_arm_link2" link2="${prefix}left_arm_link3" reason="Adjacent" />
+            <disable_collisions link1="${prefix}left_arm_link3" link2="${prefix}left_arm_link4" reason="Adjacent" />
+            <disable_collisions link1="${prefix}left_arm_link4" link2="${prefix}left_arm_link5" reason="Adjacent" />
+            <disable_collisions link1="${prefix}left_arm_link5" link2="${prefix}left_arm_link6" reason="Adjacent" />
+            <disable_collisions link1="${prefix}right_arm_link0" link2="${prefix}right_arm_link1" reason="Adjacent" />
+            <disable_collisions link1="${prefix}right_arm_link1" link2="${prefix}right_arm_link2" reason="Adjacent" />
+            <disable_collisions link1="${prefix}right_arm_link2" link2="${prefix}right_arm_link3" reason="Adjacent" />
+            <disable_collisions link1="${prefix}right_arm_link3" link2="${prefix}right_arm_link4" reason="Adjacent" />
+            <disable_collisions link1="${prefix}right_arm_link4" link2="${prefix}right_arm_link5" reason="Adjacent" />
+            <disable_collisions link1="${prefix}right_arm_link5" link2="${prefix}right_arm_link6" reason="Adjacent" />
+            <disable_collisions link1="${prefix}left_arm_link2" link2="${prefix}left_arm_link4" reason="Never" />
+            <disable_collisions link1="${prefix}left_arm_link2" link2="${prefix}left_arm_link5" reason="Never" />
+            <disable_collisions link1="${prefix}left_arm_link2" link2="${prefix}left_arm_link6" reason="Never" />
+            <disable_collisions link1="${prefix}left_arm_link3" link2="${prefix}left_arm_link5" reason="Never" />
+            <disable_collisions link1="${prefix}left_arm_link3" link2="${prefix}left_arm_link6" reason="Never" />
+            <disable_collisions link1="${prefix}left_arm_link4" link2="${prefix}left_arm_link6" reason="Never" />
+            <disable_collisions link1="${prefix}right_arm_link2" link2="${prefix}right_arm_link4" reason="Never" />
+            <disable_collisions link1="${prefix}right_arm_link2" link2="${prefix}right_arm_link5" reason="Never" />
+            <disable_collisions link1="${prefix}right_arm_link2" link2="${prefix}right_arm_link6" reason="Never" />
+            <disable_collisions link1="${prefix}right_arm_link3" link2="${prefix}right_arm_link5" reason="Never" />
+            <disable_collisions link1="${prefix}right_arm_link3" link2="${prefix}right_arm_link6" reason="Never" />
+            <disable_collisions link1="${prefix}right_arm_link4" link2="${prefix}right_arm_link6" reason="Never" />
+        </xacro:if>
+
+        <xacro:unless value="${indy_type == 'nuri5sdual'}">
         <group name="${prefix}${name}_manipulator">
             <chain base_link="${prefix}link0" tip_link="${prefix}tcp" />
         </group>
@@ -81,6 +156,7 @@
             <disable_collisions link1="link3" link2="link5" reason="Never" />
             <disable_collisions link1="link3" link2="link6" reason="Never" />
             <disable_collisions link1="link4" link2="link6" reason="Never" />
+        </xacro:unless>
         </xacro:unless>
 
     </xacro:macro>
