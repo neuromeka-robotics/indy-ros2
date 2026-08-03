@@ -1,0 +1,13 @@
+joint_limits:
+  left_arm_joint0: {has_acceleration_limits: true, max_acceleration: 5.0}
+  left_arm_joint1: {has_acceleration_limits: true, max_acceleration: 5.0}
+  left_arm_joint2: {has_acceleration_limits: true, max_acceleration: 5.0}
+  left_arm_joint3: {has_acceleration_limits: true, max_acceleration: 5.0}
+  left_arm_joint4: {has_acceleration_limits: true, max_acceleration: 5.0}
+  left_arm_joint5: {has_acceleration_limits: true, max_acceleration: 5.0}
+  right_arm_joint0: {has_acceleration_limits: true, max_acceleration: 5.0}
+  right_arm_joint1: {has_acceleration_limits: true, max_acceleration: 5.0}
+  right_arm_joint2: {has_acceleration_limits: true, max_acceleration: 5.0}
+  right_arm_joint3: {has_acceleration_limits: true, max_acceleration: 5.0}
+  right_arm_joint4: {has_acceleration_limits: true, max_acceleration: 5.0}
+  right_arm_joint5: {has_acceleration_limits: true, max_acceleration: 5.0}

@@ -1,0 +1,118 @@
+# The base frame is the assembly frame used by the supplied dual-arm CAD model.
+kinematics:
+  left_arm_connect:
+    x: 0.179999
+    y: -0.0000000004912
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  right_arm_connect:
+    x: -0.180001
+    y: -0.005
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+
+  # left arm
+  left_arm_joint0:
+    x: 0.0
+    y: 0.0
+    z: 0.09
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  left_arm_joint1:
+    x: 0.0
+    y: -0.040
+    z: 0.238
+    roll: 1.570796327
+    pitch: 0.0
+    yaw: 0.0
+  left_arm_joint2:
+    x: 0.05
+    y: 0.400
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  left_arm_joint3:
+    x: -0.050
+    y: 0.195
+    z: -0.040
+    roll: -1.570796327
+    pitch: 0.0
+    yaw: 0.0
+  left_arm_joint4:
+    x: 0.0
+    y: 0.070
+    z: 0.2050424
+    roll: 1.570796327
+    pitch: 0.0
+    yaw: 0.0
+  left_arm_joint5:
+    x: 0.0
+    y: 0.075
+    z: -0.066
+    roll: -1.570796327
+    pitch: 0.0
+    yaw: 0.0
+  left_arm_tcp:
+    x: 0.0
+    y: 0.0
+    z: 0.0285
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+
+  # right arm
+  right_arm_joint0:
+    x: 0.0
+    y: 0.0
+    z: 0.09
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  right_arm_joint1:
+    x: 0.0
+    y: -0.040
+    z: 0.238
+    roll: 1.570796327
+    pitch: 0.0
+    yaw: 0.0
+  right_arm_joint2:
+    x: 0.05
+    y: 0.400
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  right_arm_joint3:
+    x: -0.050
+    y: 0.195
+    z: -0.040
+    roll: -1.570796327
+    pitch: 0.0
+    yaw: 0.0
+  right_arm_joint4:
+    x: 0.0
+    y: 0.070
+    z: 0.2050424
+    roll: 1.570796327
+    pitch: 0.0
+    yaw: 0.0
+  right_arm_joint5:
+    x: 0.0
+    y: 0.075
+    z: -0.066
+    roll: -1.570796327
+    pitch: 0.0
+    yaw: 0.0
+  right_arm_tcp:
+    x: 0.0
+    y: 0.0
+    z: 0.0285
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0

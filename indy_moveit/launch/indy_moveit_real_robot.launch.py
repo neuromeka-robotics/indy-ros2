@@ -125,7 +125,7 @@ def generate_launch_description():
             "indy_type",
             default_value="indy7",
             description="Type of Indy robot.",
-            choices=["indy7", "indy7_v2", "indy7_v3", "indy12", "indy12_v2", "indy12_v3", "indyrp2", "indyrp2_v2", "icon7l", "icon3", "nuri3s", "nuri4s", "nuri7c", "nuri12c", "nuri20c", "nuri30", "opti5", "opti3"]
+            choices=["indy7", "indy7_v2", "indy7_v3", "indy12", "indy12_v2", "indy12_v3", "indyrp2", "indyrp2_v2", "icon7l", "icon3", "nuri3s", "nuri4s", "nuri5s", "nuri7c", "nuri12c", "nuri20c", "nuri30", "opti5", "opti3"]
         )
     )
 

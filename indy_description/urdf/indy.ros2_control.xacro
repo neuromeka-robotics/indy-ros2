@@ -20,8 +20,8 @@
                 </xacro:unless>
             </hardware>
 
-            <xacro:macro name="define_control_joint" params="joint_index">
-                <joint name="${prefix}${joint_index}">
+            <xacro:macro name="define_control_joint" params="joint_name initial_value">
+                <joint name="${prefix}${joint_name}">
                     <command_interface name="position">
                         <param name="min">-6.283185</param>
                         <param name="max">6.283185</param>
@@ -31,7 +31,7 @@
                         <param name="max">3.15</param>
                     </command_interface>
                     <state_interface name="position">
-                        <param name="initial_value">${initial_positions[joint_index]}</param>
+                        <param name="initial_value">${initial_value}</param>
                     </state_interface>
                     <state_interface name="velocity">
                         <param name="initial_value">0.0</param>
@@ -42,15 +42,32 @@
                 </joint>
             </xacro:macro>
 
-            <xacro:define_control_joint joint_index="joint0"/>
-            <xacro:define_control_joint joint_index="joint1"/>
-            <xacro:define_control_joint joint_index="joint2"/>
-            <xacro:define_control_joint joint_index="joint3"/>
-            <xacro:define_control_joint joint_index="joint4"/>
-            <xacro:define_control_joint joint_index="joint5"/>
+            <xacro:unless value="${indy_type == 'nuri5sdual'}">
+                <xacro:define_control_joint joint_name="joint0" initial_value="${initial_positions['joint0']}"/>
+                <xacro:define_control_joint joint_name="joint1" initial_value="${initial_positions['joint1']}"/>
+                <xacro:define_control_joint joint_name="joint2" initial_value="${initial_positions['joint2']}"/>
+                <xacro:define_control_joint joint_name="joint3" initial_value="${initial_positions['joint3']}"/>
+                <xacro:define_control_joint joint_name="joint4" initial_value="${initial_positions['joint4']}"/>
+                <xacro:define_control_joint joint_name="joint5" initial_value="${initial_positions['joint5']}"/>
 
-            <xacro:if value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
-                <xacro:define_control_joint joint_index="joint6"/>
+                <xacro:if value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
+                    <xacro:define_control_joint joint_name="joint6" initial_value="${initial_positions['joint6']}"/>
+                </xacro:if>
+            </xacro:unless>
+
+            <xacro:if value="${indy_type == 'nuri5sdual'}">
+                <xacro:define_control_joint joint_name="left_arm_joint0" initial_value="${initial_positions['joint0']}"/>
+                <xacro:define_control_joint joint_name="left_arm_joint1" initial_value="${initial_positions['joint1']}"/>
+                <xacro:define_control_joint joint_name="left_arm_joint2" initial_value="${initial_positions['joint2']}"/>
+                <xacro:define_control_joint joint_name="left_arm_joint3" initial_value="${initial_positions['joint3']}"/>
+                <xacro:define_control_joint joint_name="left_arm_joint4" initial_value="${initial_positions['joint4']}"/>
+                <xacro:define_control_joint joint_name="left_arm_joint5" initial_value="${initial_positions['joint5']}"/>
+                <xacro:define_control_joint joint_name="right_arm_joint0" initial_value="${initial_positions['joint0']}"/>
+                <xacro:define_control_joint joint_name="right_arm_joint1" initial_value="${initial_positions['joint1']}"/>
+                <xacro:define_control_joint joint_name="right_arm_joint2" initial_value="${initial_positions['joint2']}"/>
+                <xacro:define_control_joint joint_name="right_arm_joint3" initial_value="${initial_positions['joint3']}"/>
+                <xacro:define_control_joint joint_name="right_arm_joint4" initial_value="${initial_positions['joint4']}"/>
+                <xacro:define_control_joint joint_name="right_arm_joint5" initial_value="${initial_positions['joint5']}"/>
             </xacro:if>
 
         </ros2_control>

@@ -23,7 +23,10 @@
         <xacro:if value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
             <xacro:property name="initial_positions" value="${initial_positions_parameters['7dof']}" scope="parent"/>
         </xacro:if>
-        <xacro:unless value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
+        <xacro:if value="${indy_type == 'nuri5sdual'}">
+            <xacro:property name="initial_positions" value="${initial_positions_parameters['nuri5sdual']}" scope="parent"/>
+        </xacro:if>
+        <xacro:unless value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2' or indy_type == 'nuri5sdual'}">
             <xacro:property name="initial_positions" value="${initial_positions_parameters['6dof']}" scope="parent"/>
         </xacro:unless>
     </xacro:macro>

@@ -34,6 +34,14 @@ def launch_setup(context, *args, **kwargs):
             "left_arm_controller",
             "right_arm_controller",
         ]
+    elif indy_type.perform(context) == 'nuri5sdual':
+        initial_joint_controllers = PathJoinSubstitution(
+            [gazebo_package, "controller", "nuri5sdual_controllers.yaml"]
+        )
+        controller_names = [
+            "left_arm_controller",
+            "right_arm_controller",
+        ]
     elif (indy_type.perform(context) == 'indyrp2') or (indy_type.perform(context) == 'indyrp2_v2'):
         initial_joint_controllers = PathJoinSubstitution(
             [gazebo_package, "controller", "indy_controllers_7dof.yaml"]
@@ -189,7 +197,7 @@ def generate_launch_description():
             "indy_type",
             default_value="indy7",
             description="Type of Indy robot.",
-            choices=["indy7", "indy7_v2", "indy7_v3", "indy12", "indy12_v2", "indy12_v3", "indyrp2", "indyrp2_v2", "icon7l", "icon3", "nuri3s", "nuri4s", "nuri7c", "nuri12c", "nuri20c", "nuri30", "opti5", "opti3", "eir"]
+            choices=["indy7", "indy7_v2", "indy7_v3", "indy12", "indy12_v2", "indy12_v3", "indyrp2", "indyrp2_v2", "icon7l", "icon3", "nuri3s", "nuri4s", "nuri5s", "nuri5sdual", "nuri7c", "nuri12c", "nuri20c", "nuri30", "opti5", "opti3", "eir"]
         )
     )
 
