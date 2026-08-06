@@ -120,6 +120,10 @@ opti5, opti3, eir
 `nuri5sdual` supports description display and MoveIt/Gazebo simulation. Real
 robot bringup requires a dedicated dual-arm hardware interface.
 
+`nuri5s` is a compatibility alias for `nuri4s`; both names use the same NURI4s
+kinematics, physical parameters, limits, and meshes. Each arm in `nuri5sdual`
+uses that same NURI4s model.
+
 Use **indy_eye** to enable the Indy Eye model.
 
 Supported **indy_eye** values:

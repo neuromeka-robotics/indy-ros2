@@ -51,140 +51,140 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri5s/visual/Nuri5s_0.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri4s/visual/Nuri4s_0.stl"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri5s/collision/Nuri5s_0.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri4s/collision/Nuri4s_0.stl"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="4.986732"/>
-      <origin rpy="0 0 0" xyz="-0.001214                             -5.1e-05                             0.058953"/>
-      <inertia ixx="0.009668" ixy="1.153354e-06" ixz="-0.0003002" iyy="0.009577" iyz="1.3336791e-05" izz="0.01225"/>
+      <mass value="2.861045494"/>
+      <origin rpy="0 0 0" xyz="-0.00121098594851                             -4.9470144791e-05                             0.0590005404311"/>
+      <inertia ixx="0.00553981093413" ixy="6.12511734981e-07" ixz="-0.000170740443647" iyy="0.00548757387469" iyz="7.6740754477e-06" izz="0.00702124648306"/>
     </inertial>
   </link>
   <link name="link1">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri5s/visual/Nuri5s_1.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri4s/visual/Nuri4s_1.stl"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri5s/collision/Nuri5s_1.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri4s/collision/Nuri4s_1.stl"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="20.116164"/>
-      <origin rpy="0 0 0" xyz="1e-06                             0.00106                             0.153018"/>
-      <inertia ixx="0.1578" ixy="1.49047e-07" ixz="4.98371e-07" iyy="0.1594" iyz="-0.00155" izz="0.0295"/>
+      <mass value="3.167175036"/>
+      <origin rpy="0 0 0" xyz="-4.84884197811e-06                             0.00104374560871                             0.153016501288"/>
+      <inertia ixx="0.0248326954612" ixy="-3.58858012471e-08" ixz="6.85634762528e-07" iyy="0.0250836640412" iyz="-0.00023998266072" izz="0.00464126419178"/>
     </inertial>
   </link>
   <link name="link2">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri5s/visual/Nuri5s_2.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri4s/visual/Nuri4s_2.stl"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri5s/collision/Nuri5s_2.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri4s/collision/Nuri4s_2.stl"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="26.414028"/>
-      <origin rpy="0 0 0" xyz="0.016059                             0.243241                             0.05793"/>
-      <inertia ixx="0.4858" ixy="-0.06031" ixz="0.001285" iyy="0.04896" iyz="-0.00476" izz="0.4999"/>
+      <mass value="4.29096783"/>
+      <origin rpy="0 0 0" xyz="0.0126330488924                             0.191365451292                             0.0583583096823"/>
+      <inertia ixx="0.105911337812" ixy="-0.0105104159999" ixz="0.000186503329248" iyy="0.00776530844961" iyz="-0.000261885428906" izz="0.107983714374"/>
     </inertial>
   </link>
   <link name="link3">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri5s/visual/Nuri5s_3.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri4s/visual/Nuri4s_3.stl"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri5s/collision/Nuri5s_3.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri4s/collision/Nuri4s_3.stl"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="15.498706"/>
-      <origin rpy="0 0 0" xyz="-0.026585                             0.06561                             -0.039275"/>
-      <inertia ixx="0.08397" ixy="0.02021" ixz="-0.0004487" iyy="0.02727" iyz="0.001106" izz="0.09228"/>
+      <mass value="2.018198648"/>
+      <origin rpy="0 0 0" xyz="-0.0265732003582                             0.0656067897659                             -0.0392639261109"/>
+      <inertia ixx="0.0109270485162" ixy="0.002629363394" ixz="-5.86329149759e-05" iyy="0.00353951993409" iyz="0.00014526561131" izz="0.012005923025"/>
     </inertial>
   </link>
   <link name="link4">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri5s/visual/Nuri5s_4.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri4s/visual/Nuri4s_4.stl"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri5s/collision/Nuri5s_4.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri4s/collision/Nuri4s_4.stl"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="13.487443"/>
-      <origin rpy="0 0 0" xyz="-0.000596                             -0.000746                             0.142018"/>
-      <inertia ixx="0.08025" ixy="-2.36577e-07" ixz="8.62392e-07" iyy="0.07334" iyz="0.0002316" izz="0.01909"/>
+      <mass value="1.882223023"/>
+      <origin rpy="0 0 0" xyz="-1.32930875494e-06                             -0.000191056719624                             0.143012200629"/>
+      <inertia ixx="0.0112415620571" ixy="-4.65331858986e-08" ixz="2.68240248053e-07" iyy="0.0102771122849" iyz="3.16048350975e-05" izz="0.00266081881597"/>
     </inertial>
   </link>
   <link name="link5">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri5s/visual/Nuri5s_5.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri4s/visual/Nuri4s_5.stl"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri5s/collision/Nuri5s_5.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri4s/collision/Nuri4s_5.stl"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="9.0432"/>
-      <origin rpy="0 0 0" xyz="0.0                             -0.0031234                             -0.056013"/>
-      <inertia ixx="0.02247" ixy="1.23305e-07" ixz="7.368e-09" iyy="0.01196" iyz="-0.0002671" izz="0.01976"/>
+      <mass value="1.507185922"/>
+      <origin rpy="0 0 0" xyz="7.14986417237e-06                             -0.00303940907833                             -0.0559727042829"/>
+      <inertia ixx="0.00373607998083" ixy="2.91798819522e-07" ixz="1.01317019825e-07" iyy="0.00199239424527" iyz="-4.40082562423e-05" izz="0.00328396098777"/>
     </inertial>
   </link>
   <link name="link6">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri5s/visual/Nuri5s_6.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri4s/visual/Nuri4s_6.stl"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri5s/collision/Nuri5s_6.stl"/>
+        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/nuri4s/collision/Nuri4s_6.stl"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="1.320725"/>
-      <origin rpy="0 0 0" xyz="-0.000109                             5.7e-05                             0.0105466"/>
-      <inertia ixx="0.0007489" ixy="3.565389e-06" ixz="-6.16995e-07" iyy="0.0007531" iyz="1.011397e-06" izz="0.001312"/>
+      <mass value="0.634034296"/>
+      <origin rpy="0 0 0" xyz="-4.19730272788e-06                             -0.000873874305948                             0.0105883187729"/>
+      <inertia ixx="0.000362598922354" ixy="-7.66749389803e-09" ixz="2.6624098207e-07" iyy="0.000358657036042" iyz="5.69771870257e-07" izz="0.000628912625913"/>
     </inertial>
   </link>
   <link name="tcp"/>

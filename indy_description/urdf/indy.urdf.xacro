@@ -15,7 +15,8 @@
     <xacro:arg name="gripper_dh_ag95" default="false"/>
 
     <xacro:property name="arg_indy_type" value="$(arg indy_type)"/>
-    <xacro:property name="config_indy_type" value="${arg_indy_type}"/>
+    <!-- NURI5s is a compatibility alias for the existing NURI4s model. -->
+    <xacro:property name="config_indy_type" value="${'nuri4s' if arg_indy_type == 'nuri5s' else arg_indy_type}"/>
 
     <!-- parameters -->
     <xacro:arg name="prefix" default="" />
