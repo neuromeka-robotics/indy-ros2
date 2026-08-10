@@ -51,14 +51,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/icon3/visual/ICoN3_0.stl"/>
+        <mesh filename="package://indy_description/meshes/icon3/visual/ICoN3_0.stl"/>
       </geometry>
       <material name="icon_grey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/icon3/collision/ICoN3_0.stl"/>
+        <mesh filename="package://indy_description/meshes/icon3/collision/ICoN3_0.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -71,14 +71,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/icon3/visual/ICoN3_1.stl"/>
+        <mesh filename="package://indy_description/meshes/icon3/visual/ICoN3_1.stl"/>
       </geometry>
       <material name="icon_green"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/icon3/collision/ICoN3_1.stl"/>
+        <mesh filename="package://indy_description/meshes/icon3/collision/ICoN3_1.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -91,14 +91,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/icon3/visual/ICoN3_2.stl"/>
+        <mesh filename="package://indy_description/meshes/icon3/visual/ICoN3_2.stl"/>
       </geometry>
       <material name="icon_green"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/icon3/collision/ICoN3_2.stl"/>
+        <mesh filename="package://indy_description/meshes/icon3/collision/ICoN3_2.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -111,14 +111,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/icon3/visual/ICoN3_3.stl"/>
+        <mesh filename="package://indy_description/meshes/icon3/visual/ICoN3_3.stl"/>
       </geometry>
       <material name="icon_green"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/icon3/collision/ICoN3_3.stl"/>
+        <mesh filename="package://indy_description/meshes/icon3/collision/ICoN3_3.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -131,14 +131,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/icon3/visual/ICoN3_4.stl"/>
+        <mesh filename="package://indy_description/meshes/icon3/visual/ICoN3_4.stl"/>
       </geometry>
       <material name="icon_green"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/icon3/collision/ICoN3_4.stl"/>
+        <mesh filename="package://indy_description/meshes/icon3/collision/ICoN3_4.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -151,14 +151,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/icon3/visual/ICoN3_5.stl"/>
+        <mesh filename="package://indy_description/meshes/icon3/visual/ICoN3_5.stl"/>
       </geometry>
       <material name="icon_grey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/icon3/collision/ICoN3_5.stl"/>
+        <mesh filename="package://indy_description/meshes/icon3/collision/ICoN3_5.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -171,14 +171,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/icon3/visual/ICoN3_6.stl"/>
+        <mesh filename="package://indy_description/meshes/icon3/visual/ICoN3_6.stl"/>
       </geometry>
       <material name="icon_grey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/icon3/collision/ICoN3_6.stl"/>
+        <mesh filename="package://indy_description/meshes/icon3/collision/ICoN3_6.stl"/>
       </geometry>
     </collision>
     <inertial>
