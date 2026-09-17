@@ -29,7 +29,7 @@
         <xacro:if value="${ indy_type == 'indy7' or indy_type == 'indy7_v2' or indy_type == 'indy7_v3' or indy_type == 'indyrp2' or
                             indy_type == 'indyrp2_v2' or indy_type == 'indy12' or indy_type == 'indy12_v2' or indy_type == 'indy12_v3' or
                             indy_type == 'nuri3s' or indy_type == 'nuri4s' or indy_type == 'nuri5s' or indy_type == 'nuri7c' or indy_type == 'nuri12c' or
-                            indy_type == 'nuri20c' or indy_type == 'nuri30' or indy_type == 'nuri5sdual' or
+                            indy_type == 'nuri20c' or indy_type == 'nuri30' or indy_type == 'nuri50' or indy_type == 'nuri5sdual' or
                             indy_type == 'opti5' or indy_type == 'opti3'}">
             <xacro:property name="material_0" value="indy_white"/>
             <xacro:property name="material_1" value="indy_white"/>
@@ -176,7 +176,7 @@
                     <xacro:unless value="${origin_key in sec_joint_axes}">
                         <axis xyz="0 0 1"/>
                     </xacro:unless>
-                    <dynamics damping="0.1" friction="10.0"/>
+                    <dynamics damping="${sec_limits[origin_key]['damping']}" friction="${sec_limits[origin_key]['friction']}"/>
                 </xacro:if>
 
                 <xacro:if value="${joint_type == 'revolute'}">

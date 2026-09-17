@@ -468,6 +468,7 @@
     <origin rpy="0 0 0" xyz="5.7565e-05 0 1.016733575"/>
     <axis xyz="0 0 1"/>
     <limit effort="50" lower="-2.8797" upper="2.8797" velocity="3"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="Joint_L1" type="revolute">
     <parent link="torso_yaw"/>
@@ -475,6 +476,7 @@
     <origin rpy="-1.5708 1.4225 3.1416" xyz="-0.050058 0 0.0755"/>
     <axis xyz="0 0 -1"/>
     <limit effort="50" lower="-0.1745" upper="0.5235" velocity="3"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="Joint_L2_U" type="revolute">
     <parent link="torso_pitch"/>
@@ -482,6 +484,7 @@
     <origin rpy="0 0 1.7191" xyz="-0.33832 0 0.0455"/>
     <axis xyz="0 0 -1"/>
     <limit effort="50" lower="-0.2618" upper="0.4886" velocity="3"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="Joint_L3_U" type="revolute">
     <parent link="head_pitch"/>
@@ -489,6 +492,7 @@
     <origin rpy="-1.5708 0 0" xyz="0 0.1245 -0.0455"/>
     <axis xyz="0 0 1"/>
     <limit effort="50" lower="-0.8726" upper="0.8726" velocity="3"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="left_arm_base_joint" type="fixed">
     <parent link="torso_pitch"/>
@@ -501,6 +505,7 @@
     <origin rpy="0 0 3.14159265358979" xyz="0 0 0"/>
     <axis xyz="0 0 1"/>
     <limit effort="108" lower="-3.1067" upper="3.1067" velocity="3.0543261909900763"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="Joint_L3_L" type="revolute">
     <parent link="left_arm_link_1"/>
@@ -508,6 +513,7 @@
     <origin rpy="0 0 0" xyz="0 0 0.1745"/>
     <axis xyz="0 -1 0"/>
     <limit effort="108" lower="-2.0944" upper="2.0944" velocity="3.0543261909900763"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="Joint_L4_L" type="revolute">
     <parent link="left_arm_link_2"/>
@@ -515,6 +521,7 @@
     <origin rpy="0 0 0" xyz="0 0 0.314"/>
     <axis xyz="0 0 1"/>
     <limit effort="66" lower="-3.1067" upper="3.1067" velocity="4.71238898038469"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="Joint_L5_L" type="revolute">
     <parent link="left_arm_link_3"/>
@@ -522,6 +529,7 @@
     <origin rpy="0 0 0" xyz="0.01 0 0"/>
     <axis xyz="0 -1 0"/>
     <limit effort="66" lower="-1.0472" upper="2.5307" velocity="5.235987755982989"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="Joint_L6_L" type="revolute">
     <parent link="left_arm_link_4"/>
@@ -529,6 +537,7 @@
     <origin rpy="0 0 0" xyz="-0.01 0 0.272"/>
     <axis xyz="0 0 1"/>
     <limit effort="19" lower="-3.1067" upper="3.1067" velocity="4.1887902047863905"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="Joint_L7_L" type="revolute">
     <parent link="left_arm_link_5"/>
@@ -536,6 +545,7 @@
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <axis xyz="0 -1 0"/>
     <limit effort="19" lower="-1.0472" upper="1.0472" velocity="4.1887902047863905"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="Joint_L8_L" type="revolute">
     <parent link="left_arm_link_6"/>
@@ -543,6 +553,7 @@
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <axis xyz="1 0 0"/>
     <limit effort="19" lower="-1.0472" upper="1.0472" velocity="4.1887902047863905"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="right_arm_base_joint" type="fixed">
     <parent link="torso_pitch"/>
@@ -555,6 +566,7 @@
     <origin rpy="0 0 -3.14159265358979" xyz="0 0 0"/>
     <axis xyz="0 0 1"/>
     <limit effort="108" lower="-3.1067" upper="3.1067" velocity="3.0543261909900763"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="Joint_L3_R" type="revolute">
     <parent link="right_arm_link_1"/>
@@ -562,6 +574,7 @@
     <origin rpy="0 0 0" xyz="0 0 0.1745"/>
     <axis xyz="0 1 0"/>
     <limit effort="108" lower="-2.0944" upper="2.0944" velocity="3.0543261909900763"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="Joint_L4_R" type="revolute">
     <parent link="right_arm_link_2"/>
@@ -569,6 +582,7 @@
     <origin rpy="0 0 0" xyz="0 0 0.314"/>
     <axis xyz="0 0 1"/>
     <limit effort="66" lower="-3.1067" upper="3.1067" velocity="4.71238898038469"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="Joint_L5_R" type="revolute">
     <parent link="right_arm_link_3"/>
@@ -576,6 +590,7 @@
     <origin rpy="0 0 0" xyz="0.01 0 0"/>
     <axis xyz="0 1 0"/>
     <limit effort="66" lower="-1.0472" upper="2.5307" velocity="5.235987755982989"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="Joint_L6_R" type="revolute">
     <parent link="right_arm_link_4"/>
@@ -583,6 +598,7 @@
     <origin rpy="0 0 0" xyz="-0.01 0 0.272"/>
     <axis xyz="0 0 1"/>
     <limit effort="19" lower="-3.1067" upper="3.1067" velocity="4.1887902047863905"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="Joint_L7_R" type="revolute">
     <parent link="right_arm_link_5"/>
@@ -590,6 +606,7 @@
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <axis xyz="0 1 0"/>
     <limit effort="19" lower="-1.0472" upper="1.0472" velocity="4.1887902047863905"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <joint name="Joint_L8_R" type="revolute">
     <parent link="right_arm_link_6"/>
@@ -597,6 +614,7 @@
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <axis xyz="-1 0 0"/>
     <limit effort="19" lower="-1.0472" upper="1.0472" velocity="4.1887902047863905"/>
+    <dynamics damping="0.1" friction="10.0"/>
   </joint>
   <ros2_control name="indy" type="system">
     <hardware>

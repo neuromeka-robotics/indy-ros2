@@ -89,6 +89,9 @@
                         effort="${eir_joint_limits[joint_name]['max_effort']}"
                         velocity="${eir_joint_limits[joint_name]['max_velocity']}"/>
                 </xacro:if>
+                <xacro:if value="${joint_name in eir_joint_limits and (joint_type == 'revolute' or joint_type == 'continuous')}">
+                    <dynamics damping="${eir_joint_limits[joint_name]['damping']}" friction="${eir_joint_limits[joint_name]['friction']}"/>
+                </xacro:if>
                 <xacro:if value="${joint_name in eir_joint_mimics}">
                     <xacro:property name="joint_mimic" value="${eir_joint_mimics[joint_name]}"/>
                     <mimic joint="${prefix}${joint_mimic['joint']}" multiplier="${joint_mimic['multiplier']}" offset="${joint_mimic['offset']}"/>
