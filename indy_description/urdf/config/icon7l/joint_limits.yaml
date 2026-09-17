@@ -8,6 +8,8 @@ joint_limits:
     max_velocity: !degrees 380.0
     max_position: !degrees 170.0
     min_position: !degrees -170.0
+    damping: 0.1
+    friction: 10.0
   joint1:
     has_effort_limits: true
     has_velocity_limits: true
@@ -17,6 +19,8 @@ joint_limits:
     max_velocity: !degrees 320.0
     max_position: !degrees  135.0
     min_position: !degrees -100.0
+    damping: 0.1
+    friction: 10.0
   joint2:
     has_effort_limits: true
     has_velocity_limits: true
@@ -26,6 +30,8 @@ joint_limits:
     max_velocity: !degrees 390.0
     max_position: !degrees 66.0 #156.0
     min_position: !degrees -210 #-120.0
+    damping: 0.1
+    friction: 10.0
   joint3:
     has_effort_limits: true
     has_velocity_limits: true
@@ -35,6 +41,8 @@ joint_limits:
     max_velocity: !degrees 490.0
     max_position: !degrees 200.0
     min_position: !degrees -200.0
+    damping: 0.1
+    friction: 10.0
   joint4:
     has_effort_limits: true
     has_velocity_limits: true
@@ -44,6 +52,8 @@ joint_limits:
     max_velocity: !degrees 565.0
     max_position: !degrees 135.0
     min_position: !degrees -135.0
+    damping: 0.1
+    friction: 10.0
   joint5:
     has_effort_limits: true
     has_velocity_limits: true
@@ -53,3 +63,5 @@ joint_limits:
     max_velocity: !degrees 815.0
     max_position: !degrees  360.0
     min_position: !degrees -360.0
+    damping: 0.1
+    friction: 10.0
