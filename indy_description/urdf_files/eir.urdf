@@ -56,14 +56,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="-0.0093 0 0.995"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/base_link.glb" scale="1 1 1"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/base_link.glb" scale="1 1 1"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="-0.0093 0 0.995"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/base_link.STL" scale="1 1 1"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/base_link.STL" scale="1 1 1"/>
       </geometry>
     </collision>
     <inertial>
@@ -76,14 +76,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/link_1.STL" scale="1 1 1"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/link_1.STL" scale="1 1 1"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/link_1.STL" scale="1 1 1"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/link_1.STL" scale="1 1 1"/>
       </geometry>
     </collision>
     <inertial>
@@ -96,14 +96,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/link_2.STL" scale="1 1 1"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/link_2.STL" scale="1 1 1"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/link_2.STL" scale="1 1 1"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/link_2.STL" scale="1 1 1"/>
       </geometry>
     </collision>
     <inertial>
@@ -116,14 +116,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/link_3.STL" scale="1 1 1"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/link_3.STL" scale="1 1 1"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/link_3.STL" scale="1 1 1"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/link_3.STL" scale="1 1 1"/>
       </geometry>
     </collision>
     <inertial>
@@ -136,14 +136,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/link_4.STL" scale="1 1 1"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/link_4.STL" scale="1 1 1"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/link_4.STL" scale="1 1 1"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/link_4.STL" scale="1 1 1"/>
       </geometry>
     </collision>
     <inertial>
@@ -156,14 +156,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/AR5-5_07L-W4C4A2_base.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/AR5-5_07L-W4C4A2_base.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/AR5-5_07L-W4C4A2_base.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/AR5-5_07L-W4C4A2_base.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
@@ -171,14 +171,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/AR5-5_07L-W4C4A2_link1.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/AR5-5_07L-W4C4A2_link1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/AR5-5_07L-W4C4A2_link1.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/AR5-5_07L-W4C4A2_link1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -191,14 +191,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/AR5-5_07L-W4C4A2_link2.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/AR5-5_07L-W4C4A2_link2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/AR5-5_07L-W4C4A2_link2.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/AR5-5_07L-W4C4A2_link2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -211,14 +211,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/AR5-5_07L-W4C4A2_link3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/AR5-5_07L-W4C4A2_link3.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/AR5-5_07L-W4C4A2_link3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/AR5-5_07L-W4C4A2_link3.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -231,14 +231,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/AR5-5_07L-W4C4A2_link4.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/AR5-5_07L-W4C4A2_link4.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/AR5-5_07L-W4C4A2_link4.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/AR5-5_07L-W4C4A2_link4.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -251,14 +251,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/AR5-5_07L-W4C4A2_link5.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/AR5-5_07L-W4C4A2_link5.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/AR5-5_07L-W4C4A2_link5.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/AR5-5_07L-W4C4A2_link5.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -271,14 +271,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/AR5-5_07L-W4C4A2_link6.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/AR5-5_07L-W4C4A2_link6.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/AR5-5_07L-W4C4A2_link6.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/AR5-5_07L-W4C4A2_link6.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -291,14 +291,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/AR5-5_07L-W4C4A2_link7.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/AR5-5_07L-W4C4A2_link7.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/AR5-5_07L-W4C4A2_link7.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/AR5-5_07L-W4C4A2_link7.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -311,14 +311,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/AR5-5_07R-W4C4A2_base.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/AR5-5_07R-W4C4A2_base.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/AR5-5_07R-W4C4A2_base.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/AR5-5_07R-W4C4A2_base.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
@@ -326,14 +326,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/AR5-5_07R-W4C4A2_link1.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/AR5-5_07R-W4C4A2_link1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/AR5-5_07R-W4C4A2_link1.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/AR5-5_07R-W4C4A2_link1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -346,14 +346,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/AR5-5_07R-W4C4A2_link2.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/AR5-5_07R-W4C4A2_link2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/AR5-5_07R-W4C4A2_link2.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/AR5-5_07R-W4C4A2_link2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -366,14 +366,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/AR5-5_07R-W4C4A2_link3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/AR5-5_07R-W4C4A2_link3.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/AR5-5_07R-W4C4A2_link3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/AR5-5_07R-W4C4A2_link3.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -386,14 +386,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/AR5-5_07R-W4C4A2_link4.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/AR5-5_07R-W4C4A2_link4.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/AR5-5_07R-W4C4A2_link4.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/AR5-5_07R-W4C4A2_link4.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -406,14 +406,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/AR5-5_07R-W4C4A2_link5.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/AR5-5_07R-W4C4A2_link5.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/AR5-5_07R-W4C4A2_link5.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/AR5-5_07R-W4C4A2_link5.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -426,14 +426,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/AR5-5_07R-W4C4A2_link6.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/AR5-5_07R-W4C4A2_link6.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/AR5-5_07R-W4C4A2_link6.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/AR5-5_07R-W4C4A2_link6.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -446,14 +446,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/visual/AR5-5_07R-W4C4A2_link7.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/visual/AR5-5_07R-W4C4A2_link7.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="indy_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/user/indy-ros2/install/indy_description/share/indy_description/meshes/eir/collision/AR5-5_07R-W4C4A2_link7.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://indy_description/meshes/eir/collision/AR5-5_07R-W4C4A2_link7.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
