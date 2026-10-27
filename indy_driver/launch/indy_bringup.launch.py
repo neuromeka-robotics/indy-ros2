@@ -5,6 +5,7 @@ from launch.conditions import IfCondition
 # from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
+from launch_ros.parameter_descriptions import ParameterValue
 from launch_ros.substitutions import FindPackageShare
 
 def launch_setup(context, *args, **kwargs):
@@ -47,7 +48,9 @@ def launch_setup(context, *args, **kwargs):
             prefix,
         ]
     )
-    robot_description = {"robot_description": robot_description_content}
+    robot_description = {
+        "robot_description": ParameterValue(robot_description_content, value_type=str)
+    }
 
     rviz_config_file = PathJoinSubstitution(
         [description_package, "rviz_config", "indy.rviz"]

@@ -10,10 +10,10 @@ controller_manager:
             type: joint_trajectory_controller/JointTrajectoryController
 
         forward_velocity_controller:
-            type: velocity_controllers/JointGroupVelocityController
+            type: forward_command_controller/ForwardCommandController
 
         forward_position_controller:
-            type: position_controllers/JointGroupPositionController
+            type: forward_command_controller/ForwardCommandController
 
 joint_trajectory_controller:
     ros__parameters:

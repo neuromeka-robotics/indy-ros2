@@ -31,7 +31,7 @@ left_arm_controller:
     allow_partial_joints_goal: false
     constraints:
       stopped_velocity_tolerance: 0.1
-      goal_time: 0.0
+      goal_time: 10.0 # Allow up to 10 seconds for the goal to settle.
       left_arm_joint0: {trajectory: 0.2, goal: 0.1}
       left_arm_joint1: {trajectory: 0.2, goal: 0.1}
       left_arm_joint2: {trajectory: 0.2, goal: 0.1}
@@ -59,7 +59,7 @@ right_arm_controller:
     allow_partial_joints_goal: false
     constraints:
       stopped_velocity_tolerance: 0.1
-      goal_time: 0.0
+      goal_time: 10.0 # Allow up to 10 seconds for the goal to settle.
       right_arm_joint0: {trajectory: 0.2, goal: 0.1}
       right_arm_joint1: {trajectory: 0.2, goal: 0.1}
       right_arm_joint2: {trajectory: 0.2, goal: 0.1}

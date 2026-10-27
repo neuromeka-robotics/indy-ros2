@@ -8,6 +8,7 @@ from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution #, IfElseSubstitution
 from launch_ros.actions import Node
+from launch_ros.parameter_descriptions import ParameterValue
 from launch_ros.substitutions import FindPackageShare
 
 def launch_setup(context, *args, **kwargs):
@@ -80,7 +81,9 @@ def launch_setup(context, *args, **kwargs):
             initial_joint_controllers,
         ]
     )
-    robot_description = {"robot_description": robot_description_content}
+    robot_description = {
+        "robot_description": ParameterValue(robot_description_content, value_type=str)
+    }
 
     rviz_config_file = PathJoinSubstitution(
         [description_package, "rviz_config", "indy.rviz"]
@@ -96,7 +99,11 @@ def launch_setup(context, *args, **kwargs):
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
+        arguments=[
+            "joint_state_broadcaster",
+            "--controller-manager", "/controller_manager",
+            "--param-file", initial_joint_controllers,
+        ],
         output="screen",
     )
     
@@ -104,7 +111,10 @@ def launch_setup(context, *args, **kwargs):
         Node(
             package="controller_manager",
             executable="spawner",
-            arguments=[controller_name, "-c", "/controller_manager"],
+            arguments=[
+                controller_name, "-c", "/controller_manager",
+                "--param-file", initial_joint_controllers,
+            ],
         )
         for controller_name in controller_names
     ]
@@ -143,6 +153,7 @@ def launch_setup(context, *args, **kwargs):
         name="rviz2",
         output="log",
         arguments=["-d", rviz_config_file],
+        parameters=[{"use_sim_time": True}],
     )
 
     # Delay start joint_state_broadcaster

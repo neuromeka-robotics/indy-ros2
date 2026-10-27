@@ -12,7 +12,7 @@ This repository contains ROS2 drivers for Indy7, Indy7V2, IndyRP2, IndyRP2V2, In
 
 The following software needs to be installed:
 
-- [ROS2 Jazzy](https://docs.ros.org/en/jazzy/Installation.html)
+- [ROS 2 Lyrical Luth](https://docs.ros.org/en/lyrical/Get-Started/Installation.html)
 
 ## Installation
 
@@ -25,36 +25,36 @@ sudo rosdep init
 rosdep update
 sudo apt update
 
-sudo apt install -y ros-jazzy-ament-cmake
-ros-jazzy-xacro \
-ros-jazzy-ros-base \
-ros-jazzy-moveit \
-ros-jazzy-moveit-servo \
-ros-jazzy-moveit-visual-tools \
-ros-jazzy-moveit-resources \
-ros-jazzy-moveit-ros-move-group \
-ros-jazzy-moveit-planners-ompl \
-ros-jazzy-moveit-kinematics \
-ros-jazzy-moveit-ros-perception \
-ros-jazzy-ros2-control \
-ros-jazzy-ros2-controllers \
-ros-jazzy-controller-manager \
-ros-jazzy-joint-state-broadcaster \
-ros-jazzy-joint-state-publisher-gui \
-ros-jazzy-joint-trajectory-controller \
-ros-jazzy-rviz-visual-tools \
-ros-jazzy-geometric-shapes \
-ros-jazzy-gz-ros2-control \
-ros-jazzy-ros-gz \
-ros-jazzy-realsense2-camera \
-ros-jazzy-realsense2-description \
-ros-jazzy-librealsense2*
+sudo apt install -y ros-lyrical-ament-cmake \
+ros-lyrical-xacro \
+ros-lyrical-ros-base \
+ros-lyrical-moveit \
+ros-lyrical-moveit-servo \
+ros-lyrical-moveit-visual-tools \
+ros-lyrical-moveit-resources \
+ros-lyrical-moveit-ros-move-group \
+ros-lyrical-moveit-planners-ompl \
+ros-lyrical-moveit-kinematics \
+ros-lyrical-moveit-ros-perception \
+ros-lyrical-ros2-control \
+ros-lyrical-ros2-controllers \
+ros-lyrical-controller-manager \
+ros-lyrical-joint-state-broadcaster \
+ros-lyrical-joint-state-publisher-gui \
+ros-lyrical-joint-trajectory-controller \
+ros-lyrical-rviz-visual-tools \
+ros-lyrical-geometric-shapes \
+ros-lyrical-gz-ros2-control \
+ros-lyrical-ros-gz \
+ros-lyrical-realsense2-camera \
+ros-lyrical-realsense2-description \
+ros-lyrical-librealsense2
 ```
 
 ### Switch to Cyclone DDS
 
 ```bash
-sudo apt install ros-jazzy-rmw-cyclonedds-cpp
+sudo apt install ros-lyrical-rmw-cyclonedds-cpp
 ```
 
 Add this to ~/.bashrc to source it automatically
@@ -66,8 +66,8 @@ export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ### Download the source code
 
 ```bash
-source /opt/ros/jazzy/setup.bash
-git clone https://github.com/neuromeka-robotics/indy-ros2 -b jazzy-indyDCP3
+source /opt/ros/lyrical/setup.bash
+git clone https://github.com/neuromeka-robotics/indy-ros2 -b lyrical ~/indy-ros2
 cd ~/indy-ros2/
 ```
 
@@ -78,9 +78,9 @@ sudo apt install python3-venv
 python3 -m venv .venv
 source .venv/bin/activate
 pip install --upgrade pip
-pip install catkin_pkg empy lark-parser
+pip install catkin_pkg empy lark-parser osrf_pycommon
 pip install pyyaml jinja2 typeguard neuromeka
-rosdep install --from-paths src --ignore-src -r -y 
+rosdep install --from-paths indy_description indy_driver indy_gazebo indy_moveit indy_interfaces --ignore-src -r -y 
 colcon build
 ```
 
@@ -100,6 +100,7 @@ deactivate
 
 ```bash
 cd ~/indy-ros2/
+source /opt/ros/lyrical/setup.bash
 source .venv/bin/activate
 . install/setup.bash
 ```

@@ -5,6 +5,7 @@ from launch.actions import DeclareLaunchArgument, OpaqueFunction
 from launch.conditions import IfCondition
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
+from launch_ros.parameter_descriptions import ParameterValue
 from indy_moveit.launch_common import load_yaml
 from launch_ros.descriptions import ComposableNode
 from launch_ros.actions import Node, ComposableNodeContainer
@@ -50,7 +51,9 @@ def launch_setup(context, *args, **kwargs):
             prefix,
         ]
     )
-    robot_description = {"robot_description": robot_description_content}
+    robot_description = {
+        "robot_description": ParameterValue(robot_description_content, value_type=str)
+    }
 
     # MoveIt Configuration
     robot_description_semantic_content = Command(
@@ -75,7 +78,11 @@ def launch_setup(context, *args, **kwargs):
             prefix,
         ]
     )
-    robot_description_semantic = {"robot_description_semantic": robot_description_semantic_content}
+    robot_description_semantic = {
+        "robot_description_semantic": ParameterValue(
+            robot_description_semantic_content, value_type=str
+        )
+    }
 
     if is_eir:
         robot_description_kinematics = PathJoinSubstitution(
@@ -103,7 +110,9 @@ def launch_setup(context, *args, **kwargs):
     }
 
     ompl_planning_pipeline_config = {
-        "move_group": {
+        "planning_pipelines": ["ompl"],
+        "default_planning_pipeline": "ompl",
+        "ompl": {
             "planning_plugins": ["ompl_interface/OMPLPlanner"],
             "request_adapters": [
                 "default_planning_request_adapters/ResolveConstraintFrames",
@@ -124,7 +133,7 @@ def launch_setup(context, *args, **kwargs):
         ompl_planning_yaml = load_yaml("indy_moveit", "moveit_config/ompl_planning_nuri5sdual.yaml")
     else:
         ompl_planning_yaml = load_yaml("indy_moveit", "moveit_config/ompl_planning.yaml")
-    ompl_planning_pipeline_config["move_group"].update(ompl_planning_yaml)
+    ompl_planning_pipeline_config["ompl"].update(ompl_planning_yaml)
 
     # Trajectory Execution Configuration
     if is_eir:
@@ -220,6 +229,7 @@ def launch_setup(context, *args, **kwargs):
             robot_description_semantic,
             ompl_planning_pipeline_config,
             robot_description_kinematics,
+            {"use_sim_time": use_sim_time},
         ],
     )
 

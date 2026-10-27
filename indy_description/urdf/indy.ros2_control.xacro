@@ -15,8 +15,8 @@
                     <plugin>gz_ros2_control/GazeboSimSystem</plugin>
                 </xacro:if>
                 <xacro:unless value="${sim_gazebo}">
-                    <plugin>fake_components/GenericSystem</plugin>
-                    <param name="state_following_offset">0.0</param>
+                    <plugin>mock_components/GenericSystem</plugin>
+                    <param name="position_state_following_offset">0.0</param>
                 </xacro:unless>
             </hardware>
 
@@ -87,8 +87,8 @@
                     <plugin>gz_ros2_control/GazeboSimSystem</plugin>
                 </xacro:if>
                 <xacro:unless value="${sim_gazebo}">
-                    <plugin>fake_components/GenericSystem</plugin>
-                    <param name="state_following_offset">0.0</param>
+                    <plugin>mock_components/GenericSystem</plugin>
+                    <param name="position_state_following_offset">0.0</param>
                 </xacro:unless>
             </hardware>
 
